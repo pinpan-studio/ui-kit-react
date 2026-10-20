@@ -1,0 +1,21 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', Roboto, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.light {
+  color-scheme: light;
+}
+body.dark {
+  color-scheme: dark;
+}
+code,
+kbd,
+pre {
+  font-family: 'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
