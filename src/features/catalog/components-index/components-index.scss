@@ -1,0 +1,51 @@
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-m);
+}
+.cat-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px;
+  border-radius: var(--radius-card);
+  border: 0;
+  background: var(--card-bg);
+  box-shadow: var(--elevation-1);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+.cat-card:hover {
+  background: var(--mat-sys-surface-container, var(--hover-bg));
+  transform: translateY(-2px);
+}
+.cat-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color-light);
+  color: var(--primary-color);
+}
+.cat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+.cat-text strong {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+}
+.cat-text span {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.cat-card .arrow {
+  color: var(--text-muted);
+}

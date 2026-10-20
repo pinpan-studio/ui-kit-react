@@ -1,4 +1,5 @@
 import { Navigate, type RouteObject } from 'react-router';
+import { RootLayout } from './RootLayout';
 import { ExampleAppLayout } from '../components/layout/ExampleAppLayout';
 import { KitLayout } from '../components/layout/KitLayout';
 import { StandaloneLayout } from '../components/layout/StandaloneLayout';
@@ -21,8 +22,21 @@ const lazyPlaceholder = async () => ({
   Component: (await import('../features/placeholder/PlaceholderPage')).PlaceholderPage,
 });
 
+/** Galeries déjà portées (les autres entrées affichent le placeholder). */
+const PORTED: Record<string, RouteObject['lazy']> = {
+  '/components': async () => ({
+    Component: (await import('../features/catalog/components-index/ComponentsIndexPage')).ComponentsIndexPage,
+  }),
+  '/components/buttons': async () => ({
+    Component: (await import('../features/catalog/buttons/ButtonsGalleryPage')).ButtonsGalleryPage,
+  }),
+  '/components/interactions': async () => ({
+    Component: (await import('../features/catalog/interactions/InteractionsGalleryPage')).InteractionsGalleryPage,
+  }),
+};
+
 function componentRoute(e: ComponentEntry): RouteObject {
-  return { path: e.path, handle: e, lazy: lazyPlaceholder };
+  return { path: e.path, handle: e, lazy: PORTED[e.path] ?? lazyPlaceholder };
 }
 
 /** Construit l'arbre React Router à partir de la table Angular (53 entrées). */
@@ -37,9 +51,14 @@ export function buildRoutes(): RouteObject[] {
     }
   }
   return [
-    { element: <KitLayout />, children: children.kit },
-    { element: <ExampleAppLayout />, children: children.example },
-    { element: <StandaloneLayout />, children: children.standalone },
-    ...redirects,
+    {
+      element: <RootLayout />,
+      children: [
+        { element: <KitLayout />, children: children.kit },
+        { element: <ExampleAppLayout />, children: children.example },
+        { element: <StandaloneLayout />, children: children.standalone },
+        ...redirects,
+      ],
+    },
   ];
 }

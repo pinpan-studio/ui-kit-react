@@ -1,0 +1,38 @@
+import { screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { renderAt } from '../../test/renderApp';
+
+describe('Pages du catalogue portées', () => {
+  it('/components liste les 13 catégories avec leur description', async () => {
+    renderAt('/components');
+    await screen.findByRole('heading', { level: 1, name: 'Composants' });
+    const cards = document.querySelectorAll('.cat-card');
+    expect(cards).toHaveLength(13);
+    expect(within(cards[3] as HTMLElement).getByText(/Primary, secondary, outline/)).toBeInTheDocument();
+  });
+
+  it('/components/buttons : sommaire, variantes et bouton de chargement simulé', async () => {
+    renderAt('/components/buttons');
+    await screen.findByRole('heading', { level: 1, name: 'Boutons' });
+    for (const t of ['Variantes', 'États', 'Icon buttons', 'Menu & split', 'FAB']) {
+      expect(screen.getByRole('heading', { level: 2, name: t })).toBeInTheDocument();
+    }
+    const states = document.getElementById('states') as HTMLElement;
+    await userEvent.click(within(states).getByRole('button', { name: 'Enregistrer' }));
+    expect(within(states).getByRole('button', { name: /Enregistrement…/ })).toBeDisabled();
+    const menu = document.getElementById('menu') as HTMLElement;
+    await userEvent.click(within(menu).getByRole('button', { name: /Exporter/ }));
+    expect(await screen.findByRole('menuitem', { name: /Excel/ })).toBeInTheDocument();
+  });
+
+  it('/components/interactions : la visite guidée démarre et se ferme avec Échap', async () => {
+    renderAt('/components/interactions');
+    await screen.findByRole('heading', { level: 1, name: 'Interactions' });
+    await userEvent.click(screen.getByRole('button', { name: /Lancer la visite/ }));
+    expect(await screen.findByRole('dialog', { name: 'Bienvenue dans le tableau de bord' })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant' }));
+    expect(await screen.findByRole('dialog', { name: 'Recherche globale' })).toBeInTheDocument();
+    await userEvent.keyboard('{Escape}');
+    expect(await screen.findByText('Visite interrompue')).toBeInTheDocument();
+  });
+});

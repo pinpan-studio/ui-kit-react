@@ -1,3 +1,4 @@
+import { useInteractions } from '../interaction/useInteractions';
 import { IconButton } from '@mui/material';
 import type { ReactNode } from 'react';
 import { Kbd } from '../interaction/Kbd';
@@ -21,6 +22,7 @@ export function Topbar({
   actions,
   toggleLabels = ['Fermer le menu', 'Ouvrir le menu'],
 }: TopbarProps) {
+  const { openPalette } = useInteractions();
   return (
     <header className="kit-toolbar">
       <IconButton
@@ -32,8 +34,7 @@ export function Topbar({
       </IconButton>
       <span className="toolbar-title">{title}</span>
       <span className="spacer" />
-      {/* La palette de commandes ⌘K sera portée avec les composants « Interactions ». */}
-      <button type="button" className="palette-btn" aria-label="Rechercher (⌘K)" disabled title="Bientôt disponible">
+      <button type="button" className="palette-btn" aria-label="Rechercher (⌘K)" onClick={openPalette}>
         <MaterialIcon name="search" />
         <span className="pb-label">Rechercher…</span>
         <Kbd keys="mod+k" className="pb-kbd" />

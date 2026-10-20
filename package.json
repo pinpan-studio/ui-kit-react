@@ -46,6 +46,7 @@
     "happy-dom": "^21.0.3",
     "playwright": "1.64",
     "prettier": "^3.9.10",
+    "sass-embedded": "^1.105.2",
     "typescript": "5.8",
     "typescript-eslint": "^8.72.0",
     "vite": "^6.4.4",

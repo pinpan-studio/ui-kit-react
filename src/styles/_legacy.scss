@@ -1,0 +1,353 @@
+// Classes globales reprises de ui-kit Angular (styles.scss, styles/_list-page-base.scss, styles/_entity-list.scss).
+// Sélecteurs adaptés : .material-icons → .material-icons, .kbd-keys → .kbd-keys.
+.mat-button-rounded {
+  //border-radius: var(--radius-xl) 0px var(--radius-xl) 0px !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 0px var(--space-4) 0px var(--space-2) !important;
+}
+.line-action {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.line-action:hover {
+  color: red;
+  cursor: pointer;
+}
+.refresh-btn {
+  border-radius: var(--radius-button) !important;
+  border: 1px solid var(--border-color, #cbd5e1) !important;
+  color: var(--text-secondary, #475569) !important;
+  background-color: var(--card-bg, #ffffff) !important;
+  height: 40px !important;
+  width: 40px !important;
+  min-width: 40px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease;
+
+  .material-icons {
+    margin: 0 !important;
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  &:hover {
+    background-color: var(--hover-bg, #f1f5f9) !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color, #0284c7) !important;
+    outline-offset: 2px;
+  }
+}
+
+// Universal KPI Metrics Cards Styling
+.metric-card {
+  border-radius: var(--radius-card, 12px) !important;
+  border: none !important;
+  background: var(--card-bg, #ffffff) !important;
+  box-shadow: var(--elevation-1) !important;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease !important;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--elevation-3) !important;
+  }
+}
+
+// Global Chart Tab Toggles
+.chart-tab-toggles {
+  background-color: var(--background-default, #f8fafc);
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2);
+  align-items: center;
+
+  @media (max-width: 600px) {
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.tab-toggle-btn {
+  border: none;
+  background: transparent;
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary, #475569);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--text-primary, #0f172a);
+  }
+
+  &.active {
+    background-color: var(--card-bg, #ffffff);
+    color: var(--primary-color, #7c3aed);
+    box-shadow: var(--elevation-1, 0 1px 3px rgba(0, 0, 0, 0.1));
+  }
+}
+
+// Dark Theme Specific Overrides
+.dark-theme,
+.dark {
+  .chart-tab-toggles {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .tab-toggle-btn {
+    color: var(--text-secondary, #cbd5e1) !important;
+
+    &:hover {
+      color: var(--text-primary, #ffffff) !important;
+    }
+
+    &.active {
+      background-color: var(--card-bg, #1f2937) !important;
+      color: var(--primary-color, #a78bfa) !important;
+      box-shadow: var(--elevation-1) !important;
+    }
+  }
+
+  .refresh-btn {
+    border-color: var(--border-color, #374151) !important;
+    background-color: var(--card-bg, #1f2937) !important;
+    color: var(--text-secondary) !important;
+
+    &:hover {
+      background-color: var(--hover-bg, #374151) !important;
+    }
+  }
+
+  .metric-card {
+    background: var(--card-bg, #1f2937) !important;
+    box-shadow: var(--elevation-2) !important;
+
+    &:hover {
+      box-shadow: var(--elevation-3) !important;
+    }
+  }
+
+  // Dashboard Icon Boxes - Translucent Colors
+  .bg-indigo-light,
+  .bg-indigo-soft {
+    background-color: rgba(99, 102, 241, 0.15) !important;
+  }
+  .bg-emerald-light,
+  .bg-emerald-soft {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+  }
+  .bg-orange-light,
+  .bg-orange-soft {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+  }
+  .bg-red-light,
+  .bg-red-soft,
+  .bg-rose-light {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+  }
+  .bg-blue-light,
+  .bg-blue-soft {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+  }
+  .bg-purple-light {
+    background-color: rgba(139, 92, 246, 0.15) !important;
+  }
+  .bg-slate-light {
+    background-color: rgba(100, 116, 139, 0.15) !important;
+  }
+
+  .icon-indigo {
+    color: #818cf8 !important;
+  }
+  .icon-emerald {
+    color: #4ade80 !important;
+  }
+  .icon-orange {
+    color: #fbbf24 !important;
+  }
+  .icon-red {
+    color: #f87171 !important;
+  }
+  .icon-blue {
+    color: #60a5fa !important;
+  }
+  .icon-purple {
+    color: #c084fc !important;
+  }
+}
+// ─── Toggle segmenté (vue liste / cartes) ──────────────────────
+.m3-filter-toggle {
+  display: flex;
+  background: var(--mat-sys-surface-container-high, var(--hover-bg));
+  padding: var(--space-1);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  gap: var(--space-1);
+  align-items: center;
+  width: fit-content;
+  overflow-y: hidden !important;
+
+  button,
+  .mat-mdc-button {
+    border-radius: var(--radius-full) !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: var(--mat-sys-on-surface-variant, var(--text-secondary)) !important;
+    height: 36px !important;
+    padding: 0 var(--space-4) !important;
+    min-width: unset !important;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      background: var(--mat-sys-primary, var(--primary-color)) !important;
+      color: var(--mat-sys-on-primary, #fff) !important;
+      box-shadow: var(--elevation-2) !important;
+    }
+
+    .material-icons {
+      margin-right: var(--space-1);
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    button,
+    .mat-mdc-button {
+      flex: 1;
+      padding: 0 var(--space-2) !important;
+      font-size: 12px !important;
+      span {
+        display: inline-block !important;
+      }
+    }
+  }
+}
+.refresh-btn,
+.view-toggle-btn {
+  border-radius: 50%;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background-color: var(--card-bg, #ffffff);
+  height: 42px;
+  width: 42px;
+  color: var(--text-secondary, #475569);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--hover-bg, #f1f5f9);
+  }
+}
+
+.view-toggle-btn {
+  &.active {
+    background-color: rgba(79, 70, 229, 0.08);
+    border-color: #4f46e5;
+    color: #4f46e5;
+  }
+}
+
+.create-btn {
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+  height: 42px !important;
+  font-size: 0.875rem !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// ── Filter Chips Row ──────────────────────────────────────────────────────────
+.filter-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.filter-chip {
+  border-radius: var(--radius-xl) !important;
+  border-color: var(--border-color, #cbd5e1) !important;
+  color: var(--text-secondary, #475569) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  height: 36px !important;
+  background-color: var(--card-bg, #ffffff) !important;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-4) !important;
+
+  .material-icons.chip-icon {
+    font-size: 15px;
+    width: 15px;
+    height: 15px;
+  }
+
+  &.chip-active {
+    background-color: rgba(79, 70, 229, 0.08) !important;
+    border-color: #4f46e5 !important;
+    color: #4f46e5 !important;
+  }
+
+  &:hover:not(.chip-active) {
+    background-color: var(--hover-bg, #f1f5f9) !important;
+  }
+}
+
+// ─── Actions de ligne ────────────────────────────────────────────────────
+.action-icon-btn {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  color: var(--text-muted, #64748b);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+
+  .material-icons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    color: var(--primary-color, #4f46e5);
+    background: var(--primary-color-light, rgba(79, 70, 229, 0.12));
+  }
+
+  &.danger:hover {
+    color: var(--error-color, #ef4444);
+    background: var(--error-color-light, rgba(239, 68, 68, 0.12));
+  }
+}
