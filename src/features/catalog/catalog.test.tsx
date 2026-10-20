@@ -154,4 +154,18 @@ describe('Pages du catalogue portées', () => {
     expect(grouped.querySelectorAll('.ng-note').length).toBeLessThan(n);
     expect(document.getElementById('agenda')?.querySelector('.ag-grid')).toBeTruthy();
   });
+
+  it('/components/maps : fournisseurs, états de carte et sortie GeoJSON vide', async () => {
+    renderAt('/components/maps');
+    await screen.findByRole('heading', { level: 1, name: 'Cartes' });
+    const base = document.getElementById('basemaps') as HTMLElement;
+    await userEvent.click(within(base).getByText('osm'));
+    expect(within(base).getByText('osm').closest('li')).toHaveClass('active');
+    const states = document.getElementById('states') as HTMLElement;
+    await userEvent.click(within(states).getByRole('button', { name: 'error' }));
+    expect(within(states).getByRole('button', { name: 'error' })).toHaveClass('active');
+    expect(
+      within(document.getElementById('draw') as HTMLElement).getByText('Dessinez une forme sur la carte…'),
+    ).toBeInTheDocument();
+  });
 });
