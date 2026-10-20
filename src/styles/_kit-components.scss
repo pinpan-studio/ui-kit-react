@@ -1469,8 +1469,8 @@ app-command-palette {
 .vgd {
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
-  app-video-player .vp,
-  app-youtube-player .yt {
+  .app-video-player .vp,
+  .app-youtube-player .yt {
     border-radius: 0;
   }
   .vgd-info {
