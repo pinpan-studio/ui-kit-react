@@ -1,0 +1,106 @@
+// Porté depuis shared/components/fields/rating.component.ts (styles du composant, encapsulation émulée → portée .app-rating).
+.app-rating {
+  & {
+    display: inline-block;
+  }
+  .rt {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    outline: none;
+    border-radius: 8px;
+    &:focus-visible {
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 40%, transparent);
+    }
+  }
+  .star {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    .material-icons {
+      font-size: var(--rt-size);
+      width: var(--rt-size);
+      height: var(--rt-size);
+    }
+    .bg {
+      color: color-mix(in srgb, var(--text-muted) 40%, transparent);
+    }
+    .fg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      color: var(--rt-color);
+    }
+    &:hover {
+      transform: scale(1.12);
+    }
+  }
+  .rt--small {
+    --rt-size: 16px;
+  }
+  .rt--medium {
+    --rt-size: 26px;
+  }
+  .rt--large {
+    --rt-size: 36px;
+  }
+  & {
+    --rt-color: #f59e0b;
+  }
+  .heart {
+    --rt-color: #ef4444;
+  }
+  .readonly {
+    pointer-events: none;
+    .star:hover {
+      transform: none;
+    }
+  }
+  .val {
+    margin-left: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    em {
+      font-style: normal;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+  }
+  .rt--small .val {
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  .emo {
+    border: none;
+    background: none;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.15s ease;
+    line-height: 1;
+    span {
+      font-size: calc(var(--rt-size) * 1.15);
+      display: block;
+      filter: grayscale(0.4);
+    }
+    &.on {
+      transform: scale(1.25);
+      span {
+        filter: none;
+      }
+    }
+    &.dim span {
+      opacity: 0.45;
+      filter: grayscale(1);
+    }
+    &:hover span {
+      filter: none;
+      opacity: 1;
+    }
+  }
+}

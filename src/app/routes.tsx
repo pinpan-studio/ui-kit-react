@@ -48,6 +48,9 @@ const PORTED: Record<string, RouteObject['lazy']> = {
   '/components/forms': async () => ({
     Component: (await import('../features/catalog/forms/FormsGalleryPage')).FormsGalleryPage,
   }),
+  '/components/fields': async () => ({
+    Component: (await import('../features/catalog/fields/FieldsGalleryPage')).FieldsGalleryPage,
+  }),
   '/components/interactions': async () => ({
     Component: (await import('../features/catalog/interactions/InteractionsGalleryPage')).InteractionsGalleryPage,
   }),

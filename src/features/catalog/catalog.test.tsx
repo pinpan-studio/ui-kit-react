@@ -101,4 +101,22 @@ describe('Pages du catalogue portées', () => {
     expect(within(val).getByText('La raison sociale est requise')).toBeInTheDocument();
     expect(within(val).getByText('Champs requis manquants')).toBeInTheDocument();
   });
+
+  it('/components/fields : stepper, arborescence, transfert et validation du PV', async () => {
+    renderAt('/components/fields');
+    await screen.findByRole('heading', { level: 1, name: 'Champs avancés' });
+    const stepper = document.getElementById('stepper') as HTMLElement;
+    expect(within(stepper).getByText('Entre 1 et 500 · valeur : 12')).toBeInTheDocument();
+    await userEvent.click(within(stepper).getAllByRole('button', { name: /Augmenter/ })[0] as HTMLElement);
+    expect(within(stepper).getByText('Entre 1 et 500 · valeur : 13')).toBeInTheDocument();
+    const tree = document.getElementById('tree-select') as HTMLElement;
+    expect(within(tree).getByText('Abidjan › Abidjan Sud › Marcory')).toBeInTheDocument();
+    const transfer = document.getElementById('transfer') as HTMLElement;
+    await userEvent.dblClick(within(transfer).getByText('CI-4521-AB'));
+    expect(within(transfer).getByText('Ordre de tournée : CI-2210-CD → CI-1150-LM → CI-4521-AB')).toBeInTheDocument();
+    const form = document.getElementById('form') as HTMLElement;
+    await userEvent.click(within(form).getByRole('button', { name: /Valider le PV/ }));
+    expect(within(form).getByText('Choisissez un quartier')).toBeInTheDocument();
+    expect(within(form).getByText('Champs requis manquants')).toBeInTheDocument();
+  });
 });
