@@ -8,6 +8,13 @@ import { HzTable } from '../widgets/HzTable';
 import { HzTree } from '../widgets/HzTree';
 
 describe('Harnais : page', () => {
+  // Les routes sont chargées en lazy : au premier rendu, Vitest transforme à froid HarnaisPage et ses widgets.
+  // Mesuré en suite complète : 860 à 1001 ms d'attente dans le premier findBy, contre 1000 ms de délai par défaut.
+  // On précharge ces modules une fois (hook à 10 s) pour que findBy ne mesure plus que le rendu.
+  beforeAll(async () => {
+    await Promise.all([import('../HarnaisPage'), import('../../catalog/ui-showcase/UiShowcasePage')]);
+  });
+
   it('affiche l’accueil (salutation, saisie, suggestions) sur /harnais', async () => {
     renderAt('/harnais');
     expect(await screen.findByRole('heading', { level: 1, name: 'Nouvelle conversation' })).toBeInTheDocument();
