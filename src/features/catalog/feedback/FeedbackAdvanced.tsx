@@ -214,12 +214,13 @@ export function FeedbackAdvanced() {
             title="Paiement confirmé"
             subtitle="Un reçu a été envoyé à jean.kouassi@transports-yao.ci."
             actions={
-              <>
+              // <div actions> projeté comme dans Angular : les boutons passent à la ligne sans écart vertical.
+              <div>
                 <Button variant="outlined" color="inherit" startIcon={<MaterialIcon name="download" />}>
                   Reçu PDF
                 </Button>
                 <Button variant="contained">Retour au tableau de bord</Button>
-              </>
+              </div>
             }
           >
             <div className="receipt">
@@ -250,7 +251,7 @@ export function FeedbackAdvanced() {
               </button>
             ))}
           </div>
-          <Result status={result} compact actions={resultActions(result)} />
+          <Result status={result} compact actions={<div>{resultActions(result)}</div>} />
         </Demo>
       </DocSection>
 

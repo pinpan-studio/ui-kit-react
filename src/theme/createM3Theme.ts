@@ -279,8 +279,10 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
             fontFamily: 'inherit',
             fontSize: 14,
             fontWeight: 500,
+            letterSpacing: 'normal',
             color: r('on-surface'),
-            '& .seg-check': { fontSize: 18 },
+            // mat-pseudo-checkbox 18 px suivi des 12 px de padding du libellé (gap 8 + 4).
+            '& .seg-check': { fontSize: 18, marginRight: 4 },
             '&.Mui-selected, &.Mui-selected:hover': {
               backgroundColor: r('secondary-container'),
               color: r('on-secondary-container'),
