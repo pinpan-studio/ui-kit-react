@@ -24,6 +24,9 @@ const lazyPlaceholder = async () => ({
 
 /** Galeries déjà portées (les autres entrées affichent le placeholder). */
 const PORTED: Record<string, RouteObject['lazy']> = {
+  '/ui-showcase': async () => ({
+    Component: (await import('../features/catalog/ui-showcase/UiShowcasePage')).UiShowcasePage,
+  }),
   '/components': async () => ({
     Component: (await import('../features/catalog/components-index/ComponentsIndexPage')).ComponentsIndexPage,
   }),

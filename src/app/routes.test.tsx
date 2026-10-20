@@ -19,7 +19,7 @@ describe('routes', () => {
     ['/route/inconnue', '/ui-showcase'],
   ])('redirige %s vers %s', async (from, to) => {
     const { router } = renderAt(from);
-    await screen.findByRole('heading', { level: 1 });
+    await screen.findAllByRole('heading', { level: 1 }); // /ui-showcase contient aussi un h1 d'exemple (échelle typographique)
     expect(router.state.location.pathname).toBe(to);
   });
 

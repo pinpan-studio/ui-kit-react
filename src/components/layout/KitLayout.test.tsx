@@ -14,7 +14,7 @@ describe('KitLayout (shell du catalogue)', () => {
 
   it('filtre la navigation avec la recherche', async () => {
     renderAt('/ui-showcase');
-    await screen.findByRole('heading', { level: 1 });
+    await screen.findByRole('heading', { level: 1, name: 'UI Showcase' });
     await userEvent.type(screen.getByLabelText('Rechercher une page'), 'carte');
     const nav = screen.getByRole('navigation', { name: 'Navigation principale' });
     expect(within(nav).getByRole('link', { name: /Cartes/ })).toBeInTheDocument();

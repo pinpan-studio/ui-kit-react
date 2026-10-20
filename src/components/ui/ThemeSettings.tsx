@@ -1,4 +1,5 @@
-import { Box, ButtonBase, ToggleButton, ToggleButtonGroup, Tooltip, Typography } from '@mui/material';
+import { Box, Button, ButtonBase, ToggleButton, ToggleButtonGroup, Tooltip, Typography } from '@mui/material';
+import { Link } from 'react-router';
 import { useThemeMode } from '../../hooks/useThemeMode';
 import { THEME_PALETTES } from '../../theme/palettes';
 import type { ThemeModePreference } from '../../types/theme';
@@ -10,14 +11,32 @@ const MODES: { value: ThemeModePreference; label: string; icon: string }[] = [
   { value: 'system', label: 'Système', icon: 'brightness_auto' },
 ];
 
+// .ts-title (Angular) : font title-small, aligné sur la ligne de base.
+const TITLE = {
+  m: 0,
+  display: 'flex',
+  alignItems: 'baseline',
+  gap: '8px',
+  font: 'var(--mat-sys-title-small)',
+  color: 'var(--mat-sys-on-surface)',
+} as const;
+
 /** Réglages d'apparence (équivalent `<app-theme-settings>`) : mode + palette M3. */
-export function ThemeSettings() {
+export function ThemeSettings({
+  showStudioLink = true,
+  onStudio,
+}: {
+  /** Affiche le lien vers le studio de thème (masqué dans le studio lui-même). */
+  showStudioLink?: boolean;
+  /** Clic sur le lien du studio (le panneau flottant se ferme). */
+  onStudio?: () => void;
+} = {}) {
   const { preference, mode, paletteId, setMode, setPalette } = useThemeMode();
   const current = THEME_PALETTES.find((p) => p.id === paletteId);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <Box component="section" sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <Typography id="ts-mode" component="h3" variant="subtitle2">
+        <Typography id="ts-mode" component="h3" sx={TITLE}>
           Mode
         </Typography>
         <ToggleButtonGroup
@@ -48,9 +67,9 @@ export function ThemeSettings() {
         </ToggleButtonGroup>
       </Box>
       <Box component="section" sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <Typography id="ts-color" component="h3" variant="subtitle2">
+        <Typography id="ts-color" component="h3" sx={TITLE}>
           Couleur{' '}
-          <Box component="span" sx={{ color: 'text.secondary', fontWeight: 400 }}>
+          <Box component="span" sx={{ font: 'var(--mat-sys-body-small)', color: 'var(--mat-sys-on-surface-variant)' }}>
             {current?.label}
           </Box>
         </Typography>
@@ -115,6 +134,24 @@ export function ThemeSettings() {
           })}
         </Box>
       </Box>
+      {showStudioLink && (
+        <Button
+          component={Link}
+          to="/theme-studio"
+          onClick={onStudio}
+          variant="contained"
+          disableElevation
+          startIcon={<MaterialIcon name="tune" size={18} />}
+          sx={{
+            alignSelf: 'stretch',
+            bgcolor: 'var(--mat-sys-secondary-container)',
+            color: 'var(--mat-sys-on-secondary-container)',
+            '&:hover': { bgcolor: 'var(--mat-sys-secondary-container)', boxShadow: 'var(--mat-sys-level1)' },
+          }}
+        >
+          Studio de thème : couleurs, styles, nuances
+        </Button>
+      )}
     </Box>
   );
 }

@@ -1098,7 +1098,12 @@
   --mat-checkbox-selected-checkmark-color: #ffffff;
 }
 
-// styles.scss 711-724 (Angular) : h3 / h4 globaux en !important.
+// styles.scss 695-724 (Angular) : h1 / h3 / h4 globaux en !important.
+h1 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
 h3 {
   font-size: 20px !important;
   font-weight: 600 !important;
@@ -1118,6 +1123,7 @@ h4 {
 h2 {
   font-size: 24px !important;
   font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
 }
 // styles.scss 836 : le rayon pilule des boutons M3 prime sur .mat-button-rounded.
 .MuiButton-root.mat-button-rounded {

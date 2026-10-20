@@ -198,4 +198,14 @@ describe('Pages du catalogue portées', () => {
     expect(await screen.findByText(/^Texte · 1 Ko · \d \/ \d$/)).toBeInTheDocument();
     vi.restoreAllMocks();
   });
+
+  it('/ui-showcase : statistiques, filtre des icônes et copie de jeton', async () => {
+    renderAt('/ui-showcase');
+    await screen.findByRole('heading', { level: 1, name: 'UI Showcase' });
+    const icons = document.getElementById('icons') as HTMLElement;
+    await userEvent.type(within(icons).getByPlaceholderText('Filtrer les icônes…'), 'zzz-aucune');
+    expect(within(icons).getByText('0 icône(s)')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: /Primary light/ }));
+    expect(await screen.findByText('« var(--primary-color-light) » copié')).toBeInTheDocument();
+  });
 });
