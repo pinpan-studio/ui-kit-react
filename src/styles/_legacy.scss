@@ -1195,3 +1195,8 @@ h2 {
   box-shadow: var(--elevation-1) !important;
   background: var(--card-bg) !important;
 }
+
+// styles.scss Angular (l. 1200) : les nœuds feuilles de mat-tree prennent la hauteur de leur contenu.
+.mat-tree-node {
+  min-height: auto !important;
+}
