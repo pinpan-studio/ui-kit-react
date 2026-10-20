@@ -108,12 +108,33 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
       MuiCssBaseline: {
         styleOverrides: {
           // mat-typography : le corps suit body-medium (et non body-large comme MUI par défaut).
-          body: { ...typeStyle('body-medium'), backgroundColor: r('surface'), color: r('on-surface') },
+          // line-height « normal » mesuré sur la référence Angular (body).
+          body: {
+            ...typeStyle('body-medium'),
+            lineHeight: 'normal',
+            backgroundColor: r('surface'),
+            color: r('on-surface'),
+          },
           'h1, h2, h3, h4, h5, h6': { fontFamily: FONTS.headings },
           code: { fontFamily: FONTS.mono },
         },
       },
       MuiButtonBase: { defaultProps: { disableRipple: false } },
+      // mat-tab (M3) mesuré : 48px, padding 0 24px, libellé 14/500 on-surface (actif comme inactif).
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            minHeight: 48,
+            padding: '0 24px',
+            fontWeight: 500,
+            fontSize: 14,
+            lineHeight: '20px',
+            textTransform: 'none',
+            color: r('on-surface'),
+            '&.Mui-selected': { color: r('on-surface') },
+          },
+        },
+      },
       MuiButton: {
         defaultProps: { disableElevation: true, disableFocusRipple: true },
         variants: [
@@ -125,6 +146,16 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
               color: r('primary'),
               backgroundColor: 'var(--card-bg)',
               '&:hover': { borderColor: r('primary'), backgroundColor: 'var(--card-bg)' },
+            },
+          },
+          {
+            // mat-stroked-button sans couleur : contour neutre, texte on-surface-variant.
+            props: { variant: 'outlined', color: 'inherit' },
+            style: {
+              borderColor: 'var(--border-color)',
+              color: r('on-surface-variant'),
+              backgroundColor: 'var(--card-bg)',
+              '&:hover': { borderColor: 'var(--border-color)', backgroundColor: 'var(--card-bg)' },
             },
           },
           {

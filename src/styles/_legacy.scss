@@ -334,12 +334,7 @@
   color: var(--text-muted, #64748b);
   border-radius: 50%;
   transition: all 0.2s ease;
-
-  .material-icons {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
+  // Icône 24px par défaut (mat-icon) ; les pages liste/fiche réduisent à 18px via leurs partiels.
 
   &:hover {
     color: var(--primary-color, #4f46e5);

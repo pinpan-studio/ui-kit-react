@@ -54,4 +54,19 @@ describe('Pages du catalogue portées', () => {
     expect(screen.getByText('Bouaké', { selector: '.MuiChip-label' })).toBeInTheDocument();
     expect(document.querySelectorAll('.vs-row').length).toBeLessThan(30);
   });
+
+  it('/components/navigation : paginator, stepper linéaire et sidecar', async () => {
+    renderAt('/components/navigation');
+    await screen.findByRole('heading', { level: 1, name: 'Navigation' });
+    const pag = document.getElementById('pagination') as HTMLElement;
+    expect(within(pag).getByText('51–75 sur 1284 éléments')).toBeInTheDocument();
+    await userEvent.click(within(pag).getAllByRole('button', { name: 'Suivant' })[0] as HTMLElement);
+    expect(within(pag).getByText('76–100 sur 1284 éléments')).toBeInTheDocument();
+    const stepper = document.getElementById('stepper') as HTMLElement;
+    await userEvent.click(within(stepper).getAllByRole('button', { name: 'Suivant' })[0] as HTMLElement);
+    await userEvent.click(within(stepper).getAllByRole('button', { name: 'Suivant' })[0] as HTMLElement);
+    expect(within(stepper).getByText('La période est requise')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Clients' }));
+    expect(document.querySelector('.demo-sidecar.open .app-title')?.textContent).toBe('Clients');
+  });
 });

@@ -1,0 +1,98 @@
+// Rendu mat-stepper (Angular Material M3) mesuré sur la référence.
+.kit-stepper {
+  background: var(--mat-sys-surface, var(--bg));
+  .mat-step-header {
+    display: flex;
+    align-items: center;
+    height: 72px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    overflow: hidden;
+    &:hover {
+      background: var(--hover-bg);
+    }
+    &[aria-disabled='true'] {
+      cursor: default;
+    }
+  }
+  .mat-step-icon {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    background: var(--mat-sys-on-surface-variant, #3f4948);
+    color: var(--mat-sys-surface, #f7faf9);
+    &.mat-step-icon-selected {
+      background: var(--mat-sys-primary, var(--primary-color));
+      color: var(--mat-sys-on-primary, #fff);
+    }
+    .material-icons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .mat-step-label {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    color: var(--mat-sys-on-surface-variant, #3f4948);
+    white-space: nowrap;
+  }
+  .mat-step-label-selected {
+    color: var(--mat-sys-on-surface, #191c1c);
+  }
+}
+.mat-stepper-horizontal {
+  .mat-horizontal-stepper-header-container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .mat-stepper-horizontal-line {
+    flex: auto;
+    min-width: 32px;
+    height: 0;
+    border-top: 1px solid var(--mat-sys-outline, #6f7979);
+    margin: 0 -16px;
+  }
+  .mat-horizontal-content-container {
+    padding: 0 24px 24px;
+    overflow: hidden;
+  }
+}
+.mat-stepper-vertical {
+  .mat-step-header {
+    width: 100%;
+    padding: 24px;
+  }
+  .mat-step-icon {
+    margin-right: 12px;
+  }
+  .mat-vertical-content-container {
+    margin-left: 36px;
+    position: relative;
+  }
+  .mat-stepper-vertical-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -16px;
+    bottom: -16px;
+    border-left: 1px solid var(--mat-sys-outline, #6f7979);
+  }
+  .mat-vertical-content {
+    padding: 0 24px 24px;
+  }
+}
