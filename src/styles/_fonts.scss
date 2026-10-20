@@ -1,0 +1,136 @@
+// @font-face TT Wellingtons repris de styles.scss (Angular) ; fichiers copiés dans public/fonts.
+/* ttwellingtons - Regular */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ttwellingtons --italic */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* ttwellingtons - Thin */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-thin-italic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* ttwellingtons - Extra Light */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-extralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-extralight-italic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+/* ttwellingtons - Light */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-light-italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* ttwellingtons --medium */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-medium-italic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* ttwellingtons --demibold */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-demibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-demibold-italic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* ttwellingtons --bold */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-bold-italic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* ttwellingtons --extrabold */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-extrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-extrabold-italic.woff2') format('woff2');
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* ttwellingtons --black */
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ttwellingtons';
+  src: url('/fonts/ttwellingtons-black-italic.woff2') format('woff2');
+  font-weight: 900;
+  font-style: italic;
+}

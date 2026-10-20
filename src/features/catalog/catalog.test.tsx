@@ -35,4 +35,12 @@ describe('Pages du catalogue portées', () => {
     await userEvent.keyboard('{Escape}');
     expect(await screen.findByText('Visite interrompue')).toBeInTheDocument();
   });
+
+  it('/components/typography : familles, échelle et préview des polices', async () => {
+    renderAt('/components/typography');
+    await screen.findByRole('heading', { level: 1, name: 'Typographie' });
+    expect(screen.getByRole('heading', { level: 2, name: 'Familles de polices' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'Échelle typographique' })).toBeInTheDocument();
+    expect(screen.getAllByText('TT Wellingtons').length).toBeGreaterThan(0);
+  });
 });
