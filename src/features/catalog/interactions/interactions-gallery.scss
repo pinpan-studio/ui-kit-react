@@ -420,6 +420,6 @@
 
   // React : MaterialIcon rend un <span> (et non <mat-icon>) ; les règles « li span » ne doivent pas l'étirer.
   .material-icons {
-    flex: none;
+    flex: none !important;
   }
 }
