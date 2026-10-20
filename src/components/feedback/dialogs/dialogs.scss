@@ -1,0 +1,119 @@
+// Rendu mat-dialog (M3, mesuré sur la référence Angular) : cap global 402px, surface « surface », rayon 24px.
+.kit-dialog {
+  .MuiBackdrop-root {
+    background: rgba(0, 0, 0, 0.32);
+  }
+  .MuiBackdrop-root.startBackDrop {
+    background: rgb(0 0 0 / 75%);
+  }
+  .mat-mdc-dialog-surface.MuiPaper-root {
+    margin: 0;
+    max-width: min(402px, 95vw);
+    max-height: calc(100vh - 32px);
+    border-radius: var(--r-l, 24px);
+    background: var(--mat-sys-surface, var(--bg));
+    color: var(--text-primary);
+    box-shadow: none;
+    font-size: 14px;
+    line-height: normal;
+  }
+  &.google-auth-dialog-panel .mat-mdc-dialog-surface.MuiPaper-root {
+    max-width: min(440px, 95vw);
+  }
+  &.assac-dialog-panel .mat-mdc-dialog-surface.MuiPaper-root {
+    max-width: min(680px, 94vw);
+  }
+  &.assac-dialog-panel .mat-mdc-dialog-content {
+    max-height: min(72vh, 760px);
+    overflow-x: hidden;
+  }
+  &.cPersonnal .mat-mdc-dialog-surface.MuiPaper-root {
+    background: transparent;
+    box-shadow: none;
+  }
+  @media (max-width: 600px) {
+    &.assac-dialog-panel .mat-mdc-dialog-surface.MuiPaper-root {
+      max-width: 96vw;
+    }
+  }
+}
+
+.mat-mdc-dialog-title {
+  margin: 0 0 1px;
+  padding: 6px 24px 13px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  color: var(--text-primary);
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 40px;
+    vertical-align: 0;
+  }
+}
+.mat-mdc-dialog-content {
+  display: block;
+  margin: 0;
+  padding: 20px 24px 0;
+  overflow: auto;
+  max-height: 65vh;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--mat-sys-on-surface-variant, #3f4948);
+}
+.mat-mdc-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 52px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  > * + * {
+    margin-left: 8px !important;
+  }
+}
+
+// mat-raised-button sans couleur M3 (color="warn" ignoré en M3) : surface + primaire + élévation 1.
+.MuiButton-root.kit-raised {
+  background: var(--mat-sys-surface, var(--bg));
+  color: var(--mat-sys-primary, var(--primary-color));
+  box-shadow: var(--mat-sys-level1);
+  &:hover {
+    background: color-mix(in srgb, var(--mat-sys-primary) 8%, var(--mat-sys-surface));
+    box-shadow: var(--mat-sys-level2);
+  }
+}
+.MuiButton-root.kit-raised.primary {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+// Bottom sheet (MatBottomSheet).
+.kit-bottom-sheet-paper.MuiPaper-root {
+  max-width: 640px;
+  min-width: min(100vw, 360px);
+  margin: 0 auto;
+  padding: 8px 16px;
+  border-radius: 28px 28px 0 0;
+  background: var(--mat-sys-surface-container-low, var(--card-bg));
+}
+
+.kit-crud-dialog .crud-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+// MDC : interligne du titre (headline-small 32px) et bordure transparente au-dessus des actions.
+.kit-dialog .mat-mdc-dialog-title {
+  line-height: 32px !important;
+}
+.kit-dialog .mat-mdc-dialog-actions {
+  border-top: 1px solid transparent;
+}
+
+.mat-mdc-dialog-title + .mat-mdc-dialog-content {
+  padding-top: 0;
+}

@@ -96,7 +96,8 @@
     gap: var(--space-3);
     flex-wrap: wrap;
   }
-  h2 {
+  // Angular : style encapsulé (n'atteint pas les h2 projetés dans les démos).
+  .section-head h2 {
     margin: 0;
     font-family: 'Outfit', sans-serif !important;
     font-size: 20px !important;

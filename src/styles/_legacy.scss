@@ -1110,12 +1110,79 @@ h1,
 h2,
 h3,
 h4 {
-  line-height: normal !important;
+  line-height: normal;
 }
 h2 {
+  font-size: 24px !important;
   font-weight: 600 !important;
 }
 // styles.scss 836 : le rayon pilule des boutons M3 prime sur .mat-button-rounded.
 .MuiButton-root.mat-button-rounded {
   border-radius: var(--radius-button) !important;
+}
+
+// styles.scss 347-354 (matPadding / matPaddingSmall)
+.mat-padding {
+  display: block;
+  padding: var(--space-3) var(--space-3);
+}
+.mat-padding-small {
+  padding: 5px;
+}
+
+// styles.scss 986 (.alert-client)
+.alert-client {
+  border: 1px dotted #fff;
+  background: var(--error-color);
+  padding: var(--space-5);
+  color: #fff;
+  text-align: center;
+}
+
+// styles.scss 695-745 : classes typographiques mat-* (les balises h1-h4 sont traitées plus haut).
+.mat-h1,
+.mat-headline-3 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+.mat-h2,
+.mat-headline-4 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+.mat-h3,
+.mat-headline-5 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+.mat-h4,
+.mat-headline-6 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+.mat-body-1,
+.mat-body {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+}
+.mat-body-2 {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: var(--text-secondary) !important;
+}
+.mat-caption,
+.mat-small {
+  font-size: 12px !important;
+  color: var(--text-muted) !important;
+}
+
+// styles.scss 893 (.mat-card)
+.mat-card {
+  border-radius: var(--radius-card) !important;
+  border: none !important;
+  box-shadow: var(--elevation-1) !important;
+  background: var(--card-bg) !important;
 }

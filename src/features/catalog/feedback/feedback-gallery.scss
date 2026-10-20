@@ -1,0 +1,343 @@
+// Généré depuis ui-kit Angular (sélecteurs réécrits pour React/MUI), portée limitée à .gallery-feedback.
+@use '../../../styles/breakpoints' as *;
+
+.gallery-feedback {
+  // ── showcase/components/feedback/feedback-gallery.component.scss ──
+
+  & {
+    display: block;
+  }
+
+  // ─── Bannières d'alerte (normalisation des bannières de modules) ──────────
+  .kit-alert {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+    border-radius: var(--r-m);
+    border: 1px solid transparent;
+    font-size: 13px;
+    > .material-icons {
+      flex-shrink: 0;
+    }
+    .a-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      strong {
+        font-weight: 700;
+      }
+      span {
+        color: var(--text-secondary);
+      }
+    }
+    .a-action {
+      flex-shrink: 0;
+    }
+    .MuiIconButton-root {
+      color: var(--text-muted);
+    }
+    &.compact {
+      padding: var(--space-2) var(--space-3);
+      span {
+        color: inherit;
+      }
+    }
+
+    &.info {
+      background: var(--info-color-light);
+      border-color: color-mix(in srgb, var(--info-color) 30%, transparent);
+      > .material-icons {
+        color: var(--info-color);
+      }
+    }
+    &.success {
+      background: var(--success-color-light);
+      border-color: color-mix(in srgb, var(--success-color) 30%, transparent);
+      > .material-icons {
+        color: var(--success-color-text);
+      }
+    }
+    &.warning {
+      background: var(--warning-color-light);
+      border-color: color-mix(in srgb, var(--warning-color) 35%, transparent);
+      > .material-icons {
+        color: var(--warning-color-text);
+      }
+    }
+    &.error {
+      background: var(--error-color-light);
+      border-color: color-mix(in srgb, var(--error-color) 30%, transparent);
+      > .material-icons {
+        color: var(--error-color-text);
+      }
+    }
+
+    @include mobile {
+      flex-wrap: wrap;
+      .a-body {
+        flex-basis: calc(100% - 80px);
+      }
+    }
+  }
+
+  // ─── Aperçus de dialogs ──────────────────────────────────────────────────
+  .dialog-preview {
+    max-width: 420px;
+    padding: var(--space-5) var(--space-6) var(--space-3);
+    border-radius: var(--r-l);
+    background: var(--card-bg);
+    box-shadow: var(--elevation-3);
+    border: 0;
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-3);
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 20px !important;
+    }
+    p {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .icon-danger {
+      color: #ef4444;
+    }
+    .dp-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+    }
+  }
+
+  // Reprise de core/components/confirm/confirm.component.css
+  .confirm-card-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
+    max-width: 400px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6) var(--space-6);
+    background: var(--mat-sys-surface-container-high, var(--hover-bg));
+    border: 0;
+    border-radius: var(--r-l, var(--radius-card));
+    box-shadow: var(--elevation-3);
+    .icon-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--primary-color-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-2);
+      .material-icons {
+        color: var(--primary-color);
+        font-size: 28px !important;
+        width: 28px !important;
+        height: 28px !important;
+      }
+    }
+    .confirm-title {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      margin: 0;
+    }
+    .confirm-message {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin: 0;
+    }
+    .confirm-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+  }
+
+  // ─── Drawer de démonstration ─────────────────────────────────────────────
+  .drawer-demo {
+    height: 380px;
+    background: var(--bg);
+  }
+  .dd-content {
+    padding: var(--space-l);
+  }
+  .demo-drawer {
+    width: 320px;
+    max-width: 85%;
+    padding: var(--space-s);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .dd-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--mat-sys-surface-container-low, var(--card-bg));
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--elevation-3);
+  }
+  .dd-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-4);
+    border-bottom: 0;
+    .dd-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-color-light);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    strong {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+    }
+    span {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  }
+  .dd-body {
+    flex: 1;
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    overflow: auto;
+  }
+  .dd-foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-top: 0;
+  }
+
+  // ─── Chargement / erreurs ────────────────────────────────────────────────
+  .loading-center.small {
+    height: 140px;
+  }
+  .loading-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .btn-spin {
+    display: inline-block;
+    margin-right: var(--space-2);
+    vertical-align: middle;
+  }
+
+  .error-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-6) var(--space-3);
+    text-align: center;
+    .err-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--error-color-light);
+      .material-icons {
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+        color: var(--error-color);
+      }
+      &.warn {
+        background: var(--warning-color-light);
+        .material-icons {
+          color: var(--warning-color-text);
+        }
+      }
+    }
+    h3 {
+      margin: 0;
+      font-size: 17px !important;
+      font-weight: 700 !important;
+    }
+    p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+  }
+}
+
+// mat-sidenav-container (démo) : drawer « end », modes over / side.
+.gallery-feedback .kit-sidenav-container {
+  position: relative;
+  overflow: hidden;
+  .kit-sidenav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    box-sizing: border-box;
+    // mat-drawer M3 (position end) : coins 16px côté contenu, texte on-surface-variant.
+    border-radius: 16px 0 0 16px;
+    color: var(--mat-sys-on-surface-variant);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+      visibility 0.4s;
+  }
+  .kit-sidenav-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: transparent;
+    visibility: hidden;
+    transition:
+      background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+      visibility 0.4s;
+  }
+  .kit-sidenav-content {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    transition: margin-right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  &.is-open {
+    .kit-sidenav {
+      transform: none;
+      visibility: visible;
+    }
+    .kit-sidenav-backdrop {
+      visibility: visible;
+      // --mat-sidenav-scrim-color : neutral-variant20 à 40 % (mesuré identique en clair et en sombre).
+      background: rgb(41 50 50 / 0.4);
+    }
+  }
+  &.mode-side.is-open .kit-sidenav-content {
+    margin-right: min(320px, 85%);
+  }
+}

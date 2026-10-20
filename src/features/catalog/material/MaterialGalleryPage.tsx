@@ -118,7 +118,7 @@ function Panel({
       expanded={isOpen}
       onChange={() => (onToggle ? onToggle() : setOwn((o) => !o))}
       disabled={disabled}
-      slotProps={{ transition: { unmountOnExit: lazy } }}
+      slotProps={{ transition: { unmountOnExit: lazy }, heading: { component: 'div' } }}
     >
       <AccordionSummary
         expandIcon={toggle ? undefined : expandIcon}

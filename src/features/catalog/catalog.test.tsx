@@ -69,4 +69,19 @@ describe('Pages du catalogue portées', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Clients' }));
     expect(document.querySelector('.demo-sidecar.open .app-title')?.textContent).toBe('Clients');
   });
+
+  it('/components/feedback : alerte fermable, ConfirmDialog (résultat) et page de résultat', async () => {
+    renderAt('/components/feedback');
+    await screen.findByRole('heading', { level: 1, name: 'Feedback' });
+    const alert = document.getElementById('alert') as HTMLElement;
+    await userEvent.click(within(alert).getAllByRole('button', { name: 'Fermer' })[0] as HTMLElement);
+    expect(within(alert).queryByText('Synchronisation planifiée')).not.toBeInTheDocument();
+    const dlg = document.getElementById('dialog') as HTMLElement;
+    await userEvent.click(within(dlg).getByRole('button', { name: /Danger/ }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Supprimer' }));
+    expect(await within(dlg).findByText('résultat : Confirmé')).toBeInTheDocument();
+    const res = document.getElementById('result') as HTMLElement;
+    await userEvent.click(within(res).getByRole('button', { name: '404', hidden: true }));
+    expect(within(res).getByText('Page introuvable')).toBeInTheDocument();
+  });
 });

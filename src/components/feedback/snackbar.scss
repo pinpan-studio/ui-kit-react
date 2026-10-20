@@ -1,0 +1,52 @@
+// mat-snack-bar M3 : surface inverse, rayon 4px. Seuls les jetons --mat-snack-bar-* sont lus (Angular M3) :
+// les panelClass snackbar-success/-error/-info de styles.scss redéfinissent d'anciens jetons --mdc-snackbar-*
+// que mat-snack-bar n'utilise plus — la référence Angular les affiche donc en neutre ; même rendu ici.
+.kit-snackbar.MuiSnackbar-root[class*='anchorOriginBottom'] {
+  bottom: 8px;
+}
+.kit-snackbar.MuiSnackbar-root[class*='anchorOriginTop'] {
+  top: 8px;
+}
+.kit-snackbar.MuiSnackbar-root[class*='Left'] {
+  left: 8px;
+}
+.kit-snackbar.MuiSnackbar-root[class*='Right'] {
+  right: 8px;
+}
+.kit-snackbar .kit-snackbar-surface {
+  background: var(--mat-snack-bar-container-color, var(--mat-sys-inverse-surface));
+  color: var(--mat-snack-bar-supporting-text-color, var(--mat-sys-inverse-on-surface));
+  border-radius: 4px;
+  min-width: 344px;
+  max-width: 672px;
+  min-height: 48px;
+  padding: 0 8px 0 16px;
+  font-size: 14px;
+  line-height: 20px;
+  box-shadow: var(--mat-sys-level3, none);
+  .MuiSnackbarContent-message {
+    padding: 14px 0;
+  }
+  .kit-snackbar-action {
+    color: var(--mat-snack-bar-button-color, var(--mat-sys-inverse-primary));
+    font-weight: 500;
+  }
+  @media (max-width: 599.98px) {
+    min-width: 0;
+  }
+}
+.kit-snackbar.snackbar-success {
+  --mdc-snackbar-container-color: color-mix(in srgb, var(--success-color) 22%, var(--background-default));
+  --mdc-snackbar-supporting-text-color: var(--success-color);
+}
+.kit-snackbar.snackbar-error {
+  --mdc-snackbar-container-color: color-mix(in srgb, var(--error-color) 22%, var(--background-default));
+  --mdc-snackbar-supporting-text-color: var(--error-color);
+}
+.kit-snackbar.snackbar-info {
+  --mdc-snackbar-container-color: color-mix(in srgb, var(--info-color) 22%, var(--background-default));
+  --mdc-snackbar-supporting-text-color: var(--info-color);
+}
+.kit-snackbar.kit-undo-panel .kit-snackbar-surface {
+  --mat-snack-bar-container-color: #1e293b;
+}

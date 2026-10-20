@@ -1,0 +1,35 @@
+.kit-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 32px;
+  text-align: center;
+  gap: 12px;
+  .icon-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--mat-sys-surface-container-high, var(--hover-bg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    .material-icons {
+      font-size: 36px;
+      width: 36px;
+      height: 36px;
+      color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+      opacity: 0.5;
+    }
+  }
+  h3 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+  }
+  p {
+    color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+    font-size: 14px;
+    max-width: 300px;
+  }
+}

@@ -112,14 +112,20 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
           body: {
             ...typeStyle('body-medium'),
             lineHeight: 'normal',
+            // Angular : letter-spacing « normal » sur body (mesuré), pas le tracking body-medium.
+            letterSpacing: 'normal',
             backgroundColor: r('surface'),
             color: r('on-surface'),
           },
-          'h1, h2, h3, h4, h5, h6': { fontFamily: FONTS.headings },
+          // Angular : les titres héritent d'Inter (styles.scss) ; Outfit n'est posé que par les classes dédiées.
+          h1: { letterSpacing: '-0.02em' },
+          h2: { letterSpacing: '-0.01em' },
           code: { fontFamily: FONTS.mono },
         },
       },
       MuiButtonBase: { defaultProps: { disableRipple: false } },
+      // mat-spinner : trait = diamètre / 10 (viewBox MUI de 44 → épaisseur 4,4).
+      MuiCircularProgress: { defaultProps: { thickness: 4.4 } },
       // mat-tab (M3) mesuré : 48px, padding 0 24px, libellé 14/500 on-surface (actif comme inactif).
       MuiTab: {
         styleOverrides: {
