@@ -237,7 +237,9 @@ function drawScene(s: (typeof SCENES)[number], i: number, width: number, height:
   const c = document.createElement('canvas');
   c.width = width;
   c.height = height;
-  const g = c.getContext('2d')!;
+  const g = c.getContext('2d');
+  // Sans canvas 2D (jsdom, navigateurs restreints) : image vide plutôt qu'une exception.
+  if (!g) return { name: s.name, caption: s.caption, url: '' };
   const sky = g.createLinearGradient(0, 0, 0, height);
   sky.addColorStop(0, s.sky[0]);
   sky.addColorStop(1, s.sky[1]);
