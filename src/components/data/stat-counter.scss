@@ -1,0 +1,7 @@
+// Porté depuis shared/components/data/stat-counter.component.ts (styles du composant, encapsulation émulée → portée .app-stat-counter).
+.app-stat-counter {
+  & {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}

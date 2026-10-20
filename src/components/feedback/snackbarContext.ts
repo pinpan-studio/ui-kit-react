@@ -1,7 +1,7 @@
 import { createContext, type ReactNode } from 'react';
 
 export interface SnackOptions {
-  /** Libellé du bouton d'action (défaut « Fermer »). */
+  /** Libellé du bouton d'action (défaut « Fermer » ; '' = aucun bouton, comme open(msg, undefined)). */
   action?: string;
   duration?: number;
   /** Équivalent panelClass : snackbar-success | snackbar-error | snackbar-info | kit-undo-panel. */

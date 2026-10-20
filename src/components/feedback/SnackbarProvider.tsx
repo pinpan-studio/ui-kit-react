@@ -48,7 +48,7 @@ export function SnackbarProvider({ children }: { children: ReactNode }) {
           className="kit-snackbar-surface"
           message={snack?.content ? snack.content({ action, close }) : snack?.message}
           action={
-            snack?.content ? undefined : (
+            snack?.content || snack?.action === '' ? undefined : (
               <Button color="inherit" onClick={action} className="kit-snackbar-action">
                 {snack?.action ?? 'Fermer'}
               </Button>

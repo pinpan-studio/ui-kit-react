@@ -119,4 +119,16 @@ describe('Pages du catalogue portées', () => {
     expect(within(form).getByText('Choisissez un quartier')).toBeInTheDocument();
     expect(within(form).getByText('Champs requis manquants')).toBeInTheDocument();
   });
+
+  it('/components/data : table avancée (tri, sélection, suppression) et diff', async () => {
+    renderAt('/components/data');
+    const sec = (await screen.findByText('Table avancée', { selector: 'h2' })).closest('section') as HTMLElement;
+    expect(within(sec).getByText(/^1–8 sur \d+$/)).toBeInTheDocument();
+    const boxes = within(sec).getAllByRole('checkbox');
+    await userEvent.click((boxes[1] as HTMLElement).parentElement as HTMLElement);
+    expect(within(sec).getByText('1 sélectionné(s)')).toBeInTheDocument();
+    await userEvent.click(within(sec).getByRole('button', { name: /Supprimer/ }));
+    expect(screen.getByText('1 client(s) supprimé(s)')).toBeInTheDocument();
+    expect(document.getElementById('diff')?.querySelector('.app-text-diff')).toBeTruthy();
+  });
 });
