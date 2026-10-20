@@ -235,9 +235,9 @@ export const TEXT_TOKENS = [
   '--primary-color',
   '--error-color',
   '--error-color-text',
-  '--success-color',
+  '--tone-success-icon',
   '--success-color-text',
-  '--warning-color',
+  '--tone-warning-text',
   '--warning-color-text',
 ];
 export const AMOUNTS = [1111111, 888888, 4840000, 11110, 1171100];

@@ -1052,7 +1052,7 @@
     .step.done .dot {
       background: var(--success-color);
       border-color: var(--success-color);
-      color: #fff;
+      color: var(--tone-on-success);
     }
     .step.done .lbl {
       color: var(--text-secondary);
