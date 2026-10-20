@@ -120,7 +120,7 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
           // Angular : les titres héritent d'Inter (styles.scss) ; Outfit n'est posé que par les classes dédiées.
           h1: { letterSpacing: '-0.02em' },
           h2: { letterSpacing: '-0.01em' },
-          code: { fontFamily: FONTS.mono },
+          // Angular : aucune police imposée à <code> (monospace du navigateur) ; Space Mono uniquement via .text-mono / classes dédiées.
         },
       },
       MuiButtonBase: { defaultProps: { disableRipple: false } },
