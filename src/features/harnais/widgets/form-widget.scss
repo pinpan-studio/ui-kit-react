@@ -76,7 +76,8 @@
       // Texte d'exemple : visible au focus seulement, en opacité 1 comme Angular.
       .Mui-focused .MuiInputBase-input::placeholder {
         opacity: 1 !important;
-        color: var(--text-muted);
+        // Opaque, rôle M3 on-surface-variant généré par le kit (light-dark) : #3f4948 en clair, comme Angular.
+        color: var(--mat-sys-on-surface-variant);
       }
       // Précisions : 92 px avec poignée de redimensionnement (textarea Angular).
       .MuiInputBase-multiline {
@@ -364,4 +365,11 @@
       border-color: var(--error-color);
     }
   }
+}
+
+// Texte d'exemple des champs du kit dans un formulaire Harnais : opaque, on-surface-variant (≥ 4,5:1 en clair et sombre).
+// Les champs MUI .hz-ff gardent le placeholder masqué hors focus (règle MUI en !important).
+.hz-form .field :is(input, textarea)::placeholder {
+  color: var(--mat-sys-on-surface-variant) !important;
+  opacity: 1;
 }
