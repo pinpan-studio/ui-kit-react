@@ -34,6 +34,7 @@ describe('ExampleAppLayout (barre d’outils de ex-app-shell)', () => {
     await screen.findByRole('heading', { level: 1, name: 'Tableau de bord' });
     const toolbar = document.querySelector('.kit-toolbar') as HTMLElement;
     expect(within(toolbar).getByText('Accueil')).toHaveClass('crumb');
+    expect(within(toolbar).getByRole('button', { name: 'Masquer le menu' })).toBeInTheDocument();
     expect(within(toolbar).getByText('Tableau de bord')).toHaveClass('cur');
     expect(within(toolbar).getByRole('button', { name: 'Messages' })).toHaveTextContent('7');
     expect(within(toolbar).getByRole('button', { name: 'Notifications, 3 non lues' })).toHaveTextContent('3');

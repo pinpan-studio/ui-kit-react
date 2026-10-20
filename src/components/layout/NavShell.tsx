@@ -46,6 +46,7 @@ export function NavShell({ config, title, actions, variant = 'kit', children }: 
           title={title ?? config.toolbarTitle}
           navOpen={open}
           onToggleNav={() => setOpen((o) => !o)}
+          toggleLabels={variant === 'app' ? ['Masquer le menu', 'Afficher le menu'] : undefined}
           actions={actions}
         />
         <main className={variant === 'app' ? 'kit-content content' : 'kit-content'} id="main-content">
