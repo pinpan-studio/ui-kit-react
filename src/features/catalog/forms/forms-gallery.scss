@@ -748,6 +748,8 @@
   width: calc(100% - 16px);
   margin: 0 8px;
   padding: 22px 0;
+  height: 48px;
+  display: block;
 }
 .gallery-forms .kit-fill-field {
   // mat-form-field « fill » désactivé : fond on-surface 4 %, saisie à 16px du bord

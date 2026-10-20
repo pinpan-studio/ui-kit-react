@@ -1477,4 +1477,9 @@
       gap: 2px;
     }
   }
+  // mat-slider : hôte Angular de 48 px de haut (MUI medium : 30 px).
+  .MuiSlider-root.MuiSlider-sizeMedium {
+    padding-block: 22px;
+    display: block;
+  }
 }
