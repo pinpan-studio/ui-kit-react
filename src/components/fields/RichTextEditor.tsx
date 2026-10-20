@@ -227,6 +227,7 @@ export function RichTextEditor({
           style={{ minHeight }}
           role="textbox"
           aria-multiline="true"
+          aria-label={placeholder}
           onInput={onInput}
           onFocus={() => setFocused(true)}
           onBlur={() => {

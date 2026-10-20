@@ -143,14 +143,21 @@ export function MatSelectionList<V>({
   options,
   value,
   onChange,
+  'aria-label': ariaLabel = 'Sélection',
 }: {
   options: { value: V; label: ReactNode }[];
   value: V[];
   onChange: (v: V[]) => void;
+  'aria-label'?: string;
 }) {
   const toggle = (v: V) => onChange(value.includes(v) ? value.filter((x) => x !== v) : [...value, v]);
   return (
-    <div role="listbox" aria-multiselectable="true" className="mat-mdc-selection-list mat-mdc-list-base mdc-list">
+    <div
+      role="listbox"
+      aria-multiselectable="true"
+      aria-label={ariaLabel}
+      className="mat-mdc-selection-list mat-mdc-list-base mdc-list"
+    >
       {options.map((o, i) => {
         const sel = value.includes(o.value);
         return (

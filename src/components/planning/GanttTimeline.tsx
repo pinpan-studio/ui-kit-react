@@ -291,6 +291,7 @@ function FragmentBar({ b, onClick }: { b: Bar; onClick: () => void }) {
         <Tooltip title="Échéance dépassée">
           <div
             className="gt-overdue"
+            role="img"
             style={{ left: b.overdueLeft, width: b.overdueWidth, top: 6 + b.track * TRACK_H }}
             onClick={onClick}
           />

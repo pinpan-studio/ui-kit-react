@@ -150,9 +150,9 @@ export function ImageCropper({
     if (url) onCropped?.(url);
   };
   const tool = (title: string, icon: string, fn: () => void) => (
-    <Tooltip title={title}>
+    <Tooltip title={title} describeChild>
       <span style={{ display: 'contents' }}>
-        <button type="button" onClick={fn} disabled={!img}>
+        <button type="button" aria-label={title} onClick={fn} disabled={!img}>
           <MaterialIcon name={icon} />
         </button>
       </span>

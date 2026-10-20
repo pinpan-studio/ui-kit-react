@@ -125,6 +125,7 @@ export function SearchableSelect<V>({
         tabIndex={0}
         role="combobox"
         aria-expanded={open}
+        aria-label={label ? `${placeholder} : ${label}` : placeholder}
       >
         {icon && <MaterialIcon name={icon} className="trigger-icon" />}
         <div className="trigger-content">

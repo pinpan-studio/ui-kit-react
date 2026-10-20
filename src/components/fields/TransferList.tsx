@@ -71,7 +71,17 @@ function Row({
   );
 }
 
-function DropList({ side, children, dragging }: { side: Side; children: ReactNode; dragging: boolean }) {
+function DropList({
+  side,
+  label,
+  children,
+  dragging,
+}: {
+  side: Side;
+  label: string;
+  children: ReactNode;
+  dragging: boolean;
+}) {
   const { setNodeRef } = useDroppable({ id: `tl-${side}`, data: { side } });
   return (
     <div
@@ -79,6 +89,7 @@ function DropList({ side, children, dragging }: { side: Side; children: ReactNod
       className={`tl-list${dragging ? ' cdk-drop-list-dragging' : ''}`}
       role="listbox"
       aria-multiselectable
+      aria-label={label}
     >
       {children}
     </div>
@@ -206,6 +217,7 @@ export function TransferList({
                     onClick={() => checkAll(side)}
                     role="checkbox"
                     aria-checked={allChecked(side)}
+                    aria-label={`Tout sélectionner : ${side === 'source' ? sourceTitle : targetTitle}`}
                   />
                   <strong>{side === 'source' ? sourceTitle : targetTitle}</strong>
                   <span className="tl-count">
@@ -226,7 +238,7 @@ export function TransferList({
                   items={filtered(side).map((i) => i.value)}
                   strategy={verticalListSortingStrategy}
                 >
-                  <DropList side={side} dragging={!!active}>
+                  <DropList side={side} label={side === 'source' ? sourceTitle : targetTitle} dragging={!!active}>
                     {filtered(side).map((it) => (
                       <Row
                         key={it.value}

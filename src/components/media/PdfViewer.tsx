@@ -92,9 +92,15 @@ export function PdfViewer({
     else void shell.current?.requestFullscreen?.();
   };
   const tb = (tip: string, icon: string, fn: () => void, opts: { cls?: string; disabled?: boolean } = {}) => (
-    <Tooltip title={tip}>
+    <Tooltip title={tip} describeChild>
       <span style={{ display: 'contents' }}>
-        <button type="button" className={`pv-btn${opts.cls ?? ''}`} onClick={fn} disabled={opts.disabled}>
+        <button
+          type="button"
+          aria-label={tip}
+          className={`pv-btn${opts.cls ?? ''}`}
+          onClick={fn}
+          disabled={opts.disabled}
+        >
           <MaterialIcon name={icon} />
         </button>
       </span>

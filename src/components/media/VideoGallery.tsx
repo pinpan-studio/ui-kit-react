@@ -71,9 +71,9 @@ function VideoGalleryDialog({
     if (i >= 0 && i < videos.length) setIndex(i);
   };
   const nb = (tip: string, icon: string, fn: () => void, disabled = false) => (
-    <Tooltip title={tip}>
+    <Tooltip title={tip} describeChild>
       <span style={{ display: 'contents' }}>
-        <button type="button" onClick={fn} disabled={disabled}>
+        <button type="button" aria-label={tip} onClick={fn} disabled={disabled}>
           <MaterialIcon name={icon} />
         </button>
       </span>

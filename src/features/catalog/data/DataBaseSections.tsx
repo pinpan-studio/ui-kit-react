@@ -179,8 +179,10 @@ function ChartBox({
   data,
   options,
   className,
+  label,
   children,
 }: {
+  label: string;
   type: string;
   data: unknown;
   options: unknown;
@@ -190,7 +192,7 @@ function ChartBox({
   return (
     <div className={`chart-box${className ? ` ${className}` : ''}`}>
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any -- configurations Chart.js hétérogènes (portées d'Angular) */}
-      <Chart type={type as any} data={data as any} options={options as any} />
+      <Chart type={type as any} data={data as any} options={options as any} aria-label={label} />
       {children}
     </div>
   );
@@ -669,7 +671,12 @@ export function DataBaseSections() {
               476,6 M <small>FCFA</small>
             </div>
             <div className="spark">
-              <Chart type="line" data={ch.sparkData} options={ch.sparkOptions} />
+              <Chart
+                type="line"
+                data={ch.sparkData}
+                options={ch.sparkOptions}
+                aria-label="Encaissements 2026 (tendance)"
+              />
             </div>
           </div>
         </Demo>
@@ -931,34 +938,70 @@ export function DataBaseSections() {
         description="Tous les types Chart.js disponibles via ng2-charts. Options dérivées du thème (clair / sombre) : axes sans bordure, grille discrète, segments séparés par un liseré 1px couleur de surface, fonds de graduation transparents."
       >
         <Demo label="Courbe (évolution du CA)" code={CODE.chart}>
-          <ChartBox type="line" data={ch.lineData} options={ch.lineOptions()} />
+          <ChartBox label="Courbe (évolution du CA)" type="line" data={ch.lineData} options={ch.lineOptions()} />
         </Demo>
         <Demo label="Aires empilées (contrats par offre)" hint="fill: '-1'">
-          <ChartBox type="line" data={ch.areaData} options={ch.areaOptions()} />
+          <ChartBox
+            label="Aires empilées (contrats par offre)"
+            type="line"
+            data={ch.areaData}
+            options={ch.areaOptions()}
+          />
         </Demo>
         <Demo label="Barres (activité)">
-          <ChartBox type="bar" data={ch.barData} options={ch.barOptions()} />
+          <ChartBox label="Barres (activité)" type="bar" data={ch.barData} options={ch.barOptions()} />
         </Demo>
         <Demo label="Barres horizontales (interventions par zone)" hint="indexAxis: 'y'">
-          <ChartBox type="bar" data={ch.hbarData} options={ch.hbarOptions()} />
+          <ChartBox
+            label="Barres horizontales (interventions par zone)"
+            type="bar"
+            data={ch.hbarData}
+            options={ch.hbarOptions()}
+          />
         </Demo>
         <Demo label="Barres groupées (facturé / encaissé, M FCFA)">
-          <ChartBox type="bar" data={ch.groupedData} options={ch.groupedOptions()} />
+          <ChartBox
+            label="Barres groupées (facturé / encaissé, M FCFA)"
+            type="bar"
+            data={ch.groupedData}
+            options={ch.groupedOptions()}
+          />
         </Demo>
         <Demo label="Barres empilées (activité par type)" hint="stacked: true">
-          <ChartBox type="bar" data={ch.stackedData} options={ch.stackedOptions()} />
+          <ChartBox
+            label="Barres empilées (activité par type)"
+            type="bar"
+            data={ch.stackedData}
+            options={ch.stackedOptions()}
+          />
         </Demo>
         <Demo label="Mixte barres + courbe (2 axes)" hint="type par dataset">
-          <ChartBox type="bar" data={ch.mixedData} options={ch.mixedOptions()} />
+          <ChartBox label="Mixte barres + courbe (2 axes)" type="bar" data={ch.mixedData} options={ch.mixedOptions()} />
         </Demo>
         <Demo label="Escalier (balises en ligne sur 24 h)" hint="stepped: true">
-          <ChartBox type="line" data={ch.stepData} options={ch.stepOptions()} />
+          <ChartBox
+            label="Escalier (balises en ligne sur 24 h)"
+            type="line"
+            data={ch.stepData}
+            options={ch.stepOptions()}
+          />
         </Demo>
         <Demo label="Anneau (statuts clients)">
-          <ChartBox type="doughnut" data={ch.doughnutData()} options={ch.doughnutOptions()} />
+          <ChartBox
+            label="Anneau (statuts clients)"
+            type="doughnut"
+            data={ch.doughnutData()}
+            options={ch.doughnutOptions()}
+          />
         </Demo>
         <Demo label="Jauge (demi-anneau)" hint="circumference: 180">
-          <ChartBox type="doughnut" data={ch.gaugeData()} options={ch.gaugeOptions()} className="gauge-box">
+          <ChartBox
+            label="Jauge (demi-anneau)"
+            type="doughnut"
+            data={ch.gaugeData()}
+            options={ch.gaugeOptions()}
+            className="gauge-box"
+          >
             <div className="gauge-label">
               <strong>94 %</strong>
               <span>balises en ligne</span>
@@ -966,19 +1009,34 @@ export function DataBaseSections() {
           </ChartBox>
         </Demo>
         <Demo label="Camembert (marques de balises)">
-          <ChartBox type="pie" data={ch.pieData()} options={ch.pieOptions()} />
+          <ChartBox label="Camembert (marques de balises)" type="pie" data={ch.pieData()} options={ch.pieOptions()} />
         </Demo>
         <Demo label="Aire polaire (véhicules par ville)">
-          <ChartBox type="polarArea" data={ch.polarData()} options={ch.polarOptions()} />
+          <ChartBox
+            label="Aire polaire (véhicules par ville)"
+            type="polarArea"
+            data={ch.polarData()}
+            options={ch.polarOptions()}
+          />
         </Demo>
         <Demo label="Radar (performance équipes)">
-          <ChartBox type="radar" data={ch.radarData} options={ch.radarOptions()} />
+          <ChartBox label="Radar (performance équipes)" type="radar" data={ch.radarData} options={ch.radarOptions()} />
         </Demo>
         <Demo label="Nuage de points (vitesse / consommation)" hint="type: 'scatter'">
-          <ChartBox type="scatter" data={ch.scatterData} options={ch.scatterOptions()} />
+          <ChartBox
+            label="Nuage de points (vitesse / consommation)"
+            type="scatter"
+            data={ch.scatterData}
+            options={ch.scatterOptions()}
+          />
         </Demo>
         <Demo label="Bulles (véhicules × disponibilité × CA)" hint="type: 'bubble'">
-          <ChartBox type="bubble" data={ch.bubbleData} options={ch.bubbleOptions()} />
+          <ChartBox
+            label="Bulles (véhicules × disponibilité × CA)"
+            type="bubble"
+            data={ch.bubbleData}
+            options={ch.bubbleOptions()}
+          />
         </Demo>
         <Demo label="Barres de progression">
           <div className="progress-list">
