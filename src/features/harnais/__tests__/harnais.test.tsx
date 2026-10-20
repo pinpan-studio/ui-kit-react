@@ -153,4 +153,31 @@ describe('Harnais : widgets', () => {
     await userEvent.click(screen.getByRole('button', { name: /Envoyer/ }));
     expect(onSubmit).toHaveBeenCalledWith({ nom: 'Awa', mail: 'awa@example.com' });
   });
+
+  it('HzForm : champs à masque et autocomplétion au style mat-form-field (libellé dans le champ tant que vide)', async () => {
+    const block = {
+      type: 'form',
+      fields: [
+        { key: 'tel', label: 'Téléphone', kind: 'mask', icon: 'call', mask: '+225 00 00', placeholder: '+225 07' },
+        {
+          key: 'ville',
+          label: 'Ville',
+          kind: 'autocomplete',
+          icon: 'location_city',
+          options: [{ value: 'Abidjan', label: 'Abidjan' }],
+        },
+      ],
+    } as Extract<HarnaisWidget, { type: 'form' }>;
+    render(<HzForm block={block} onSubmit={vi.fn()} />);
+    const tel = screen.getByRole('textbox', { name: /^Téléphone/ });
+    const ville = screen.getByRole('combobox', { name: /^Ville/ });
+    const labelOf = (el: HTMLElement) => el.closest('.MuiFormControl-root')?.querySelector('label');
+    expect(labelOf(tel)).toHaveAttribute('data-shrink', 'false');
+    expect(labelOf(ville)).toHaveAttribute('data-shrink', 'false');
+    await userEvent.click(tel);
+    expect(labelOf(tel)).toHaveAttribute('data-shrink', 'true');
+    await userEvent.click(ville);
+    expect(labelOf(ville)).toHaveAttribute('data-shrink', 'true');
+    expect(labelOf(tel)).toHaveAttribute('data-shrink', 'false');
+  });
 });

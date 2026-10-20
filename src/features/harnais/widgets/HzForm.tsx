@@ -406,10 +406,12 @@ export function HzForm({
               <TextField
                 {...p}
                 {...common}
+                className={`${common.className} has-icon`}
                 label={f.label}
                 placeholder={f.placeholder ?? ''}
                 helperText={helper(f)}
                 slotProps={{
+                  inputLabel: { ...p.InputLabelProps, shrink },
                   input: { ...p.InputProps, startAdornment: prefix(f.icon ?? 'search') },
                 }}
               />
@@ -424,6 +426,7 @@ export function HzForm({
             value={String(v ?? '')}
             helperText={invalid(f) ? 'Champ requis' : (f.hint ?? 'Format : ' + f.mask)}
             slotProps={{
+              inputLabel: { shrink },
               input: {
                 startAdornment: prefix(f.icon),
                 inputComponent: MaskedInput as never,
