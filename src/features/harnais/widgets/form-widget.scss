@@ -59,6 +59,23 @@
         height: 18px;
         color: var(--text-muted);
       }
+      // Hauteur 44 px (mat-form-field du module) et libellé centré tant qu'il est dans le champ.
+      .MuiInputBase-root {
+        min-height: 44px;
+      }
+      .MuiInputBase-input:not(textarea) {
+        padding-top: 10.5px;
+        padding-bottom: 10.5px;
+      }
+      .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+        transform: translate(14px, 11px) scale(1);
+      }
+      .MuiFormControl-root {
+        width: 100%;
+      }
+      &.has-icon .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+        transform: translate(44px, 11px) scale(1);
+      }
       --mat-form-field-container-height: 44px;
       --mat-form-field-container-vertical-padding: 10px;
       --mat-form-field-filled-with-label-container-padding-top: 10px;
@@ -124,6 +141,20 @@
       }
     }
 
+    // 375 px : les trois options de Priorité tiennent sur une ligne, comme Angular.
+    @media (max-width: 599.98px) {
+      .radios.radios {
+        flex-wrap: nowrap;
+        gap: 0;
+        .MuiFormControlLabel-root {
+          margin-right: var(--space-1);
+          white-space: nowrap;
+        }
+        .MuiRadio-root {
+          padding: 6px;
+        }
+      }
+    }
     .radios {
       display: flex;
       .MuiFormControlLabel-label {

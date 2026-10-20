@@ -137,6 +137,10 @@ describe('Harnais : widgets', () => {
       ],
     } as Extract<HarnaisWidget, { type: 'form' }>;
     render(<HzForm block={block} onSubmit={onSubmit} />);
+    // Comme mat-form-field : astérisque sur le champ requis, libellé dans le champ (non remonté) tant qu'il est vide.
+    const nom = screen.getByRole('textbox', { name: /^Nom/ }).closest('.MuiFormControl-root');
+    expect(nom?.querySelector('.MuiFormLabel-asterisk')).toBeInTheDocument();
+    expect(nom?.querySelector('label')).toHaveAttribute('data-shrink', 'false');
     await userEvent.click(screen.getByRole('button', { name: /Envoyer/ }));
     expect(onSubmit).not.toHaveBeenCalled();
     expect(screen.getByText('Champ requis')).toBeInTheDocument();
