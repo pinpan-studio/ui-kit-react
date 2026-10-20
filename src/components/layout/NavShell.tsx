@@ -17,10 +17,22 @@ interface NavShellProps {
   actions?: ReactNode;
   /** Variante (`app` : barre d'outils et contenu de ex-app-shell). */
   variant?: 'kit' | 'app';
+  /** Classes supplémentaires de la zone de contenu (`flush` côté ex-app-shell). */
+  contentClassName?: string;
+  /** Panneau latéral droit (messagerie de ex-app-shell). */
+  endPanel?: ReactNode;
   children: ReactNode;
 }
 
-export function NavShell({ config, title, actions, variant = 'kit', children }: NavShellProps) {
+export function NavShell({
+  config,
+  title,
+  actions,
+  variant = 'kit',
+  contentClassName,
+  endPanel,
+  children,
+}: NavShellProps) {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(!isMobile);
   useEffect(() => setOpen(!isMobile), [isMobile]);
@@ -49,10 +61,14 @@ export function NavShell({ config, title, actions, variant = 'kit', children }: 
           toggleLabels={variant === 'app' ? ['Masquer le menu', 'Afficher le menu'] : undefined}
           actions={actions}
         />
-        <main className={variant === 'app' ? 'kit-content content' : 'kit-content'} id="main-content">
+        <main
+          className={`kit-content${variant === 'app' ? ' content' : ''}${contentClassName ? ' ' + contentClassName : ''}`}
+          id="main-content"
+        >
           {children}
         </main>
       </div>
+      {endPanel}
     </div>
   );
 }

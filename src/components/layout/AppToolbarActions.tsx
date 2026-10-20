@@ -1,8 +1,10 @@
 import { Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { CHAT_UNREAD, CURRENT_USER, initials } from '../../lib/session';
+import { CURRENT_USER, initials } from '../../lib/session';
+import { Kbd } from '../interaction/Kbd';
 import { NotificationCenter, type AppNotification } from '../interaction/NotificationCenter';
+import { useInteractions } from '../interaction/useInteractions';
 import { MaterialIcon } from '../ui/MaterialIcon';
 import { ThemePicker } from '../ui/ThemePicker';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -51,8 +53,20 @@ const EX_NOTIFICATIONS: AppNotification[] = [
 ];
 
 /** Actions de la barre d'outils de ex-app-shell : thème, palette, Messages, Notifications, compte. */
-export function AppToolbarActions({ chatButton = true }: { chatButton?: boolean }) {
+export function AppToolbarActions({
+  chatButton = true,
+  chatOpen = false,
+  chatUnread = 0,
+  onToggleChat,
+}: {
+  chatButton?: boolean;
+  /** Panneau de messagerie (sidenav droite) ouvert. */
+  chatOpen?: boolean;
+  chatUnread?: number;
+  onToggleChat?: () => void;
+}) {
   const [menu, setMenu] = useState<HTMLElement | null>(null);
+  const { openPalette } = useInteractions();
   const close = () => setMenu(null);
   return (
     <>
@@ -64,9 +78,9 @@ export function AppToolbarActions({ chatButton = true }: { chatButton?: boolean 
       </span>
       {chatButton && (
         <Tooltip title="Messages">
-          <IconButton className="chat-btn" aria-label="Messages">
-            <MaterialIcon name="chat_bubble_outline" />
-            {CHAT_UNREAD > 0 && <span className="chat-n">{CHAT_UNREAD}</span>}
+          <IconButton className={`chat-btn${chatOpen ? ' on' : ''}`} aria-label="Messages" onClick={onToggleChat}>
+            <MaterialIcon name={chatOpen ? 'chat_bubble' : 'chat_bubble_outline'} />
+            {chatUnread > 0 && <span className="chat-n">{chatUnread}</span>}
           </IconButton>
         </Tooltip>
       )}
@@ -103,6 +117,18 @@ export function AppToolbarActions({ chatButton = true }: { chatButton?: boolean 
             <MaterialIcon name="settings" />
           </ListItemIcon>
           Paramètres
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            close();
+            openPalette();
+          }}
+        >
+          <ListItemIcon>
+            <MaterialIcon name="keyboard_command_key" />
+          </ListItemIcon>
+          Commandes
+          <Kbd className="menu-kbd" keys="mod+k" />
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to="/examples/auth/lock" onClick={close}>

@@ -1,0 +1,126 @@
+// Porté depuis ui-kit Angular (styles du composant examples/forms/contact-form.component.ts).
+@use '../../../../styles/breakpoints' as *;
+
+.ex-contact {
+  .layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+    @include lg {
+      grid-template-columns: minmax(0, 1fr);
+      .info {
+        order: 2;
+      }
+    }
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .channels {
+    padding: 8px 18px;
+    .ch {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-color);
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+    .ic {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-color-light);
+      color: var(--primary-color);
+    }
+    span:last-child {
+      display: flex;
+      flex-direction: column;
+    }
+    small {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    strong {
+      font-size: 15px;
+    }
+    em {
+      font-style: normal;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+  }
+  .faq {
+    padding: 18px 10px 10px;
+    h2 {
+      margin: 0 8px 8px;
+      font-family: var(--font-heading) !important;
+      font-size: 17px !important;
+      font-weight: 700 !important;
+    }
+    p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+    .mat-expansion-panel {
+      background: transparent;
+      box-shadow: none !important;
+      &::before {
+        display: none;
+      }
+    }
+    .pt-title {
+      font: 500 var(--fs-body) / 1.4 var(--font-body);
+      color: var(--text-primary);
+    }
+  }
+  .fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    .warn {
+      color: var(--warning-color-text, var(--warning-color));
+      font-weight: 600;
+    }
+  }
+  .phone {
+    padding-left: 4px;
+    .cc {
+      width: 96px;
+      flex: 0 0 96px;
+      padding: 0 8px;
+      border-right: 1px solid var(--border-color);
+      box-sizing: border-box;
+    }
+  }
+  .actions-bar .help {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .lock {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+}

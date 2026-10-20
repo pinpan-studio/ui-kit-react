@@ -10,6 +10,8 @@ export interface DialogConfig {
   disableClose?: boolean;
   /** Feuille ancrée en bas (MatBottomSheet). */
   bottomSheet?: boolean;
+  /** `false` : aucun élément ne reçoit le focus à l'ouverture (MatDialog autoFocus: false). */
+  autoFocus?: boolean;
 }
 
 export interface DialogRef<R> {

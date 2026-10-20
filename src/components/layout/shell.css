@@ -24,7 +24,7 @@
   height: 100%;
 }
 
-.sidenav-inner {
+.kit-sidenav .sidenav-inner {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -33,33 +33,33 @@
   overflow: hidden;
 }
 
-.sidenav-header {
+.kit-sidenav .sidenav-header {
   display: flex;
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-m) var(--space-l);
 }
-.sidenav-header .brand-logo {
+.kit-sidenav .sidenav-header .brand-logo {
   height: 30px;
   width: auto;
 }
-.sidenav-header .header-text {
+.kit-sidenav .sidenav-header .header-text {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-.sidenav-header .app-title {
+.kit-sidenav .sidenav-header .app-title {
   font-family: 'Outfit', sans-serif;
   font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
 }
-.sidenav-header .app-subtitle {
+.kit-sidenav .sidenav-header .app-subtitle {
   font-size: 11px;
   color: var(--text-muted);
 }
 
-.nav-search {
+.kit-sidenav .nav-search {
   margin: var(--space-3) var(--space-4) 0;
   display: flex;
   align-items: center;
@@ -69,13 +69,13 @@
   border-radius: var(--r-m);
   background: var(--mat-sys-surface-container-high);
 }
-.nav-search .material-icons {
+.kit-sidenav .nav-search .material-icons {
   font-size: 18px;
   width: 18px;
   height: 18px;
   color: var(--text-muted);
 }
-.nav-search input {
+.kit-sidenav .nav-search input {
   flex: 1;
   min-width: 0;
   border: 0;
@@ -85,7 +85,7 @@
   font-size: 13px;
   color: var(--text-primary);
 }
-.nav-search .clear {
+.kit-sidenav .nav-search .clear {
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -93,27 +93,27 @@
   padding: 0;
   color: var(--text-muted);
 }
-.nav-search:focus-within {
+.kit-sidenav .nav-search:focus-within {
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 45%, transparent);
 }
 
-.sidenav-menu-wrapper {
+.kit-sidenav .sidenav-menu-wrapper {
   flex: 1;
   overflow-y: auto;
   padding: var(--space-4);
 }
-.sidenav-menu-wrapper::-webkit-scrollbar {
+.kit-sidenav .sidenav-menu-wrapper::-webkit-scrollbar {
   width: 5px;
 }
-.sidenav-menu-wrapper::-webkit-scrollbar-thumb {
+.kit-sidenav .sidenav-menu-wrapper::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 99px;
 }
 
-.menu-section {
+.kit-sidenav .menu-section {
   margin-bottom: var(--space-1);
 }
-.section-header {
+.kit-sidenav .section-header {
   display: flex;
   align-items: center;
   width: 100%;
@@ -125,24 +125,24 @@
   font: inherit;
   text-align: left;
 }
-.section-header.clickable {
+.kit-sidenav .section-header.clickable {
   cursor: pointer;
 }
-.section-header.clickable:hover {
+.kit-sidenav .section-header.clickable:hover {
   background: var(--hover-bg);
 }
-.section-icon {
+.kit-sidenav .section-icon {
   font-size: 18px !important;
   width: 18px;
   height: 18px;
   margin-right: var(--space-3);
 }
-.section-title {
+.kit-sidenav .section-title {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
-.section-items {
+.kit-sidenav .section-items {
   padding-left: var(--space-4);
   margin-top: var(--space-1);
   display: flex;
@@ -150,7 +150,7 @@
   gap: 2px;
 }
 
-.menu-item {
+.kit-sidenav .menu-item {
   display: flex;
   align-items: center;
   width: 100%;
@@ -166,14 +166,14 @@
   color: var(--text-muted);
   transition: all 0.2s ease;
 }
-.menu-item .item-icon {
+.kit-sidenav .menu-item .item-icon {
   font-size: 16px !important;
   width: 16px;
   height: 16px;
   margin-right: var(--space-3);
   flex-shrink: 0;
 }
-.menu-item .item-label {
+.kit-sidenav .menu-item .item-label {
   font-size: 12.5px;
   font-weight: 500;
   flex: 1;
@@ -182,7 +182,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.menu-item .count {
+.kit-sidenav .menu-item .count {
   font-size: 11px;
   padding: 1px 7px;
   border-radius: 99px;
@@ -190,29 +190,29 @@
   color: var(--text-secondary);
   margin-left: var(--space-2);
 }
-.menu-item:hover {
+.kit-sidenav .menu-item:hover {
   background-color: var(--hover-bg);
   color: var(--text-primary);
 }
-.menu-item.active {
+.kit-sidenav .menu-item.active {
   background-color: var(--primary-color-light) !important;
   color: var(--primary-color) !important;
   font-weight: 600;
 }
-.menu-item.top {
+.kit-sidenav .menu-item.top {
   padding: var(--space-3) var(--space-4);
 }
-.menu-item.top .item-label {
+.kit-sidenav .menu-item.top .item-label {
   font-size: 13px;
   font-weight: 600;
 }
-.menu-item:focus-visible,
-.section-header:focus-visible {
+.kit-sidenav .menu-item:focus-visible,
+.kit-sidenav .section-header:focus-visible {
   outline: 2px solid var(--mat-sys-primary);
   outline-offset: -2px;
 }
 
-.sub-items {
+.kit-sidenav .sub-items {
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -220,10 +220,11 @@
   padding-left: var(--space-3);
   border-left: 1px solid color-mix(in srgb, var(--border-color) 55%, transparent);
 }
-.menu-item.sub .item-label {
+.kit-sidenav .menu-item.sub .item-label {
   font-size: 12px;
 }
-.dot {
+/* Puce des sous-pages de la sidenav (portée limitée : ne doit pas fuir dans les pages). */
+.kit-sidenav .dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -233,16 +234,16 @@
   flex-shrink: 0;
 }
 
-.chevron {
+.kit-sidenav .chevron {
   font-size: 18px !important;
   width: 18px;
   height: 18px;
   transition: transform 0.2s ease;
 }
-.chevron.open {
+.kit-sidenav .chevron.open {
   transform: rotate(180deg);
 }
-.chevron.small {
+.kit-sidenav .chevron.small {
   margin-left: var(--space-1);
 }
 .spacer {
@@ -354,7 +355,7 @@
 }
 
 /* Le corps mat-typography n'impose pas d'interligne dans la sidenav (line-height: normal). */
-.sidenav-inner {
+.kit-sidenav .sidenav-inner {
   line-height: normal;
 }
 
@@ -527,6 +528,44 @@
   .app-shell .content {
     padding: var(--space-2) var(--space-4) var(--space-6);
   }
+}
+
+/* Contenu sans marges (ex-app-shell [flush]) : maître / détail, messagerie plein écran. */
+.app-shell .content.flush {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Messagerie : sidenav droite (carte flottante, même style que la gauche) ; latérale dès 1600 px, superposée sinon. */
+.chat-side,
+.chat-drawer.MuiPaper-root {
+  width: calc(380px + var(--space-s) * 2);
+  box-sizing: border-box;
+  padding: var(--space-s);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.chat-side {
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .chat-drawer.MuiPaper-root {
+    width: min(400px, 94vw);
+  }
+}
+.chat-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--r-l);
+  background: var(--mat-sys-surface-container-low, var(--card-bg));
+}
+.app-shell .chat-btn.on {
+  color: var(--primary-color);
 }
 
 /* Écarts de la sidenav de ex-app-shell par rapport au catalogue. */

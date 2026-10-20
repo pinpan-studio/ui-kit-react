@@ -68,11 +68,14 @@ export function DialogProvider({ children }: { children: ReactNode }) {
             open={e.open}
             onClose={onClose}
             maxWidth={false}
+            disableAutoFocus={e.config.autoFocus === false}
             className={`kit-dialog ${panel}`}
             slotProps={{
               backdrop: { className: e.config.backdropClass ?? '' },
               // MatDialog autoFocus « first-tabbable » : premier élément focalisable du contenu.
-              transition: { onEntered: (node: HTMLElement) => focusFirstTabbable(node) },
+              transition: {
+                onEntered: (node: HTMLElement) => e.config.autoFocus !== false && focusFirstTabbable(node),
+              },
             }}
             PaperProps={{
               className: 'mat-mdc-dialog-surface',

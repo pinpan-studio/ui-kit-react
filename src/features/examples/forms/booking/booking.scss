@@ -1,0 +1,192 @@
+// Porté depuis ui-kit Angular (styles du composant examples/forms/booking-form.component.ts).
+@use 'sass:selector';
+@use '../../../../styles/breakpoints' as *;
+
+.ex-booking {
+  .layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 20px;
+    align-items: start;
+    @include lg {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .when {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 20px;
+    @include mobile {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  .cal {
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+  }
+  .slots {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    > strong {
+      font-family: var(--font-heading);
+      font-size: 16px;
+    }
+  }
+  .period {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    .material-icons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+    gap: 8px;
+    button {
+      height: 42px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-color);
+      background: var(--card-bg);
+      font: 600 14px var(--font-body);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-variant-numeric: tabular-nums;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+      small {
+        font-size: 10px;
+        font-weight: 500;
+      }
+      &:hover:not(:disabled) {
+        border-color: var(--primary-color);
+      }
+      &.on {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--mat-sys-on-primary, #fff);
+      }
+      &:disabled {
+        opacity: 0.45;
+        text-decoration: line-through;
+        cursor: not-allowed;
+      }
+    }
+  }
+  .summary {
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    h2 {
+      margin: 0;
+      font-family: var(--font-heading) !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
+    }
+    @include lg {
+      position: static;
+    }
+  }
+  .sum-line {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    .material-icons {
+      color: var(--primary-color);
+    }
+    span:not(.material-icons) {
+      display: flex;
+      flex-direction: column;
+    }
+    strong {
+      font-size: 14px;
+    }
+    small {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+  }
+  dl {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color);
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    dt {
+      color: var(--text-secondary);
+    }
+    dd {
+      margin: 0;
+      font-weight: 600;
+      text-align: right;
+    }
+    .tot {
+      font-family: var(--font-heading);
+      font-size: var(--fs-h4);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-primary);
+    }
+  }
+  .go {
+    height: 48px;
+  }
+  // Majuscule initiale seule (« Mercredi 21 octobre ») : les mois restent en minuscules en français.
+  .cap {
+    display: inline-block;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: 0;
+    .material-icons {
+      font-size: 15px;
+      width: 15px;
+      height: 15px;
+    }
+  }
+  .done {
+    max-width: 640px;
+    margin: 0 auto;
+    .actions-bar {
+      justify-content: center;
+    }
+  }
+}
+
+// Les périodes sont regroupées dans un bloc (fragment Angular) : même espacement vertical.
+.ex-booking .period-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

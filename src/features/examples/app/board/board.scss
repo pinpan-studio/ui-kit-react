@@ -1,0 +1,56 @@
+// Porté depuis ui-kit Angular (styles du composant examples/app/board-example.component.ts).
+@use '../../../../styles/breakpoints' as *;
+
+.ex-board {
+  .progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 420px;
+    margin: -8px 0 20px;
+    .MuiLinearProgress-root {
+      flex: 1;
+      height: 6px;
+      border-radius: 4px;
+    }
+    strong {
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+    }
+  }
+  .views {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    .MuiToggleButton-root {
+      height: 34px;
+      gap: 6px;
+      border-radius: 8px;
+      font-size: var(--fs-body-sm);
+    }
+    .material-icons {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+    @include sm {
+      width: 100%;
+      .MuiToggleButton-root {
+        flex: 1;
+      }
+      span:not(.material-icons) {
+        display: none;
+      }
+      .material-icons {
+        margin: 0;
+      }
+    }
+  }
+  .pad {
+    padding: 16px;
+  }
+  @include mobile {
+    .ava-stack {
+      display: none;
+    }
+  }
+}

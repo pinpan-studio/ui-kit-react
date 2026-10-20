@@ -87,6 +87,7 @@ export function Calendar({
   min,
   max,
   startAt,
+  dateFilter,
 }: {
   selected?: Date | null;
   onSelect?: (d: Date) => void;
@@ -95,6 +96,8 @@ export function Calendar({
   min?: Date | null;
   max?: Date | null;
   startAt?: Date | null;
+  /** Jours sélectionnables (mat-calendar [dateFilter]) ; les autres sont grisés. */
+  dateFilter?: (d: Date) => boolean;
 }) {
   const today = startOfDay(new Date());
   const [active, setActive] = useState<Date>(startOfDay(startAt ?? selected ?? range?.start ?? today));
@@ -120,7 +123,7 @@ export function Calendar({
         key: String(i),
         label: String(i + 1),
         aria: dayLong(d),
-        enabled: inBounds(d),
+        enabled: inBounds(d) && (!dateFilter || dateFilter(d)),
         today: sameDay(d, today),
         active: sameDay(d, active),
         selected: range ? rs || re : sameDay(d, selected),

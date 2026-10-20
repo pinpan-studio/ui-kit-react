@@ -1,0 +1,295 @@
+// Porté depuis ui-kit Angular (examples/app/files-example.component.scss).
+@use '../../../../styles/breakpoints' as *;
+
+.ex-files {
+  .layout-switch {
+    display: inline-flex;
+    padding: 3px;
+    border-radius: var(--radius-md);
+    background: var(--hover-bg);
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      height: 30px;
+      padding: 0 var(--space-3);
+      white-space: nowrap;
+      border-radius: var(--radius-sm);
+      font: 500 var(--fs-body-sm) var(--font-body);
+      color: var(--text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      .material-icons {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+      &.on {
+        background: var(--card-bg);
+        color: var(--text-primary);
+        font-weight: 600;
+        box-shadow: var(--elevation-1);
+        cursor: default;
+      }
+    }
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 216px minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+    &.with-details {
+      grid-template-columns: 216px minmax(0, 1fr) 300px;
+    }
+    @include tablet {
+      &,
+      &.with-details {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  }
+
+  // ─── Emplacements + stockage (colonne sans carte, comme les autres sous-navigations) ──
+  .places {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      button {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        height: 36px;
+        padding: 0 var(--space-3);
+        border: 0;
+        border-radius: var(--radius-sm);
+        background: none;
+        cursor: pointer;
+        text-align: left;
+        font: 500 var(--fs-body) var(--font-body);
+        color: var(--text-secondary);
+        .material-icons {
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+        }
+        span:not(.material-icons) {
+          flex: 1;
+        }
+        b {
+          font-size: var(--fs-caption);
+          font-weight: 600;
+          font-variant-numeric: tabular-nums;
+        }
+        &:hover {
+          background: var(--hover-bg);
+          color: var(--text-primary);
+        }
+        &.on {
+          background: var(--mat-sys-secondary-container, var(--primary-color-light));
+          color: var(--mat-sys-on-secondary-container, var(--primary-color));
+          font-weight: 600;
+        }
+      }
+    }
+    @include tablet {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      nav {
+        flex-direction: row;
+        overflow-x: auto;
+        scrollbar-width: none;
+        button {
+          flex: 0 0 auto;
+        }
+      }
+      .storage {
+        display: none;
+      }
+    }
+  }
+  .storage {
+    padding: var(--space-4);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--mat-sys-surface-container-high, var(--hover-bg));
+    .s-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+      font-size: var(--fs-body-sm);
+      strong {
+        font-weight: 600;
+      }
+      span:not(.material-icons) {
+        color: var(--text-muted);
+        font-variant-numeric: tabular-nums;
+      }
+    }
+    .bar {
+      display: flex;
+      gap: 2px;
+      height: 8px;
+      border-radius: var(--radius-xs);
+      overflow: hidden;
+      background: var(--hover-bg);
+      i {
+        display: block;
+        min-width: 3px;
+      }
+    }
+    ul {
+      margin: var(--space-3) 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      li {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--fs-caption);
+        color: var(--text-secondary);
+        i {
+          width: 8px;
+          height: 8px;
+          border-radius: 2px;
+        }
+        span:not(.material-icons) {
+          margin-left: auto;
+          color: var(--text-muted);
+          font-variant-numeric: tabular-nums;
+        }
+      }
+    }
+    .more {
+      width: 100%;
+      margin-top: var(--space-4);
+    }
+  }
+
+  // ─── Zone principale ───────────────────────────────────────────
+  .main {
+    padding: var(--space-4) var(--space-5) var(--space-5);
+    min-height: 420px;
+    @include mobile {
+      padding: var(--space-3);
+    }
+  }
+  .bulk {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin: -16px -20px var(--space-4);
+    padding: var(--space-1) var(--space-3) var(--space-1) var(--space-2);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    background: var(--mat-sys-secondary-container, var(--primary-color-light));
+    color: var(--mat-sys-on-secondary-container, var(--text-primary));
+    strong {
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+    }
+    @include mobile {
+      margin: -12px -12px var(--space-3);
+      .hide-sm {
+        display: none;
+      }
+    }
+  }
+
+  // ─── Détails ───────────────────────────────────────────────────
+  .details {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4) var(--space-5);
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      strong {
+        font-size: var(--fs-body);
+        font-weight: 600;
+      }
+    }
+    .d-thumb {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--hover-bg);
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      img.ic {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+      }
+      .material-icons {
+        font-size: 72px;
+        width: 72px;
+        height: 72px;
+      }
+    }
+    h2 {
+      margin: 0;
+      font-family: var(--font-heading) !important;
+      font-size: var(--fs-h4) !important;
+      font-weight: 600 !important;
+      line-height: 1.35 !important;
+      overflow-wrap: anywhere;
+    }
+    .d-actions {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      button {
+        flex: 1;
+      }
+    }
+    .lbl {
+      display: block;
+      margin-bottom: var(--space-2);
+      font: 600 var(--fs-overline) / 1.4 var(--font-body);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .people {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-3);
+      font-size: var(--fs-caption);
+    }
+    .d-activity p {
+      margin: 0 0 var(--space-2);
+      font-size: var(--fs-body-sm);
+      line-height: 1.45;
+      color: var(--text-secondary);
+      strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+    }
+    @include tablet {
+      position: static;
+    }
+  }
+}

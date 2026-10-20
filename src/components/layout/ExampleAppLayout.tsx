@@ -1,10 +1,15 @@
-import { Suspense } from 'react';
-import { Outlet, useMatches } from 'react-router';
+import { Drawer } from '@mui/material';
+import { Suspense, useEffect, useState } from 'react';
+import { Outlet, useMatches, useSearchParams } from 'react-router';
+import { ChatPanel } from '../../features/examples/app/chat/ChatPanel';
+import { exChat, useExChat } from '../../features/examples/app/chat/exChatStore';
+import { useMediaQuery } from '@mui/material';
 import type { ComponentEntry } from '../../types/routes';
 import { MaterialIcon } from '../ui/MaterialIcon';
 import { AppToolbarActions } from './AppToolbarActions';
 import { usePaletteCommands } from '../interaction/useInteractions';
-import { EXAMPLE_APP_NAV, EXAMPLE_SHELL_HEADERS } from './nav';
+import { ExampleShellContext } from './exampleShellContext';
+import { EXAMPLE_APP_NAV, EXAMPLE_SHELL_HEADERS, type ExampleShellHeader } from './nav';
 import { NavShell } from './NavShell';
 import { RouteFallback } from './RouteFallback';
 
@@ -56,8 +61,24 @@ export function ExampleAppLayout() {
     ],
     { prepend: true },
   );
+  // Messagerie : sidenav droite (carte flottante, même style que la gauche), latérale dès 1600 px.
+  const { panelOpen } = useExChat();
+  const isWide = useMediaQuery('(min-width: 1600px)');
+  const [params] = useSearchParams();
+  const chatParam = params.get('chat');
+  useEffect(() => {
+    // Lien direct : ?chat=1 ouvre le panneau, ?chat=<id de conversation> ouvre directement la conversation.
+    if (!chatParam) return;
+    exChat.setPanelOpen(true);
+    if (chatParam !== '1') exChat.setPanelConv(chatParam);
+  }, [chatParam]);
   const entry = useMatches().at(-1)?.handle as ComponentEntry | undefined;
-  const header = (entry && EXAMPLE_SHELL_HEADERS[entry.path]) ?? { title: entry?.title ?? '' };
+  // En-tête fourni par la page elle-même (titre dynamique d'une fiche, contenu sans marges…).
+  const [override, setOverride] = useState<Partial<ExampleShellHeader> | null>(null);
+  const header: ExampleShellHeader = {
+    ...((entry && EXAMPLE_SHELL_HEADERS[entry.path]) ?? { title: entry?.title ?? '' }),
+    ...override,
+  };
   const title = (
     <>
       {header.crumb && (
@@ -74,11 +95,42 @@ export function ExampleAppLayout() {
       config={EXAMPLE_APP_NAV}
       variant="app"
       title={title}
-      actions={<AppToolbarActions chatButton={!header.hideChatButton} />}
+      actions={
+        <AppToolbarActions
+          chatButton={!header.hideChatButton}
+          chatOpen={panelOpen}
+          chatUnread={exChat.totalUnread()}
+          onToggleChat={() => exChat.setPanelOpen(!panelOpen)}
+        />
+      }
+      contentClassName={header.flush ? 'flush' : undefined}
+      endPanel={
+        isWide ? (
+          panelOpen && (
+            <aside className="chat-side">
+              <div className="chat-inner">
+                <ChatPanel />
+              </div>
+            </aside>
+          )
+        ) : (
+          <Drawer
+            anchor="right"
+            open={panelOpen}
+            onClose={() => exChat.setPanelOpen(false)}
+            slotProps={{ paper: { className: 'chat-drawer' } }}
+            disableAutoFocus
+          >
+            <div className="chat-inner">{panelOpen && <ChatPanel />}</div>
+          </Drawer>
+        )
+      }
     >
-      <Suspense fallback={<RouteFallback />}>
-        <Outlet />
-      </Suspense>
+      <ExampleShellContext.Provider value={setOverride}>
+        <Suspense fallback={<RouteFallback />}>
+          <Outlet />
+        </Suspense>
+      </ExampleShellContext.Provider>
     </NavShell>
   );
 }

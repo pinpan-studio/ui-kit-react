@@ -47,21 +47,25 @@ export function FieldBoxDate({
   onChange,
   placeholder = 'JJ/MM/AAAA',
   icon = 'event',
+  matToggle,
 }: {
   value: Date | null;
   onChange: (d: Date | null) => void;
   placeholder?: string;
+  /** Icône de tête ('' : aucune). */
   icon?: string;
+  /** Bouton calendrier au rendu mat-datepicker-toggle (icône SVG par défaut). */
+  matToggle?: boolean;
 }) {
   const input = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const t = useDateText(value, onChange);
   return (
     <div className="field-box">
-      <MaterialIcon name={icon} />
+      {icon && <MaterialIcon name={icon} />}
       <input ref={input} {...t} placeholder={placeholder} aria-haspopup="dialog" />
       <IconButton type="button" onClick={() => setOpen((o) => !o)} aria-label="Ouvrir le calendrier">
-        <MaterialIcon name="calendar_month" />
+        {matToggle ? <CalendarToggleIcon /> : <MaterialIcon name="calendar_month" />}
       </IconButton>
       <DatePopup anchor={input.current} open={open} onClose={() => setOpen(false)}>
         <Calendar

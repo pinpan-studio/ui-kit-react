@@ -220,6 +220,8 @@ export interface ExampleShellHeader {
   crumb?: string;
   /** Bouton « Messages » masqué (page de messagerie instantanée). */
   hideChatButton?: boolean;
+  /** Contenu sans marges (tableaux pleine hauteur, maître / détail). */
+  flush?: boolean;
 }
 export const EXAMPLE_SHELL_HEADERS: Record<string, ExampleShellHeader> = {
   '/examples/app/dashboard': { title: 'Tableau de bord', crumb: 'Accueil' },

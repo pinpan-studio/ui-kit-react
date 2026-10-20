@@ -1,0 +1,33 @@
+// Porté depuis ui-kit Angular (harnais/components/widgets/modal-dialog).
+@use 'sass:selector';
+@use '../../../styles/breakpoints' as *;
+@use '../tokens' as hz;
+
+// Encapsulation équivalente à Angular : les composants enfants (.hz-widget) ne sont pas atteints.
+@scope (.hz-modal) to (.hz-widget) {
+:scope {
+// La modale vit dans l'overlay CDK : elle redéclare l'échelle typographique du module.
+& { @include hz.tokens; display: flex; flex-direction: column; max-height: 86vh; font-size: var(--hz-body); }
+
+.head {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-5) var(--space-4) var(--space-4) var(--space-6); border-bottom: 1px solid var(--border-color);
+}
+.icon {
+  width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--tertiary-color-light); color: var(--tertiary-color);
+  .material-icons { font-size: 20px; width: 20px; height: 20px; }
+}
+.text { flex: 1; min-width: 0; display: flex; flex-direction: column;
+  h2 { margin: 0; font-family: 'Outfit', sans-serif; font-size: 16px !important; font-weight: 700; color: var(--text-primary); }
+  span:not(.material-icons) { font-size: var(--hz-meta); color: var(--text-muted); } }
+
+.body {
+  display: flex; flex-direction: column; gap: var(--space-4);
+  padding: var(--space-5) var(--space-6) !important; max-height: none;
+}
+.actions { padding: var(--space-3) var(--space-4) !important; border-top: 1px solid var(--border-color); button { font-size: var(--hz-ui); } }
+
+}
+}
