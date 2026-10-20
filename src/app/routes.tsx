@@ -1,0 +1,45 @@
+import { Navigate, type RouteObject } from 'react-router';
+import { ExampleAppLayout } from '../components/layout/ExampleAppLayout';
+import { KitLayout } from '../components/layout/KitLayout';
+import { StandaloneLayout } from '../components/layout/StandaloneLayout';
+import { isRedirect, type ComponentEntry } from '../types/routes';
+import { ROUTE_TABLE } from './routeTable';
+
+/** Formulaires présentés dans le shell d'exemple (les autres sont plein écran, comme en Angular). */
+const FORMS_IN_SHELL = new Set(['contact', 'checkout', 'booking', 'application']);
+
+type Layout = 'kit' | 'example' | 'standalone';
+
+export function layoutFor(e: ComponentEntry): Layout {
+  if (e.group === 'catalogue') return 'kit';
+  if (e.group === 'app' && e.path !== '/main') return 'example';
+  if (e.group === 'forms' && FORMS_IN_SHELL.has(e.path.split('/').pop() ?? '')) return 'example';
+  return 'standalone';
+}
+
+const lazyPlaceholder = async () => ({
+  Component: (await import('../features/placeholder/PlaceholderPage')).PlaceholderPage,
+});
+
+function componentRoute(e: ComponentEntry): RouteObject {
+  return { path: e.path, handle: e, lazy: lazyPlaceholder };
+}
+
+/** Construit l'arbre React Router à partir de la table Angular (53 entrées). */
+export function buildRoutes(): RouteObject[] {
+  const children: Record<Layout, RouteObject[]> = { kit: [], example: [], standalone: [] };
+  const redirects: RouteObject[] = [];
+  for (const r of ROUTE_TABLE) {
+    if (isRedirect(r)) {
+      redirects.push({ path: r.path === '/**' ? '*' : r.path, element: <Navigate to={r.redirectTo} replace /> });
+    } else {
+      children[layoutFor(r)].push(componentRoute(r));
+    }
+  }
+  return [
+    { element: <KitLayout />, children: children.kit },
+    { element: <ExampleAppLayout />, children: children.example },
+    { element: <StandaloneLayout />, children: children.standalone },
+    ...redirects,
+  ];
+}
