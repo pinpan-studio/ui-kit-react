@@ -159,8 +159,12 @@ export function HzChart({ block: b }: { block: ChartBlock }) {
   return (
     <div className="hz-chart" style={{ display: 'block' }}>
       <div className="box" style={{ position: 'relative', width: '100%', height: b.height ?? (radial ? 240 : 260) }}>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any -- configurations Chart.js hétérogènes (portées d'Angular) */}
-        <Chart type={chartType(b.chart)} data={data as any} options={options as any} />
+        <Chart
+          type={chartType(b.chart)}
+          data={data as never}
+          options={options as never}
+          aria-label={b.title ?? 'Graphique'}
+        />
       </div>
     </div>
   );

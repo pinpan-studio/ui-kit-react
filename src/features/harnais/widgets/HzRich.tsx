@@ -265,7 +265,11 @@ export function HzRich({ block: b }: { block: HarnaisWidget }) {
                 {r}
               </span>,
               ...b.cols.map((c, ci) => (
-                <Tooltip key={`${ri}-${ci}`} title={`${r} ${c} : ${b.values[ri]?.[ci] ?? 0}${b.unit ?? ''}`}>
+                <Tooltip
+                  key={`${ri}-${ci}`}
+                  describeChild
+                  title={`${r} ${c} : ${b.values[ri]?.[ci] ?? 0}${b.unit ?? ''}`}
+                >
                   <span className="cell" style={{ background: heat(b.values[ri]?.[ci] ?? 0) }} />
                 </Tooltip>
               )),
