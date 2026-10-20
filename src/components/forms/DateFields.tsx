@@ -90,6 +90,8 @@ export function OutlineDate({
   onChange,
   error,
   onBlur,
+  size,
+  required,
 }: {
   label: string;
   hint?: ReactNode;
@@ -100,6 +102,8 @@ export function OutlineDate({
   onChange?: (d: Date | null) => void;
   error?: boolean;
   onBlur?: () => void;
+  size?: 'small' | 'medium';
+  required?: boolean;
 }) {
   const [local, setLocal] = useState<Date | null>(null);
   const value = controlled !== undefined ? controlled : local;
@@ -116,6 +120,8 @@ export function OutlineDate({
       <TextField
         className="kit-outline-field w-100"
         variant="outlined"
+        size={size}
+        required={required}
         label={label}
         helperText={hint}
         error={outOfBounds || !!error}

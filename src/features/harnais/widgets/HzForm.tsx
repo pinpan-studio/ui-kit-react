@@ -127,6 +127,7 @@ export function HzForm({
   const init = useMemo(() => Object.fromEntries(b.fields.map((f) => [f.key, initial(f)])), [b.fields]);
   const [values, setValues] = useState<Values>(init);
   const [touched, setTouched] = useState<Set<string>>(() => new Set());
+  const [focused, setFocused] = useState<string | null>(null);
 
   if (b.values) {
     const sent = b.values;
@@ -329,12 +330,21 @@ export function HzForm({
   function material(f: HzField): ReactNode {
     const k = f.key;
     const v = value(k);
+    // Comme mat-form-field : libellé dans le champ (avec « * » si requis) tant qu'il est vide et sans focus,
+    // même avec une icône de préfixe (MUI remonte sinon le libellé dès qu'il y a un startAdornment).
+    const filled = !(v === null || v === undefined || v === '' || (Array.isArray(v) && v.length === 0));
+    const shrink = focused === k || filled;
     const common = {
       fullWidth: true,
       size: 'small' as const,
-      className: 'hz-ff kit-outline-field',
+      className: `hz-ff kit-outline-field${f.icon ? ' has-icon' : ''}`,
       error: invalid(f),
-      onBlur: blur(f),
+      required: !!f.required,
+      onFocus: () => setFocused(k),
+      onBlur: () => {
+        setFocused((x) => (x === k ? null : x));
+        touch(k);
+      },
     };
     switch (f.kind) {
       case 'select':
@@ -343,13 +353,21 @@ export function HzForm({
         const id = `hz-${k}`;
         return (
           <FormControl {...common}>
-            <InputLabel id={id}>{f.label}</InputLabel>
+            <InputLabel id={id} shrink={shrink}>
+              {f.label}
+            </InputLabel>
             <Select
               labelId={id}
               multiple={multi}
               value={multi ? ((v as string[]) ?? []) : ((v as string) ?? '')}
               onChange={(e) => set(k, e.target.value)}
-              input={<OutlinedInput label={f.label} startAdornment={prefix(f.icon)} />}
+              input={
+                <OutlinedInput
+                  label={f.required ? `${f.label} *` : f.label}
+                  notched={shrink}
+                  startAdornment={prefix(f.icon)}
+                />
+              }
               renderValue={
                 multi
                   ? (sel) =>
@@ -388,10 +406,12 @@ export function HzForm({
               <TextField
                 {...p}
                 {...common}
+                className={`${common.className} has-icon`}
                 label={f.label}
                 placeholder={f.placeholder ?? ''}
                 helperText={helper(f)}
                 slotProps={{
+                  inputLabel: { ...p.InputLabelProps, shrink },
                   input: { ...p.InputProps, startAdornment: prefix(f.icon ?? 'search') },
                 }}
               />
@@ -406,6 +426,7 @@ export function HzForm({
             value={String(v ?? '')}
             helperText={invalid(f) ? 'Champ requis' : (f.hint ?? 'Format : ' + f.mask)}
             slotProps={{
+              inputLabel: { shrink },
               input: {
                 startAdornment: prefix(f.icon),
                 inputComponent: MaskedInput as never,
@@ -436,14 +457,18 @@ export function HzForm({
         );
       case 'date':
         return (
-          <OutlineDate
-            label={f.label}
-            value={(v as Date | null) ?? null}
-            onChange={(d) => setTouch(k, d)}
-            onBlur={blur(f)}
-            error={invalid(f)}
-            hint={invalid(f) ? 'Date requise' : f.hint}
-          />
+          <div className="hz-ff kit-outline-field hz-date">
+            <OutlineDate
+              size="small"
+              required={!!f.required}
+              label={f.label}
+              value={(v as Date | null) ?? null}
+              onChange={(d) => setTouch(k, d)}
+              onBlur={blur(f)}
+              error={invalid(f)}
+              hint={invalid(f) ? 'Date requise' : f.hint}
+            />
+          </div>
         );
       case 'time':
         return (
@@ -615,6 +640,7 @@ export function HzForm({
             }
             helperText={invalid(f) ? (err === 'email' ? 'Adresse invalide' : 'Champ requis') : f.hint}
             slotProps={{
+              inputLabel: { shrink },
               input: {
                 startAdornment: prefix(f.icon),
                 endAdornment: f.unit ? <InputAdornment position="end">{f.unit}</InputAdornment> : undefined,

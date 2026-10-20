@@ -1,5 +1,10 @@
 // Données statiques reprises de ui-kit Angular (data/static/session.data.ts, ex-app-shell, ex-chat.service).
-export const CURRENT_USER = { fullname: 'Jean Kouassi', mail: 'jean.kouassi@example.com' } as const;
+export const CURRENT_USER = {
+  fullname: 'Jean Kouassi',
+  nom: 'Kouassi',
+  prenoms: 'Jean',
+  mail: 'jean.kouassi@example.com',
+} as const;
 export const initials = (fullname: string): string =>
   fullname
     .split(' ')

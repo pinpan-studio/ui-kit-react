@@ -8,6 +8,7 @@ import { MaterialIcon } from '../../components/ui/MaterialIcon';
 import { ThemePicker } from '../../components/ui/ThemePicker';
 import { HARNAIS_ARTIFACTS, HARNAIS_MODELS, HARNAIS_SUGGESTIONS } from '../../data/static/harnais.data';
 import { useThemeMode } from '../../hooks/useThemeMode';
+import { CURRENT_USER } from '../../lib/session';
 import { Composer, type ComposerHandle } from './Composer';
 import { ConversationList } from './ConversationList';
 import { HarnaisMessage } from './HarnaisMessage';
@@ -16,8 +17,8 @@ import { copyText } from './harnaisUtils';
 import { SidePanel, type HarnaisPanelTab } from './SidePanel';
 import './harnais.scss';
 
-/** Prénom de l'utilisateur de démonstration (Angular : CURRENT_USER.prenoms). */
-const FIRST_NAME = 'Jean';
+/** Prénom de l'utilisateur de session (Angular : harnais.component.ts `firstName = CURRENT_USER.prenoms`). */
+const FIRST_NAME = CURRENT_USER.prenoms;
 
 /**
  * Harnais : interface conversationnelle façon assistant IA. Trois colonnes — historique · fil + saisie · panneau
