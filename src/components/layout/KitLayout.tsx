@@ -5,6 +5,8 @@ import { KIT_NAV } from './nav';
 import { NavShell } from './NavShell';
 import { RouteFallback } from './RouteFallback';
 import { Suspense } from 'react';
+import { ThemePicker } from '../ui/ThemePicker';
+import { ThemeToggle } from '../ui/ThemeToggle';
 
 /** Layout « kit » du catalogue (KitLayoutComponent). */
 export function KitLayout() {
@@ -33,6 +35,8 @@ export function KitLayout() {
           >
             <span className="label">Ouvrir l'application</span>
           </Button>
+          <ThemeToggle />
+          <ThemePicker />
         </>
       }
     >

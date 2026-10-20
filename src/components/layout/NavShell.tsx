@@ -10,22 +10,24 @@ import './shell.css';
  * Cadre commun du catalogue et des écrans d'exemple : sidenav « side » ouverte sur desktop,
  * tiroir superposé sous 960 px (même seuil que le BreakpointObserver Angular).
  */
-export function NavShell({
-  config,
-  actions,
-  children,
-}: {
+interface NavShellProps {
   config: NavConfig;
+  /** Titre de la barre d'outils (par défaut : config.toolbarTitle). */
+  title?: ReactNode;
   actions?: ReactNode;
+  /** Variante (`app` : barre d'outils et contenu de ex-app-shell). */
+  variant?: 'kit' | 'app';
   children: ReactNode;
-}) {
+}
+
+export function NavShell({ config, title, actions, variant = 'kit', children }: NavShellProps) {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(!isMobile);
   useEffect(() => setOpen(!isMobile), [isMobile]);
   const sidebar = <Sidebar config={config} isMobile={isMobile} onClose={() => setOpen(false)} />;
 
   return (
-    <div className="kit-container">
+    <div className={`kit-container ${variant}-shell`}>
       {isMobile ? (
         <Drawer
           open={open}
@@ -40,8 +42,13 @@ export function NavShell({
         </aside>
       )}
       <div className="kit-main">
-        <Topbar title={config.toolbarTitle} navOpen={open} onToggleNav={() => setOpen((o) => !o)} actions={actions} />
-        <main className="kit-content" id="main-content">
+        <Topbar
+          title={title ?? config.toolbarTitle}
+          navOpen={open}
+          onToggleNav={() => setOpen((o) => !o)}
+          actions={actions}
+        />
+        <main className={variant === 'app' ? 'kit-content content' : 'kit-content'} id="main-content">
           {children}
         </main>
       </div>

@@ -27,3 +27,22 @@ describe('KitLayout (shell du catalogue)', () => {
     expect(screen.getAllByText('SC Storage').length).toBeGreaterThan(0);
   });
 });
+
+describe('ExampleAppLayout (barre d’outils de ex-app-shell)', () => {
+  it('affiche le fil d’Ariane, Messages, Notifications avec badges et le compte', async () => {
+    renderAt('/examples/app/dashboard');
+    await screen.findByRole('heading', { level: 1, name: 'Tableau de bord' });
+    const toolbar = document.querySelector('.kit-toolbar') as HTMLElement;
+    expect(within(toolbar).getByText('Accueil')).toHaveClass('crumb');
+    expect(within(toolbar).getByText('Tableau de bord')).toHaveClass('cur');
+    expect(within(toolbar).getByRole('button', { name: 'Messages' })).toHaveTextContent('7');
+    expect(within(toolbar).getByRole('button', { name: 'Notifications, 3 non lues' })).toHaveTextContent('3');
+    expect(within(toolbar).getByRole('button', { name: 'Mon compte' })).toHaveTextContent('JK');
+  });
+
+  it('masque le bouton Messages sur la messagerie instantanée', async () => {
+    renderAt('/examples/app/chat');
+    await screen.findByRole('heading', { level: 1 });
+    expect(screen.queryByRole('button', { name: 'Messages' })).not.toBeInTheDocument();
+  });
+});

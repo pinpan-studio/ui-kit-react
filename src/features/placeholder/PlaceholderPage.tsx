@@ -16,8 +16,20 @@ export function PlaceholderPage() {
   }, [title]);
 
   return (
-    <Box sx={{ p: { xs: 2, md: 3 }, maxWidth: 1100 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
+    <Box sx={{ p: entry && /^\/examples\/(app|forms)\//.test(entry.path) ? 0 : { xs: 2, md: 3 }, maxWidth: 1100 }}>
+      <Typography
+        component="h1"
+        gutterBottom
+        sx={{
+          fontFamily: 'var(--mat-sys-headline-small-font), Outfit, Inter, sans-serif',
+          fontWeight: 700,
+          lineHeight: 1.25,
+          letterSpacing: 0,
+          // Angular : 28 px sur le UI Showcase, 24 px sur les pages (20 px sous 768 px).
+          fontSize: entry?.path === '/ui-showcase' ? 28 : 24,
+          ...(entry?.path === '/ui-showcase' ? {} : { '@media (max-width: 768px)': { fontSize: 20 } }),
+        }}
+      >
         {title}
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>

@@ -312,7 +312,8 @@
   color: var(--text-secondary);
 }
 
-@media (max-width: 959.98px) {
+/* @include mobile (≤ 768 px) de kit-layout.component.scss ; le tiroir, lui, bascule sous 960 px. */
+@media (max-width: 768px) {
   .kit-toolbar {
     padding: 0 var(--space-1);
     gap: var(--space-1);
@@ -357,4 +358,194 @@
 .kit-content {
   flex: 1;
   overflow: auto;
+}
+
+/* Le corps mat-typography n'impose pas d'interligne dans la sidenav (line-height: normal). */
+.sidenav-inner {
+  line-height: normal;
+}
+
+/* Boutons « Harnais » / « Ouvrir l'application » : icône 18 px, marge -8 px / 4 px (mat-stroked-button). */
+.kit-toolbar .app-link .MuiButton-startIcon {
+  margin-left: -8px;
+  margin-right: 4px;
+}
+.kit-toolbar .app-link .MuiButton-startIcon .material-icons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* ─── Barre d'outils de ex-app-shell (examples/app/ex-app-shell.component.scss) ─── */
+.app-shell .toolbar-title {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  line-height: 28px;
+}
+.app-shell .toolbar-title .crumb {
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.app-shell .toolbar-title .sep {
+  margin: 0 var(--space-1);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+}
+.app-shell .toolbar-title .cur {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.app-shell .hide-sm {
+  display: inline-flex;
+}
+.app-shell .chat-btn {
+  position: relative;
+}
+.app-shell .chat-n {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 var(--space-1);
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  background: var(--error-color);
+  color: #fff;
+  font:
+    700 10px / 16px 'Inter',
+    sans-serif;
+  text-align: center;
+  pointer-events: none;
+}
+.app-shell .nc-bell {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-shell .nc-bell:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+.app-shell .nc-count {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-radius: 9px;
+  border: 2px solid var(--card-bg);
+  background: var(--error-color);
+  color: #fff;
+  font:
+    700 10px/14px 'Inter',
+    sans-serif;
+  text-align: center;
+}
+.app-shell .avatar-btn {
+  width: 40px;
+  height: 40px;
+  margin-left: var(--space-1);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.app-shell .avatar-btn .avatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+.app-shell .avatar-btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+.menu-me {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3) var(--space-4);
+  line-height: 1.4;
+}
+.menu-me strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+.menu-me small {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Contenu des pages d'exemple (.content) */
+.app-shell .content {
+  padding: var(--space-3) var(--space-8) var(--space-10);
+  box-sizing: border-box;
+}
+@media (max-width: 960px) {
+  .app-shell .content {
+    padding: var(--space-3) var(--space-6) var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-shell .kit-toolbar {
+    padding: 0 var(--space-s);
+    gap: var(--space-s);
+  }
+  .app-shell .toolbar-title {
+    font-size: 16px;
+  }
+  .app-shell .toolbar-title .crumb,
+  .app-shell .toolbar-title .sep {
+    display: none !important;
+  }
+  .app-shell .kit-toolbar .palette-btn {
+    width: auto;
+    min-width: 0;
+    padding: 0 9px;
+  }
+  .app-shell .hide-sm {
+    display: none !important;
+  }
+  .app-shell .content {
+    padding: var(--space-2) var(--space-4) var(--space-6);
+  }
+}
+
+/* Écarts de la sidenav de ex-app-shell par rapport au catalogue. */
+.app-shell .sidenav-inner {
+  border-radius: var(--r-l);
+}
+.app-shell .menu-section {
+  margin-bottom: var(--space-3);
+}
+.app-shell .section-header {
+  padding: var(--space-3) var(--space-4);
+}
+.kit-toolbar .toolbar-title {
+  letter-spacing: normal;
 }

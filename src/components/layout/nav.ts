@@ -139,3 +139,25 @@ export const EXAMPLE_APP_NAV: NavConfig = {
     },
   ],
 };
+
+/** En-tête des écrans d'exemple : `title` et `crumb` passés à <ex-app-shell> par chaque page Angular. */
+export interface ExampleShellHeader {
+  title: string;
+  crumb?: string;
+  /** Bouton « Messages » masqué (page de messagerie instantanée). */
+  hideChatButton?: boolean;
+}
+export const EXAMPLE_SHELL_HEADERS: Record<string, ExampleShellHeader> = {
+  '/examples/app/dashboard': { title: 'Tableau de bord', crumb: 'Accueil' },
+  '/examples/app/clients': { title: 'Clients', crumb: 'CRM' },
+  '/examples/app/clients/:id': { title: 'Fiche client', crumb: 'Clients' },
+  '/examples/app/settings': { title: 'Paramètres', crumb: 'Compte' },
+  '/examples/app/inbox': { title: 'Messagerie' },
+  '/examples/app/board': { title: 'Déploiement Sotra', crumb: 'Projets' },
+  '/examples/app/docs': { title: 'Documentation', crumb: 'Ressources' },
+  '/examples/app/files': { title: 'Fichiers', crumb: 'Ressources' },
+  '/examples/app/files/columns': { title: 'Fichiers', crumb: 'Ressources' },
+  '/examples/app/feed': { title: 'Fil d’équipe', crumb: 'Communication' },
+  '/examples/app/chat': { title: 'Messagerie instantanée', crumb: 'Communication', hideChatButton: true },
+  '/examples/app/monitoring': { title: 'Supervision', crumb: 'Pilotage' },
+};

@@ -1,17 +1,16 @@
 import { IconButton } from '@mui/material';
 import type { ReactNode } from 'react';
 import { MaterialIcon } from '../ui/MaterialIcon';
-import { ThemePicker } from '../ui/ThemePicker';
-import { ThemeToggle } from '../ui/ThemeToggle';
 
 interface TopbarProps {
-  title: string;
+  title: ReactNode;
   navOpen: boolean;
   onToggleNav: () => void;
+  /** Boutons à droite de la recherche (propres à chaque shell). */
   actions?: ReactNode;
 }
 
-/** Barre d'outils du catalogue (mat-toolbar.kit-toolbar). */
+/** Barre d'outils commune (mat-toolbar.kit-toolbar). */
 export function Topbar({ title, navOpen, onToggleNav, actions }: TopbarProps) {
   return (
     <header className="kit-toolbar">
@@ -31,8 +30,6 @@ export function Topbar({ title, navOpen, onToggleNav, actions }: TopbarProps) {
         <kbd className="kbd">⌘K</kbd>
       </button>
       {actions}
-      <ThemeToggle />
-      <ThemePicker />
     </header>
   );
 }
