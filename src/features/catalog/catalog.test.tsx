@@ -43,4 +43,15 @@ describe('Pages du catalogue portées', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Échelle typographique' })).toBeInTheDocument();
     expect(screen.getAllByText('TT Wellingtons').length).toBeGreaterThan(0);
   });
+
+  it('/components/material : accordéon en étapes, chips et virtual scroll', async () => {
+    renderAt('/components/material');
+    await screen.findByRole('heading', { level: 1, name: 'Material & CDK' });
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant' }));
+    expect(await screen.findByRole('button', { name: 'Précédent' })).toBeInTheDocument();
+    const input = screen.getByPlaceholderText('Nouvelle étiquette…');
+    await userEvent.type(input, 'Bouaké{Enter}');
+    expect(screen.getByText('Bouaké', { selector: '.MuiChip-label' })).toBeInTheDocument();
+    expect(document.querySelectorAll('.vs-row').length).toBeLessThan(30);
+  });
 });
