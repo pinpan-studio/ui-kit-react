@@ -18,18 +18,22 @@
   color: var(--mat-snack-bar-supporting-text-color, var(--mat-sys-inverse-on-surface));
   border-radius: 4px;
   min-width: 344px;
-  max-width: 672px;
+  // Plafond global des cdk-overlay-pane (min(402px, 95vw)) moins la marge de 8px du conteneur.
+  max-width: calc(min(402px, 95vw) - 16px);
   min-height: 48px;
   padding: 0 8px 0 16px;
   font-size: 14px;
   line-height: 20px;
   box-shadow: var(--mat-sys-level3, none);
+  .MuiSnackbarContent-action {
+    margin-right: 0;
+  }
   .MuiSnackbarContent-message {
-    padding: 14px 0;
+    padding: 14px 8px 14px 0;
   }
   .kit-snackbar-action {
     color: var(--mat-snack-bar-button-color, var(--mat-sys-inverse-primary));
-    font-weight: 500;
+    font-weight: 600;
   }
   @media (max-width: 599.98px) {
     min-width: 0;
