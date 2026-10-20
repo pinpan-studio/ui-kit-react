@@ -1,3 +1,4 @@
+import { toneInk } from '../../theme/toneInk';
 import { Menu, MenuItem } from '@mui/material';
 import {
   Fragment,
@@ -556,7 +557,10 @@ export function DataTable<T extends object>({
                                 <span
                                   className="dt-badge"
                                   style={
-                                    { '--tone': `var(--${c.tone ? c.tone(r) : 'primary'}-color)` } as CSSProperties
+                                    {
+                                      '--tone': `var(--${c.tone ? c.tone(r) : 'primary'}-color)`,
+                                      '--tone-ink': toneInk(`var(--${c.tone ? c.tone(r) : 'primary'}-color)`),
+                                    } as CSSProperties
                                   }
                                 >
                                   {d}

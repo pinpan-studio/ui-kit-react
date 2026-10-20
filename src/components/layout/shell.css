@@ -409,7 +409,7 @@
   box-sizing: border-box;
   border-radius: var(--radius-sm);
   background: var(--error-color);
-  color: #fff;
+  color: var(--mat-sys-on-error);
   font:
     700 10px / 16px 'Inter',
     sans-serif;

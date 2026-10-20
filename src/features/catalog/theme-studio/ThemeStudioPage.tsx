@@ -1,3 +1,5 @@
+import { buildCssVariables } from '../../../theme/cssVariables';
+import { getScheme, PALETTE_IDS } from '../../../theme/palettes';
 /* eslint-disable @typescript-eslint/no-non-null-assertion -- index connus (rôles M3, palettes non vides) */
 import {
   Button,
@@ -89,6 +91,15 @@ const toHex = (hex: string) => {
 };
 const toneInk = (tone: number) => (tone < 55 ? '#ffffff' : '#000000');
 
+// Jetons dérivés (--card-bg, --text-*, --*-color-text, --tone-*…) redéclarés dans l'aperçu pour suivre ses rôles M3
+// et son color-scheme (light-dark) : sinon ils gardent les valeurs du mode de la page.
+const derivedVars = (mode: 'light' | 'dark') =>
+  Object.fromEntries(
+    Object.entries(buildCssVariables(getScheme(PALETTE_IDS[0] ?? '', mode), mode)).filter(
+      ([k]) => !k.startsWith('--mat-sys-'),
+    ),
+  );
+
 function Device({ mode, vars }: { mode: 'light' | 'dark'; vars: Record<string, string> }) {
   const [status, setStatus] = useState<string | null>('actif');
   const [view, setView] = useState<ViewMode>('card');
@@ -100,7 +111,7 @@ function Device({ mode, vars }: { mode: 'light' | 'dark'; vars: Record<string, s
       <figcaption>
         <MaterialIcon name={mode === 'dark' ? 'dark_mode' : 'light_mode'} /> {mode === 'dark' ? 'Sombre' : 'Clair'}
       </figcaption>
-      <div className={`device ${mode}`} style={vars as CSSProperties}>
+      <div className={`device ${mode}`} style={{ ...derivedVars(mode), ...vars, colorScheme: mode } as CSSProperties}>
         <div className="pv-appbar">
           <MaterialIcon name="menu" />
           <span className="pv-title">Clients</span>

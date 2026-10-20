@@ -60,7 +60,7 @@
   align-items: center;
   justify-content: center;
   background: color-mix(in srgb, var(--tone) 14%, var(--card-bg));
-  color: var(--tone);
+  color: var(--tone-ink, var(--tone));
   box-shadow: 0 0 0 10px color-mix(in srgb, var(--tone) 6%, transparent);
   .material-icons {
     font-size: 42px;

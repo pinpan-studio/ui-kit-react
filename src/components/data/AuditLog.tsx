@@ -1,3 +1,4 @@
+import { toneIcon } from '../../theme/toneInk';
 import { useState, type CSSProperties } from 'react';
 import { Tip } from '../fields/Tip';
 import { MaterialIcon } from '../ui/MaterialIcon';
@@ -95,7 +96,7 @@ export function AuditLog({ entries }: { entries: AuditEntry[] }) {
             className={`chip${action === a ? ' on' : ''}`}
             onClick={() => setAction(action === a ? null : a)}
           >
-            <MaterialIcon name={ACTIONS[a].icon} style={{ color: `var(--${ACTIONS[a].tone}-color)` }} />
+            <MaterialIcon name={ACTIONS[a].icon} style={{ color: toneIcon(`var(--${ACTIONS[a].tone}-color)`) }} />
             {ACTION_NAME[a]}
             <em>{entries.filter((e) => e.action === a).length}</em>
           </button>
@@ -127,7 +128,12 @@ export function AuditLog({ entries }: { entries: AuditEntry[] }) {
                 <li key={e.id} className="al-item">
                   <span
                     className="al-dot"
-                    style={{ '--tone': `var(--${ACTIONS[e.action].tone}-color)` } as CSSProperties}
+                    style={
+                      {
+                        '--tone': `var(--${ACTIONS[e.action].tone}-color)`,
+                        '--tone-icon': toneIcon(`var(--${ACTIONS[e.action].tone}-color)`),
+                      } as CSSProperties
+                    }
                   >
                     <MaterialIcon name={ACTIONS[e.action].icon} />
                   </span>

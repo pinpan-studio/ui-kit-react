@@ -21,15 +21,15 @@
     color: var(--text-secondary);
     &.ok {
       background: var(--success-color-light);
-      color: var(--success-color-text, var(--success-color));
+      color: var(--tone-success-text);
     }
     &.warn {
       background: var(--warning-color-light);
-      color: var(--warning-color-text, var(--warning-color));
+      color: var(--tone-warning-text);
     }
     &.bad {
       background: var(--error-color-light);
-      color: var(--error-color-text, var(--error-color));
+      color: var(--tone-error-text);
     }
   }
 
@@ -461,7 +461,7 @@
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: var(--success-color);
+    color: var(--tone-success-icon);
   }
   .measure-ctrl {
     display: flex;
@@ -707,7 +707,7 @@
         text-decoration-thickness: 2px;
       }
       &.visited {
-        color: var(--purple-color, #8b5cf6);
+        color: var(--tone-purple-text);
       }
       &.focus {
         outline: 2px solid var(--primary-color);
@@ -800,13 +800,13 @@
     }
     .fr-bad {
       background: var(--error-color-light);
-      color: var(--error-color-text, var(--error-color));
+      color: var(--tone-error-text);
       text-decoration: line-through;
       text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
     }
     .fr-good {
       background: var(--success-color-light);
-      color: var(--success-color-text, var(--success-color));
+      color: var(--tone-success-text);
     }
   }
   .fr-tool {

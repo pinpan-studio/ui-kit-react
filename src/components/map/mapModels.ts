@@ -87,6 +87,14 @@ export function mapToneColor(tone: MapTone | undefined, fallback = 'var(--primar
   return tone === 'neutral' ? 'var(--text-muted)' : `var(--${tone}-color)`;
 }
 
+/** Lot contraste : contenu (icône) posé sur l'épingle pleine du ton (warning/success foncés, error = on-error M3). */
+export function mapToneInk(tone: MapTone | undefined): string {
+  if (tone === 'warning') return 'var(--tone-on-warning)';
+  if (tone === 'success') return 'var(--tone-on-success)';
+  if (tone === 'error') return 'var(--mat-sys-on-error)';
+  return '#fff';
+}
+
 export interface MapMarker<T = unknown> {
   id: string;
   lat: number;

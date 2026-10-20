@@ -340,7 +340,7 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: var(--purple-color, #8b5cf6);
+    background: var(--tone-purple-solid);
     color: #fff;
     font-size: 12px;
     font-weight: 700;
@@ -373,7 +373,7 @@
         color: var(--error-color);
       }
       &.folder {
-        color: var(--warning-color);
+        color: var(--tone-warning-icon);
       }
     }
     .fname {

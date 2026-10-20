@@ -107,15 +107,15 @@
     }
     &.success .chip-count {
       background: var(--success-color-light);
-      color: var(--success-color-text);
+      color: var(--tone-success-text);
     }
     &.warning .chip-count {
       background: var(--warning-color-light);
-      color: var(--warning-color-text);
+      color: var(--tone-warning-text);
     }
     &.danger .chip-count {
       background: var(--error-color-light);
-      color: var(--error-color-text);
+      color: var(--tone-error-text);
     }
   }
 

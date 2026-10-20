@@ -82,7 +82,7 @@
       padding: 1px 6px;
       border-radius: var(--r-full);
       background: var(--error-color);
-      color: #fff;
+      color: var(--mat-sys-on-error);
     }
     &:hover {
       color: var(--text-primary);
