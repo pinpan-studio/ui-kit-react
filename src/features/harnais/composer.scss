@@ -5,91 +5,218 @@
 
 // Encapsulation équivalente à Angular : les composants enfants (—) ne sont pas atteints.
 @scope (.hz-composer) {
-:scope {
-& { display: block; }
+  :scope {
+    & {
+      display: block;
+    }
 
-.composer {
-  display: flex; flex-direction: column; gap: var(--space-2);
-  padding: var(--space-4) var(--space-4) var(--space-3) var(--space-5);
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--elevation-4);
-  cursor: text;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  &:focus-within {
-    border-color: color-mix(in srgb, var(--primary-color) 45%, var(--border-color));
-    box-shadow: 0 0 0 4px var(--primary-color-light), 0 8px 28px rgba(15, 23, 42, 0.08);
+    .composer {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-4) var(--space-3) var(--space-5);
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--elevation-4);
+      cursor: text;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+      &:focus-within {
+        border-color: color-mix(in srgb, var(--primary-color) 45%, var(--border-color));
+        box-shadow:
+          0 0 0 4px var(--primary-color-light),
+          0 8px 28px rgba(15, 23, 42, 0.08);
+      }
+    }
+
+    .field {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      resize: none;
+      background: transparent;
+      padding: var(--space-1) 0;
+      margin: 0;
+      font: inherit;
+      font-size: var(--hz-read);
+      line-height: 1.6;
+      color: var(--text-primary);
+      &::placeholder {
+        color: var(--text-muted);
+      }
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      padding-bottom: var(--space-1);
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+      border-radius: var(--r-m);
+      background: var(--hover-bg);
+      font-size: var(--hz-meta);
+      .kind {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: var(--tertiary-color);
+      }
+      .name {
+        font-weight: 600;
+        color: var(--text-primary);
+        max-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .size {
+        color: var(--text-muted);
+      }
+      .remove {
+        width: 22px;
+        height: 22px;
+        border: 0;
+        border-radius: 50%;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        color: var(--text-muted);
+        &:hover {
+          background: var(--border-color);
+          color: var(--text-primary);
+        }
+        .material-icons {
+          font-size: 14px;
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      margin-left: -8px;
+      cursor: default;
+    }
+    .spacer {
+      flex: 1;
+    }
+
+    .tool {
+      width: 34px !important;
+      height: 34px !important;
+      padding: 5px !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: 50% !important;
+      color: var(--text-secondary);
+      --mat-icon-button-state-layer-shape: 50%;
+      .material-icons {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      height: 34px;
+      padding: 0 var(--space-3);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      border: 1px solid transparent;
+      font: inherit;
+      font-size: var(--hz-meta);
+      font-weight: 600;
+      &.on {
+        background: var(--primary-color-light);
+        color: var(--primary-color);
+        border-color: color-mix(in srgb, var(--primary-color) 25%, transparent);
+      }
+      .material-icons {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+      }
+      @media (max-width: 480px) {
+        span:not(.material-icons) {
+          display: none;
+        }
+      }
+    }
+
+    .model-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      height: 34px;
+      padding: 0 var(--space-2) 0 var(--space-3);
+      border: 0;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      background: transparent;
+      font: inherit;
+      font-size: var(--hz-ui);
+      font-weight: 600;
+      color: var(--text-secondary);
+      &:hover {
+        background: var(--hover-bg);
+        color: var(--text-primary);
+      }
+      .material-icons {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    .send {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--tertiary-color);
+      color: #fff;
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease,
+        background 0.15s ease;
+      .material-icons {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+      &:hover:not(:disabled) {
+        transform: translateY(-1px);
+      }
+      &:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+      &.stop {
+        background: var(--text-primary);
+        color: var(--card-bg);
+      }
+    }
+
+    // ─── Menus (rendus dans l'overlay : styles globaux ciblés) ──────
   }
-}
-
-.field {
-  width: 100%; border: 0; outline: 0; resize: none; background: transparent;
-  padding: var(--space-1) 0; margin: 0;
-  font: inherit; font-size: var(--hz-read); line-height: 1.6; color: var(--text-primary);
-  &::placeholder { color: var(--text-muted); }
-}
-
-.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); padding-bottom: var(--space-1); }
-.chip {
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3); border-radius: var(--r-m);
-  background: var(--hover-bg); font-size: var(--hz-meta);
-  .kind { font-size: 16px; width: 16px; height: 16px; color: var(--tertiary-color); }
-  .name { font-weight: 600; color: var(--text-primary); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .size { color: var(--text-muted); }
-  .remove {
-    width: 22px; height: 22px; border: 0; border-radius: 50%; padding: 0; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    background: transparent; color: var(--text-muted);
-    &:hover { background: var(--border-color); color: var(--text-primary); }
-    .material-icons { font-size: 14px; width: 14px; height: 14px; }
-  }
-}
-
-.bar { display: flex; align-items: center; gap: var(--space-1); margin-left: -8px; cursor: default; }
-.spacer { flex: 1; }
-
-.tool {
-  width: 34px !important; height: 34px !important; padding: 5px !important;
-  border: 1px solid var(--border-color) !important; border-radius: 50% !important;
-  color: var(--text-secondary);
-  --mat-icon-button-state-layer-shape: 50%;
-  .material-icons { font-size: 20px; width: 20px; height: 20px; }
-}
-
-.pill {
-  display: inline-flex; align-items: center; gap: var(--space-1);
-  height: 34px; padding: 0 var(--space-3); border-radius: var(--radius-md); cursor: pointer;
-  border: 1px solid transparent; font: inherit; font-size: var(--hz-meta); font-weight: 600;
-  &.on {
-    background: var(--primary-color-light); color: var(--primary-color);
-    border-color: color-mix(in srgb, var(--primary-color) 25%, transparent);
-  }
-  .material-icons { font-size: 16px; width: 16px; height: 16px; }
-  @media (max-width: 480px) { span:not(.material-icons) { display: none; } }
-}
-
-.model-btn {
-  display: inline-flex; align-items: center; gap: 2px;
-  height: 34px; padding: 0 var(--space-2) 0 var(--space-3); border: 0; border-radius: var(--radius-md); cursor: pointer;
-  background: transparent; font: inherit; font-size: var(--hz-ui); font-weight: 600; color: var(--text-secondary);
-  &:hover { background: var(--hover-bg); color: var(--text-primary); }
-  .material-icons { font-size: 18px; width: 18px; height: 18px; }
-}
-
-.send {
-  width: 36px; height: 36px; flex-shrink: 0; border: 0; border-radius: 50%; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--tertiary-color); color: #fff;
-  transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
-  .material-icons { font-size: 20px; width: 20px; height: 20px; }
-  &:hover:not(:disabled) { transform: translateY(-1px); }
-  &:disabled { opacity: 0.35; cursor: default; }
-  &.stop { background: var(--text-primary); color: var(--card-bg); }
-}
-
-// ─── Menus (rendus dans l'overlay : styles globaux ciblés) ──────
-
-}
 }

@@ -23,7 +23,8 @@ const TOOL_ICONS: Record<HarnaisToolKind, string> = {
 };
 
 type ToolBlock = Extract<HarnaisBlock, { type: 'tool' }>;
-type BlockGroup = { kind: 'tools'; start: number; items: ToolBlock[] } | { kind: 'block'; index: number; block: HarnaisBlock };
+type BlockGroup =
+  { kind: 'tools'; start: number; items: ToolBlock[] } | { kind: 'block'; index: number; block: HarnaisBlock };
 
 /** Texte enrichi : `code` et **gras**, sans innerHTML. */
 const Segments = ({ text }: { text: string }) =>
@@ -138,12 +139,7 @@ export const HarnaisMessage = memo(function HarnaisMessage({
     if (b.type === 'thinking') {
       return (
         <div key={index} className={`thinking${isOpen(index) ? ' open' : ''}`}>
-          <button
-            type="button"
-            className="thinking-head"
-            onClick={() => toggle(index)}
-            aria-expanded={isOpen(index)}
-          >
+          <button type="button" className="thinking-head" onClick={() => toggle(index)} aria-expanded={isOpen(index)}>
             <MaterialIcon name="psychology" className="lead" />
             <span className={b.running ? 'shimmer' : undefined}>
               {b.running ? 'Réflexion en cours…' : 'Réflexion pendant ' + (b.duration ?? '')}

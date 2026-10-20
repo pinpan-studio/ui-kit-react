@@ -1,0 +1,38 @@
+// Porté depuis ui-kit Angular (harnais/components/widgets/media-widget.component.ts, styles inline).
+@scope (.hz-media) to (.hz-widget) {
+  :scope {
+    display: block;
+  }
+  .pending {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    background: var(--hover-bg);
+    color: var(--text-muted);
+    font-size: var(--hz-ui);
+  }
+  .caption {
+    margin: 8px 0 0;
+    font-size: var(--hz-meta);
+    color: var(--text-muted);
+  }
+  .image {
+    margin: 0;
+  }
+  .image img {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .image figcaption {
+    margin-top: 8px;
+    font-size: var(--hz-meta);
+    color: var(--text-muted);
+    text-align: center;
+  }
+}

@@ -1,0 +1,55 @@
+// Porté depuis ui-kit Angular (harnais/components/widgets/content-widget.component.ts, styles inline).
+@scope (.hz-content) to (.hz-widget) {
+  :scope {
+    display: block;
+  }
+  .typo {
+    display: flex;
+    flex-direction: column;
+  }
+  .typo-row {
+    display: grid;
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 12px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border-color);
+    &:last-child {
+      border-bottom: 0;
+    }
+    > :not(.typo-tag) {
+      margin: 0;
+      color: var(--text-primary);
+      overflow-wrap: anywhere;
+    }
+  }
+  .typo-tag {
+    font-family: var(--font-mono);
+    font-size: var(--hz-meta);
+    color: var(--text-muted);
+  }
+  .quote {
+    padding: 4px 0 4px 14px;
+    border-left: 3px solid var(--tone);
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .article {
+    display: block;
+  }
+  .codes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 4px 0;
+  }
+  .barcode {
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+  }
+}
