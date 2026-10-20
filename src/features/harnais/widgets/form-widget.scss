@@ -73,6 +73,19 @@
       .MuiFormControl-root {
         width: 100%;
       }
+      // Texte d'exemple : visible au focus seulement, en opacité 1 comme Angular.
+      .Mui-focused .MuiInputBase-input::placeholder {
+        opacity: 1 !important;
+        color: var(--text-muted);
+      }
+      // Précisions : 92 px avec poignée de redimensionnement (textarea Angular).
+      .MuiInputBase-multiline {
+        align-items: flex-start;
+        textarea:not([aria-hidden]) {
+          min-height: 75px;
+          resize: vertical;
+        }
+      }
       &.has-icon .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
         transform: translate(44px, 11px) scale(1);
       }
@@ -141,17 +154,17 @@
       }
     }
 
-    // 375 px : les trois options de Priorité tiennent sur une ligne, comme Angular.
+    // 375 px : retour à la ligne comme Angular (~12 px d'écart), zone de clic ≥ 44 px par option.
     @media (max-width: 599.98px) {
       .radios.radios {
-        flex-wrap: nowrap;
-        gap: 0;
+        flex-wrap: wrap;
+        gap: var(--space-1) 12px;
         .MuiFormControlLabel-root {
-          margin-right: var(--space-1);
-          white-space: nowrap;
+          min-height: 44px;
+          margin: 0;
         }
         .MuiRadio-root {
-          padding: 6px;
+          padding: 10px;
         }
       }
     }
