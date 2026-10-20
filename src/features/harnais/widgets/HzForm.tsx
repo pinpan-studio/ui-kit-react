@@ -34,7 +34,7 @@ import { TagInput } from '../../../components/fields/TagInput';
 import { TransferList } from '../../../components/fields/TransferList';
 import { TreeSelect } from '../../../components/fields/TreeSelect';
 import type { DateRange } from '../../../components/forms/Calendar';
-import { FieldBoxDate, FieldBoxDateRange } from '../../../components/forms/DateFields';
+import { FieldBoxDateRange, OutlineDate } from '../../../components/forms/DateFields';
 import { FileUpload } from '../../../components/forms/FileUpload';
 import { MaskedInput } from '../../../components/forms/MaskedInput';
 import { MaterialIcon } from '../../../components/ui/MaterialIcon';
@@ -329,7 +329,13 @@ export function HzForm({
   function material(f: HzField): ReactNode {
     const k = f.key;
     const v = value(k);
-    const common = { fullWidth: true, size: 'small' as const, className: 'hz-ff', error: invalid(f), onBlur: blur(f) };
+    const common = {
+      fullWidth: true,
+      size: 'small' as const,
+      className: 'hz-ff kit-outline-field',
+      error: invalid(f),
+      onBlur: blur(f),
+    };
     switch (f.kind) {
       case 'select':
       case 'multiselect': {
@@ -430,15 +436,14 @@ export function HzForm({
         );
       case 'date':
         return (
-          <>
-            <span className="label">{f.label}</span>
-            <FieldBoxDate
-              value={(v as Date | null) ?? null}
-              onChange={(d) => setTouch(k, d)}
-              placeholder="jj/mm/aaaa"
-            />
-            {invalid(f) && <span className="err">Date requise</span>}
-          </>
+          <OutlineDate
+            label={f.label}
+            value={(v as Date | null) ?? null}
+            onChange={(d) => setTouch(k, d)}
+            onBlur={blur(f)}
+            error={invalid(f)}
+            hint={invalid(f) ? 'Date requise' : f.hint}
+          />
         );
       case 'time':
         return (

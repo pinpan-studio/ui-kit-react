@@ -41,7 +41,16 @@ describe('Harnais : page', () => {
     await screen.findByRole('heading', { level: 1, name: 'Sidecar de navigation Angular' });
     fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
     await waitFor(() => expect(router.state.location.pathname).toBe('/harnais'));
-    expect(await screen.findByText('Nouvelle conversation', { selector: 'h1' })).toBeInTheDocument();
+    expect(await screen.findByText('Nouvelle conversation', { selector: 'h1' })).toBeInTheDocument(); // Le raccourci global mod+k (palette de commandes) ne doit pas s'ouvrir en plus.
+    expect(screen.queryByRole('dialog', { name: 'Palette de commandes' })).not.toBeInTheDocument();
+  });
+
+  it('hors Harnais, Ctrl+K ouvre la palette, sans « Aucun résultat » tant que la recherche est vide', async () => {
+    renderAt('/ui-showcase');
+    await screen.findAllByRole('heading', { level: 1 });
+    fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
+    expect(await screen.findByRole('dialog', { name: 'Palette de commandes' })).toBeInTheDocument();
+    expect(screen.queryByText('Aucun résultat')).not.toBeInTheDocument();
   });
 });
 

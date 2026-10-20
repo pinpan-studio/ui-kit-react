@@ -105,12 +105,15 @@ export function HarnaisPage() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        // Prioritaire sur le raccourci global mod+k (palette, écouteur document en capture) :
+        // sur /harnais, ⌘K ouvre seulement une nouvelle conversation, comme Angular.
         e.preventDefault();
+        e.stopPropagation();
         newConversation();
       }
     };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
   }, [newConversation]);
 
   const setModel = (model: string) => {
