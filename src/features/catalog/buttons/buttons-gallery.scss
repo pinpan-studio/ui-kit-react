@@ -8,8 +8,8 @@
   .btn-success {
     --mdc-filled-button-container-color: var(--success-color);
     --mat-button-filled-container-color: var(--success-color);
-    --mdc-filled-button-label-text-color: #fff;
-    --mat-button-filled-label-text-color: #fff;
+    --mdc-filled-button-label-text-color: #052e16;
+    --mat-button-filled-label-text-color: #052e16;
   }
 
   // Tailles : mêmes jetons pour toutes les variantes (forme et arrondi inchangés).
@@ -151,7 +151,8 @@
   }
   .MuiButton-root.btn-success {
     background-color: var(--success-color);
-    color: #fff;
+    // Contraste AA : texte vert très sombre sur #22c55e (le blanc ne donne que 2,3:1).
+    color: #052e16;
   }
   .MuiButton-root.btn-compact {
     height: 32px;

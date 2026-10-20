@@ -39,6 +39,9 @@ function m3Shadows(): Shadows {
   return Array.from({ length: 25 }, (_, i) => (i === 0 ? 'none' : level(map[i] ?? 5))) as Shadows;
 }
 
+const CHECK = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z'/%3E%3C/svg%3E") center / 16px no-repeat`;
+const DASH = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 13H4v-2h16v2z'/%3E%3C/svg%3E") center / 16px no-repeat`;
+
 export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
   const r = (k: string) => role(scheme, k);
   const hover = stateOpacity('hover');
@@ -352,20 +355,48 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
         styleOverrides: { paper: { backgroundColor: r('surface-container-high'), borderRadius: 'var(--r-l)' } },
       },
       MuiSwitch: {
+        // mat-slide-toggle (MDC M3, icônes visibles) : piste 52×32 surface-variant bordée de 2 px outline,
+        // poignée 24 px outline avec tiret (surface-variant) éteinte ; allumée : piste primary, poignée
+        // on-primary avec coche on-primary-container ; désactivée : piste on-surface 12 %, icône 38 %.
         styleOverrides: {
-          root: { width: 52, height: 32, padding: 0 },
+          root: { width: 52, height: 32, padding: 0, overflow: 'visible' },
           switchBase: {
             padding: 4,
+            color: r('outline'),
+            '& .MuiSwitch-thumb::before': { backgroundColor: r('surface-variant') },
             '&.Mui-checked': {
               transform: 'translateX(20px)',
               color: r('on-primary'),
-              '& + .MuiSwitch-track': { backgroundColor: r('primary'), opacity: 1, border: 0 },
+              '& .MuiSwitch-thumb::before': {
+                backgroundColor: r('on-primary-container'),
+                WebkitMask: CHECK,
+                mask: CHECK,
+              },
+              '& + .MuiSwitch-track': { backgroundColor: r('primary'), borderColor: 'transparent', opacity: 1 },
+            },
+            '&.Mui-disabled': {
+              color: r('on-surface'),
+              '& .MuiSwitch-thumb': { opacity: 0.38 },
+              '& + .MuiSwitch-track': { borderColor: r('on-surface'), opacity: 0.12 },
+            },
+            '&.Mui-checked.Mui-disabled': {
+              color: r('surface'),
+              '& .MuiSwitch-thumb': { opacity: 1 },
+              '& .MuiSwitch-thumb::before': { backgroundColor: r('on-surface'), opacity: 0.38 },
+              '& + .MuiSwitch-track': { backgroundColor: r('on-surface'), opacity: 0.12 },
             },
           },
-          thumb: { width: 24, height: 24, boxShadow: 'none' },
+          thumb: {
+            position: 'relative',
+            width: 24,
+            height: 24,
+            boxShadow: 'none',
+            '&::before': { content: '""', position: 'absolute', inset: 4, WebkitMask: DASH, mask: DASH },
+          },
           track: {
+            boxSizing: 'border-box',
             borderRadius: 16,
-            backgroundColor: r('surface-container-highest'),
+            backgroundColor: r('surface-variant'),
             border: `2px solid ${r('outline')}`,
             opacity: 1,
           },
