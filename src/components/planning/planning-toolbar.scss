@@ -1,0 +1,121 @@
+// Porté depuis shared/components/planning/planning-toolbar.component (styles du composant, encapsulation émulée → portée .app-planning-toolbar).
+
+.app-planning-toolbar {
+  & {
+    display: block;
+  }
+  .pl-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pl-spacer {
+    flex: 1;
+  }
+  .pl-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 220px;
+    flex: 0 1 300px;
+    height: 36px;
+    padding: 0 6px 0 12px;
+    border-radius: var(--r-full);
+    background: var(--mat-sys-surface-container, var(--hover-bg));
+    color: var(--text-muted);
+    .material-icons {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+    input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+    &:focus-within {
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent);
+    }
+  }
+  .pl-clear {
+    display: inline-flex;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 2px;
+    .material-icons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .pl-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--r-full);
+    background: var(--mat-sys-surface-container, var(--hover-bg));
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    .material-icons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+    em {
+      font-style: normal;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: var(--r-full);
+      background: var(--error-color);
+      color: #fff;
+    }
+    &:hover {
+      color: var(--text-primary);
+    }
+    &.active {
+      background: var(--error-color-light);
+      color: var(--error-color-text);
+    }
+  }
+  .pl-reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-muted);
+    .material-icons {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+    &:hover {
+      background: var(--hover-bg);
+      color: var(--error-color);
+    }
+  }
+  & .pq-fs-trigger {
+    border-color: transparent !important;
+    box-shadow: none !important;
+    background: var(--mat-sys-surface-container, var(--hover-bg)) !important;
+  }
+}

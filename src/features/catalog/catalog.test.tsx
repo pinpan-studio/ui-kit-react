@@ -137,4 +137,21 @@ describe('Pages du catalogue portées', () => {
     const sel = document.getElementById('list') as HTMLElement;
     expect(within(sel).getByText('1 sélectionné(s)')).toBeInTheDocument();
   });
+
+  it('/components/planning : kanban, filtre « En retard », agenda et vue groupée repliable', async () => {
+    renderAt('/components/planning');
+    await screen.findByRole('heading', { level: 1, name: 'Planning' });
+    const kanban = document.getElementById('kanban') as HTMLElement;
+    expect(within(kanban).getAllByText('Planifiée').length).toBeGreaterThan(0);
+    const notes = document.getElementById('notes') as HTMLElement;
+    const before = notes.querySelectorAll('.ng-note').length;
+    await userEvent.click(within(notes).getByRole('button', { name: /En retard/ }));
+    expect(notes.querySelectorAll('.ng-note').length).toBeLessThan(before);
+    const grouped = document.getElementById('grouped') as HTMLElement;
+    const heads = grouped.querySelectorAll('.gb-head');
+    const n = grouped.querySelectorAll('.ng-note').length;
+    await userEvent.click(heads[0] as HTMLElement);
+    expect(grouped.querySelectorAll('.ng-note').length).toBeLessThan(n);
+    expect(document.getElementById('agenda')?.querySelector('.ag-grid')).toBeTruthy();
+  });
 });

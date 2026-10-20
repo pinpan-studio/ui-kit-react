@@ -280,6 +280,7 @@ export function DataBaseSections() {
     <FormControlLabel
       control={<Switch checked={v} onChange={(e) => set(e.target.checked)} />}
       label={label}
+      sx={{ ml: 0, mr: 0 }}
       slotProps={{ typography: { sx: { fontSize: 14, letterSpacing: '0.256px', pl: '4px' } } }}
     />
   );
