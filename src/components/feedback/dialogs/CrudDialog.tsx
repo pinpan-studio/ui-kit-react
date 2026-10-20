@@ -1,13 +1,14 @@
 import { Button, Checkbox, FormControlLabel } from '@mui/material';
 import { useState } from 'react';
 import { BoxSelect } from '../../fields/BoxSelect';
+import { EntityAutocomplete } from '../../forms/EntityAutocomplete';
 import { MaterialIcon } from '../../ui/MaterialIcon';
 import type { DialogRef } from './dialogContext';
 
 export interface CrudDialogField {
   key: string;
   label: string;
-  type: 'text' | 'number' | 'email' | 'select' | 'multiselect' | 'textarea' | 'checkbox' | 'date';
+  type: 'text' | 'number' | 'email' | 'select' | 'multiselect' | 'textarea' | 'checkbox' | 'date' | 'autocomplete';
   options?: { value: string; label: string }[];
   required?: boolean;
   placeholder?: string;
@@ -34,6 +35,7 @@ const FIELD_ICON: Record<string, string> = {
   date: 'event',
   select: 'list',
   multiselect: 'checklist',
+  autocomplete: 'search',
 };
 const MODE_ICON = {
   create: ['add_circle', 'var(--primary-color)'],
@@ -119,6 +121,29 @@ export function CrudDialog({ config, dialog }: { config: CrudDialogConfig; dialo
                       onChange={(x) => set(f.key, x)}
                     />
                   </div>
+                )}
+                {f.type === 'autocomplete' && (
+                  <EntityAutocomplete
+                    placeholder={f.placeholder || 'Rechercher...'}
+                    icon={f.icon || 'search'}
+                    disabled={dis}
+                    initialItem={(() => {
+                      const o = f.options?.find((x) => x.value === v);
+                      return o ? { _id: o.value, label: o.label } : null;
+                    })()}
+                    searchFn={(term) => {
+                      const q = term.toLowerCase().trim();
+                      const opts = f.options ?? [];
+                      return Promise.resolve(
+                        (q ? opts.filter((o) => o.label.toLowerCase().includes(q)) : opts).map((o) => ({
+                          _id: o.value,
+                          label: o.label,
+                        })),
+                      );
+                    }}
+                    displayFn={(i) => String(i.label ?? '')}
+                    onItemSelected={(i) => set(f.key, i ? String(i._id) : '')}
+                  />
                 )}
                 {f.type === 'textarea' && (
                   <div className={`field-box textarea-box${dis ? ' is-disabled' : ''}`}>

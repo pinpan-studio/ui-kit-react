@@ -1,21 +1,6 @@
-// Déclencheur mat-select (--mat-select-trigger-text-*) dans une field-box.
-.kit-box-select.MuiInputBase-root {
+// mat-select dans une field-box : la typo du déclencheur vient de .field-box.select-box (_legacy.scss).
+.field-box .mat-mdc-select {
   flex: 1;
   min-width: 0;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-  .MuiSelect-select {
-    padding: 0 24px 0 0;
-    min-height: 0;
-    line-height: 20px;
-  }
-  .MuiSelect-icon {
-    color: var(--text-muted);
-  }
-}
-.kit-box-select-placeholder {
-  font-weight: 400;
-  color: var(--text-muted);
+  outline: none;
 }

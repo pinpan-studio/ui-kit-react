@@ -84,4 +84,21 @@ describe('Pages du catalogue portées', () => {
     await userEvent.click(within(res).getByRole('button', { name: '404', hidden: true }));
     expect(within(res).getByText('Page introuvable')).toBeInTheDocument();
   });
+  it('/components/forms : masque, sélecteur recherchable, filtre et validation', async () => {
+    renderAt('/components/forms');
+    await screen.findByRole('heading', { level: 1, name: 'Formulaires' });
+    const mask = document.getElementById('mask') as HTMLElement;
+    await userEvent.type(within(mask).getByLabelText('Immatriculation'), '1234ab01');
+    expect(within(mask).getByText('Valeur : 1234 AB 01')).toBeInTheDocument();
+    const sel = document.getElementById('select') as HTMLElement;
+    await userEvent.click(within(sel).getByText('Normale'));
+    const panel = document.querySelector('.pq-fs-panel') as HTMLElement;
+    await userEvent.type(within(panel).getByPlaceholderText('Rechercher…'), 'crit');
+    await userEvent.click(within(panel).getByRole('button', { name: /Critique/ }));
+    expect(within(sel).getByText('Critique')).toBeInTheDocument();
+    const val = document.getElementById('validation') as HTMLElement;
+    await userEvent.click(within(val).getByRole('button', { name: /Enregistrer/ }));
+    expect(within(val).getByText('La raison sociale est requise')).toBeInTheDocument();
+    expect(within(val).getByText('Champs requis manquants')).toBeInTheDocument();
+  });
 });

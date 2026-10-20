@@ -1,4 +1,4 @@
-import { Checkbox, ListItemText, MenuItem, Select } from '@mui/material';
+import { MatSelect } from '../forms/MatSelect';
 import './box-select.scss';
 
 export interface BoxOption<V> {
@@ -15,39 +15,28 @@ export function BoxSelect<V extends string | number>({
   placeholder,
   disabled,
   ariaLabel,
+  onBlur,
 }: {
-  value: V | V[] | '';
+  value: V | V[] | '' | null;
   onChange: (v: V & V[]) => void;
   options: BoxOption<V>[];
   multiple?: boolean;
   placeholder?: string;
   disabled?: boolean;
   ariaLabel?: string;
+  onBlur?: () => void;
 }) {
+  const byKey = new Map(options.map((o) => [String(o.value), o.value]));
   return (
-    <Select
-      variant="standard"
-      disableUnderline
-      className="kit-box-select"
-      value={value}
+    <MatSelect
+      aria-label={ariaLabel ?? placeholder}
+      options={options.map((o) => ({ value: String(o.value), label: o.label }))}
+      value={Array.isArray(value) ? value.map(String) : value == null || value === '' ? null : String(value)}
       multiple={multiple}
+      placeholder={placeholder}
       disabled={disabled}
-      displayEmpty={!!placeholder}
-      inputProps={{ 'aria-label': ariaLabel ?? placeholder }}
-      onChange={(e) => onChange(e.target.value as V & V[])}
-      MenuProps={{ className: 'm3-dropdown-menu' }}
-      renderValue={(v) => {
-        const list = ([] as V[]).concat(v as V | V[]).filter((x) => x !== ('' as V));
-        if (!list.length) return <span className="kit-box-select-placeholder">{placeholder}</span>;
-        return list.map((x) => options.find((o) => o.value === x)?.label ?? String(x)).join(', ');
-      }}
-    >
-      {options.map((o) => (
-        <MenuItem key={String(o.value)} value={o.value}>
-          {multiple && <Checkbox size="small" checked={Array.isArray(value) && value.includes(o.value)} />}
-          {multiple ? <ListItemText primary={o.label} /> : o.label}
-        </MenuItem>
-      ))}
-    </Select>
+      onBlur={onBlur}
+      onChange={(v) => onChange((Array.isArray(v) ? v.map((k) => byKey.get(k)) : byKey.get(v)) as V & V[])}
+    />
   );
 }

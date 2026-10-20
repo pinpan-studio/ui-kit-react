@@ -964,7 +964,8 @@
       flex-shrink: 0;
     }
 
-    button[mat-icon-button] {
+    button[mat-icon-button],
+    > .MuiIconButton-root {
       flex-shrink: 0;
       width: 32px;
       height: 32px;
@@ -994,7 +995,8 @@
     // mat-select : même typo que le déclencheur de app-searchable-select
     &.select-box {
       padding: 0 var(--space-2) 0 var(--space-3);
-      mat-select {
+      mat-select,
+      .mat-mdc-select {
         width: 100%;
         --mat-select-trigger-text-font: 'Inter', sans-serif;
         --mat-select-trigger-text-size: 14px;
@@ -1011,7 +1013,8 @@
     }
 
     // mat-date-range-input dans une field-box (même rendu que le date picker)
-    mat-date-range-input {
+    mat-date-range-input,
+    .mat-date-range-input {
       flex: 1;
       min-width: 0;
       font-family: 'Inter', sans-serif;
