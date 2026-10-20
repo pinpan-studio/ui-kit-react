@@ -25,7 +25,7 @@ describe('routes', () => {
 
   it('charge la page paramétrée /examples/auth/:variant', async () => {
     renderAt('/examples/auth/split');
-    expect(await screen.findByRole('heading', { level: 1, name: 'Connexion' })).toBeInTheDocument();
-    expect(screen.getByText('variant = split')).toBeInTheDocument();
+    // AuthPage est portée depuis 5d2e905 (plus de page provisoire « variant = … ») : la variante split affiche la connexion.
+    expect(await screen.findByRole('heading', { level: 1, name: 'Bon retour !' })).toBeInTheDocument();
   });
 });

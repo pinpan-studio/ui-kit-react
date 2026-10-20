@@ -81,8 +81,32 @@ export function FieldBoxDate({
 }
 
 /** mat-form-field outline + matDatepicker (bornes min/max, toggle en suffixe). */
-export function OutlineDate({ label, hint, min, max }: { label: string; hint?: ReactNode; min?: Date; max?: Date }) {
-  const [value, setValue] = useState<Date | null>(null);
+export function OutlineDate({
+  label,
+  hint,
+  min,
+  max,
+  value: controlled,
+  onChange,
+  error,
+  onBlur,
+}: {
+  label: string;
+  hint?: ReactNode;
+  min?: Date;
+  max?: Date;
+  /** Mode contrôlé (formulaires) : valeur + onChange ; sinon état local. */
+  value?: Date | null;
+  onChange?: (d: Date | null) => void;
+  error?: boolean;
+  onBlur?: () => void;
+}) {
+  const [local, setLocal] = useState<Date | null>(null);
+  const value = controlled !== undefined ? controlled : local;
+  const setValue = (d: Date | null) => {
+    if (controlled === undefined) setLocal(d);
+    onChange?.(d);
+  };
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const t = useDateText(value, setValue);
@@ -94,9 +118,13 @@ export function OutlineDate({ label, hint, min, max }: { label: string; hint?: R
         variant="outlined"
         label={label}
         helperText={hint}
-        error={outOfBounds}
+        error={outOfBounds || !!error}
         autoComplete="off"
         {...t}
+        onBlur={() => {
+          t.onBlur();
+          onBlur?.();
+        }}
         slotProps={{
           input: {
             ref: root,

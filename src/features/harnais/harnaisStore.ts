@@ -227,13 +227,12 @@ export const harnaisStore = {
       ...m,
       streaming: false,
       stopped: true,
-      blocks: m.blocks.map(
-        (b): HarnaisBlock =>
-          b.type === 'thinking'
-            ? { ...b, running: false, duration: b.duration ?? '—' }
-            : b.type === 'tool' && b.status === 'running'
-              ? { ...b, status: 'error', output: 'Interrompu' }
-              : b,
+      blocks: m.blocks.map((b): HarnaisBlock =>
+        b.type === 'thinking'
+          ? { ...b, running: false, duration: b.duration ?? '—' }
+          : b.type === 'tool' && b.status === 'running'
+            ? { ...b, status: 'error', output: 'Interrompu' }
+            : b,
       ),
     }));
   },

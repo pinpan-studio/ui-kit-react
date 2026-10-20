@@ -16,7 +16,8 @@ export type HarnaisPanelTab = 'artifact' | 'context' | 'tasks';
 const PREVIEW_RAIL = ['dashboard', 'people', 'inventory_2', 'support_agent', 'build', 'savings'];
 const fr0 = (n: number) => n.toLocaleString('fr-FR', { maximumFractionDigits: 0 });
 const fr1 = (n: number) => n.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-const taskIcon = (s: string) => (s === 'done' ? 'check_circle' : s === 'running' ? 'pending' : 'radio_button_unchecked');
+const taskIcon = (s: string) =>
+  s === 'done' ? 'check_circle' : s === 'running' ? 'pending' : 'radio_button_unchecked';
 
 /** Tokens : fichiers chargés + conversation (valeur indicative). */
 const USED_TOKENS = HARNAIS_CONTEXT.reduce((sum, f) => sum + f.tokens, 0) + 18_400;

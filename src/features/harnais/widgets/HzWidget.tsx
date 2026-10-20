@@ -1,5 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Tab, Tabs } from '@mui/material';
 import { useState, type CSSProperties, type DragEvent, type ReactNode } from 'react';
+import { toneIcon, toneInk } from '../../../theme/toneInk';
 import { useDialog } from '../../../components/feedback/dialogs/useDialog';
 import { MapView } from '../../../components/map/MapView';
 import { AgendaView } from '../../../components/planning/AgendaView';
@@ -86,7 +87,25 @@ const toneVar = (tone?: string) =>
       ? 'var(--primary-color)'
       : `var(--${tone}-color)`;
 const toneClass = (tone?: string) => (!tone || tone === 'primary' ? 'info' : tone);
-const tone = (t?: string) => ({ '--tone': toneVar(t) }) as CSSProperties;
+// Lot contraste : équivalent des sélecteurs [style*="var(--x-color)"] de styles.scss Angular (encre, icône, fond plein, contenu).
+const TONE_SOLID: Record<string, [solid: string, on: string]> = {
+  success: ['var(--success-color)', 'var(--tone-on-success)'],
+  warning: ['var(--warning-color)', 'var(--tone-on-warning)'],
+  error: ['var(--error-color)', 'var(--mat-sys-on-error)'],
+  info: ['var(--tone-info-solid)', '#fff'],
+  purple: ['var(--tone-purple-solid)', '#fff'],
+  cyan: ['var(--cyan-color)', 'var(--tone-on-cyan)'],
+};
+const tone = (t?: string) => {
+  const v = toneVar(t);
+  const solid = t ? TONE_SOLID[t] : undefined;
+  return {
+    '--tone': v,
+    '--tone-fg': toneInk(v),
+    '--tone-icon': toneIcon(v),
+    ...(solid ? { '--tone-solid': solid[0], '--tone-on': solid[1] } : {}),
+  } as CSSProperties;
+};
 
 /** Composant du kit rendu dans un widget : hors de portée des styles du widget (comme l'encapsulation Angular). */
 const Kit = ({ children }: { children: ReactNode }) => (
@@ -246,9 +265,11 @@ export function HzWidget({
                 columns={b.columns}
                 items={moved ?? b.items}
                 onItemMoved={(m: KanbanMove) =>
-                  setMoved((moved ?? b.items).map((i) =>
-                    i.id === m.item.id ? { ...i, status: m.to, done: m.to === 'done' } : i,
-                  ))
+                  setMoved(
+                    (moved ?? b.items).map((i) =>
+                      i.id === m.item.id ? { ...i, status: m.to, done: m.to === 'done' } : i,
+                    ),
+                  )
                 }
               />
             </Kit>

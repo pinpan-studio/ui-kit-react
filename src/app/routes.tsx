@@ -153,6 +153,12 @@ const PORTED: Record<string, RouteObject['lazy']> = {
   '/examples/auth/:variant': async () => ({
     Component: (await import('../features/examples/auth/AuthPage')).AuthPage,
   }),
+  '/harnais': async () => ({
+    Component: (await import('../features/harnais/HarnaisPage')).HarnaisPage,
+  }),
+  '/harnais/:id': async () => ({
+    Component: (await import('../features/harnais/HarnaisPage')).HarnaisPage,
+  }),
   '/main': async () => ({
     Component: (await import('../features/main/MainShellPage')).MainShellPage,
   }),

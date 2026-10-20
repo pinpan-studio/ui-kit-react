@@ -114,7 +114,7 @@ export function CommandPalette({
                   </div>
                 </div>
               ))}
-              {!rows.length && (
+              {!rows.length && query.trim() !== '' && (
                 <div className="cp-empty">
                   <MaterialIcon name="search_off" />
                   <strong>Aucun résultat</strong>
