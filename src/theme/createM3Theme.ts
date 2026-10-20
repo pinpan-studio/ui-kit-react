@@ -161,6 +161,36 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
           },
         },
       },
+      // mat-button-toggle-group M3 (segmented button) : contour, pilule, sélection secondary-container + coche.
+      MuiToggleButtonGroup: {
+        styleOverrides: {
+          root: { borderRadius: 9999, border: `1px solid ${r('outline')}`, overflow: 'hidden' },
+          grouped: {
+            border: 0,
+            borderRadius: 0,
+            '&:not(:first-of-type)': { borderLeft: `1px solid ${r('outline')}`, marginLeft: 0 },
+          },
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            height: 40,
+            paddingInline: 12,
+            gap: 8,
+            textTransform: 'none',
+            fontFamily: 'inherit',
+            fontSize: 14,
+            fontWeight: 500,
+            color: r('on-surface'),
+            '& .seg-check': { fontSize: 18 },
+            '&.Mui-selected, &.Mui-selected:hover': {
+              backgroundColor: r('secondary-container'),
+              color: r('on-secondary-container'),
+            },
+          },
+        },
+      },
       MuiPaper: { styleOverrides: { root: { backgroundImage: 'none' } } },
       MuiCard: {
         defaultProps: { elevation: 0 },

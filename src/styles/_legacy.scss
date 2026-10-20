@@ -351,3 +351,14 @@
     background: var(--error-color-light, rgba(239, 68, 68, 0.12));
   }
 }
+
+// styles.scss (Angular) : les boutons pleins color="primary"/"warn" gardent leur couleur même désactivés
+// (sélecteur [color] en !important) — reproduit pour la parité visuelle.
+.MuiButton-contained.MuiButton-containedPrimary.Mui-disabled {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+.MuiButton-contained.MuiButton-containedError.Mui-disabled {
+  background-color: var(--error-color);
+  color: #fff;
+}

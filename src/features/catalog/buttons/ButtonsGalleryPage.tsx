@@ -88,9 +88,7 @@ export function ButtonsGalleryPage() {
             <Button variant="contained" className="btn-success">
               Success
             </Button>
-            <Button variant="contained" color="secondary">
-              Tertiary
-            </Button>
+            <Button variant="contained">Tertiary</Button>
           </div>
         </Demo>
         <Demo label="Avec icône (Icon + Text)">
@@ -350,11 +348,18 @@ export function ButtonsGalleryPage() {
             exclusive
             value={toggle}
             onChange={(_, v: string | null) => v && setToggle(v)}
-            size="small"
+            className="m3-segmented"
           >
-            <ToggleButton value="day">Jour</ToggleButton>
-            <ToggleButton value="week">Semaine</ToggleButton>
-            <ToggleButton value="month">Mois</ToggleButton>
+            {[
+              ['day', 'Jour'],
+              ['week', 'Semaine'],
+              ['month', 'Mois'],
+            ].map(([v, l]) => (
+              <ToggleButton key={v} value={v ?? ''}>
+                {toggle === v && <MaterialIcon name="check" className="seg-check" />}
+                {l}
+              </ToggleButton>
+            ))}
           </ToggleButtonGroup>
         </Demo>
         <Demo label="Lien d'action (.line-action)">

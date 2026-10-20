@@ -422,4 +422,8 @@
   .material-icons {
     flex: none !important;
   }
+  .fake-search > .kbd-keys,
+  .md-search > .kbd-keys {
+    flex: none;
+  }
 }
