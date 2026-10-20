@@ -2,6 +2,42 @@
 @use '../../../styles/breakpoints' as *;
 
 .gallery-material {
+  // En-tête mat-expansion-panel : interlettrage title-medium, indicateur « before » suivi de 16 px,
+  // indicateur masqué (hideToggle / désactivé) avec 8 px de marge à droite du contenu.
+  .mat-expansion-panel-header {
+    .pt-title,
+    .pt-desc {
+      letter-spacing: var(--mat-sys-title-medium-tracking, 0.144px);
+    }
+    &.toggle-before.toggle-before .MuiAccordionSummary-expandIconWrapper {
+      margin-right: 16px;
+    }
+    &.hide-toggle.hide-toggle {
+      .MuiAccordionSummary-expandIconWrapper {
+        display: none;
+      }
+      .MuiAccordionSummary-content {
+        margin-right: 8px;
+      }
+    }
+  }
+  // mat-icon dans mat-panel-title : rétrécissable (flex-shrink 1, overflow hidden) comme dans Angular.
+  .pt-title > .material-icons {
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  // .mat-expansion-indicator : boîte de 8 px (svg 24 px en marges -8 px), le contenu prend le reste.
+  .mat-expansion-panel-header .MuiAccordionSummary-content {
+    flex: 1 1 0%;
+  }
+  .mat-expansion-panel-header .MuiAccordionSummary-expandIconWrapper {
+    width: 8px;
+    justify-content: center;
+    > .material-icons {
+      margin: 0 -8px;
+    }
+  }
   // .mat-expansion-panel-content : typographie body-large héritée par le corps et la barre d'actions.
   .mat-expansion-panel-body,
   .mat-action-row {

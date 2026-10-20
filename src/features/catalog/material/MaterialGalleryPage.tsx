@@ -122,7 +122,7 @@ function Panel({
     >
       <AccordionSummary
         expandIcon={toggle ? undefined : expandIcon}
-        className={`mat-expansion-panel-header${before ? ' toggle-before' : ''}`}
+        className={`mat-expansion-panel-header${before ? ' toggle-before' : ''}${toggle || disabled ? ' hide-toggle' : ''}`}
       >
         <span className="pt-title">
           {icon && <MaterialIcon name={icon} className="pt-icon" />}

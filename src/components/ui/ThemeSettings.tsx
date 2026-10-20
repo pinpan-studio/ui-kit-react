@@ -100,7 +100,10 @@ export function ThemeSettings({
           aria-labelledby="ts-mode"
           onChange={(_, v: ThemeModePreference | null) => v && setMode(v)}
           sx={{
+            flexWrap: 'nowrap',
             '& .MuiToggleButton-root': {
+              flex: '1 1 0%',
+              whiteSpace: 'nowrap',
               borderRadius: 'var(--radius-button)',
               textTransform: 'none',
               gap: 0.5,
