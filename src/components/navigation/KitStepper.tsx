@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import { MaterialIcon } from '../ui/MaterialIcon';
 import './kit-stepper.scss';
 
@@ -26,6 +26,7 @@ export function KitStepper({
   linear?: boolean;
   children?: ReactNode;
 }) {
+  const uid = useId();
   const header = (s: KitStep, i: number) => {
     const selected = i === active;
     const done = !!s.completed && !selected;
@@ -33,9 +34,11 @@ export function KitStepper({
     return (
       <button
         key={`h${i}`}
+        id={`${uid}-h${i}`}
         type="button"
-        role="tab"
-        aria-selected={selected}
+        role={orientation === 'vertical' ? undefined : 'tab'}
+        aria-selected={orientation === 'vertical' ? undefined : selected}
+        aria-current={orientation === 'vertical' && selected ? 'step' : undefined}
         aria-disabled={blocked || undefined}
         className={`mat-step-header mat-${orientation}-stepper-header${selected ? ' selected' : ''}`}
         onClick={() => !blocked && onSelect?.(i)}
@@ -49,17 +52,22 @@ export function KitStepper({
   };
   if (orientation === 'vertical') {
     return (
-      <div className="kit-stepper mat-stepper-vertical" role="tablist" aria-orientation="vertical">
-        {steps.map((s, i) => (
-          <div className="mat-step" key={s.label}>
-            {header(s, i)}
-            <div
-              className={`mat-vertical-content-container${i < steps.length - 1 ? ' mat-stepper-vertical-line' : ''}`}
-            >
-              {i === active && <div className="mat-vertical-content">{s.content}</div>}
+      // Comme mat-stepper vertical : en-têtes role=button (pas de tablist), contenu role=region.
+      <div className="kit-stepper mat-stepper-vertical">
+        <div className="mat-vertical-stepper-wrapper">
+          {steps.map((s, i) => (
+            <div className="mat-step" key={s.label}>
+              {header(s, i)}
+              <div
+                className={`mat-vertical-content-container${i < steps.length - 1 ? ' mat-stepper-vertical-line' : ''}`}
+              >
+                <div role="region" aria-labelledby={`${uid}-h${i}`} className="mat-vertical-stepper-content">
+                  {i === active && <div className="mat-vertical-content">{s.content}</div>}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     );
   }
