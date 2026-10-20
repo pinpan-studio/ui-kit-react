@@ -115,11 +115,26 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
       },
       MuiButtonBase: { defaultProps: { disableRipple: false } },
       MuiButton: {
-        defaultProps: { disableElevation: true },
+        defaultProps: { disableElevation: true, disableFocusRipple: true },
         variants: [
           {
+            // mat-stroked-button color="primary" (styles.scss) : contour primaire sur fond de carte.
             props: { variant: 'outlined', color: 'primary' },
-            style: { borderColor: r('outline'), color: r('primary') },
+            style: {
+              borderColor: r('primary'),
+              color: r('primary'),
+              backgroundColor: 'var(--card-bg)',
+              '&:hover': { borderColor: r('primary'), backgroundColor: 'var(--card-bg)' },
+            },
+          },
+          {
+            props: { variant: 'outlined', color: 'error' },
+            style: {
+              borderColor: r('error'),
+              color: r('error'),
+              backgroundColor: 'var(--card-bg)',
+              '&:hover': { borderColor: r('error'), backgroundColor: 'var(--error-color-light)' },
+            },
           },
           {
             // Contour neutre (mat-stroked-button sans couleur, styles.scss) : <Button variant="outlined" color="inherit">.
@@ -137,10 +152,30 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
             height: 40,
             borderRadius: 'var(--radius-button)',
             paddingInline: 20,
-            '& .MuiButton-startIcon': { marginRight: 8 },
+            '&.Mui-focusVisible': {
+              // État de focus M3 : calque de 12 % de la couleur du contenu sur tout le bouton (pas d'onde).
+              backgroundImage:
+                'linear-gradient(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 12%, transparent))',
+            },
           },
-          startIcon: { '& > *:nth-of-type(1)': { fontSize: 18 } },
-          text: { paddingInline: 12 },
+          // Icône 18 px + 8 px d'espacement (--mat-button-*-icon-spacing), sans marge négative MUI.
+          startIcon: {
+            marginLeft: -8,
+            marginRight: 8,
+            '& > *:nth-of-type(1)': { fontSize: 18, width: 18, height: 18 },
+          },
+          endIcon: {
+            marginLeft: 8,
+            marginRight: -8,
+            '& > *:nth-of-type(1)': { fontSize: 18, width: 18, height: 18 },
+          },
+          // mat-button : 20 px sans icône, 16 px avec icône.
+          text: {
+            paddingInline: 20,
+            '&:has(.MuiButton-startIcon), &:has(.MuiButton-endIcon)': { paddingInline: 16 },
+            '& .MuiButton-startIcon': { marginLeft: -4 },
+            '& .MuiButton-endIcon': { marginRight: -4 },
+          },
         },
       },
       MuiIconButton: {
@@ -148,16 +183,36 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
           root: {
             color: r('on-surface-variant'),
             '&:hover': { backgroundColor: alpha(r('on-surface-variant'), hover) },
+            '&.Mui-focusVisible': {
+              // État de focus M3 : calque de 12 % de la couleur du contenu sur tout le bouton (pas d'onde).
+              backgroundImage:
+                'linear-gradient(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 12%, transparent))',
+            },
           },
         },
       },
       MuiFab: {
+        defaultProps: { disableFocusRipple: true },
         styleOverrides: {
           root: {
             borderRadius: 16,
             backgroundColor: r('primary-container'),
             color: r('on-primary-container'),
             boxShadow: level(3),
+            '&.Mui-focusVisible': {
+              // État de focus M3 : calque de 12 % de la couleur du contenu sur tout le bouton (pas d'onde).
+              backgroundImage:
+                'linear-gradient(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 12%, transparent))',
+            },
+          },
+          // mat-fab extended M3 : 56 px, 20 px, graisse 500.
+          extended: {
+            height: 56,
+            paddingInline: 20,
+            gap: 4,
+            fontWeight: 500,
+            borderRadius: 16,
+            '& .material-icons': { fontSize: 24 },
           },
         },
       },

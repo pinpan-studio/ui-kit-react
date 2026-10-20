@@ -33,8 +33,8 @@ export function InteractionProvider({ children }: { children: ReactNode }) {
   const pending = useRef<string | null>(null);
   const pendingTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  const registerShortcuts = useCallback((s: Shortcut[]) => {
-    list.current = [...list.current, ...s];
+  const registerShortcuts = useCallback((s: Shortcut[], prepend = false) => {
+    list.current = prepend ? [...s, ...list.current] : [...list.current, ...s];
     setShortcuts(list.current);
     return () => {
       list.current = list.current.filter((x) => !s.includes(x));
@@ -57,21 +57,24 @@ export function InteractionProvider({ children }: { children: ReactNode }) {
   // Raccourcis globaux toujours actifs (palette et aide), comme dans le layout Angular.
   useEffect(
     () =>
-      registerShortcuts([
-        {
-          keys: 'shift+?',
-          description: 'Afficher les raccourcis clavier',
-          group: 'Général',
-          action: () => setHelpOpen(true),
-        },
-        {
-          keys: 'mod+k',
-          description: 'Ouvrir la palette de commandes',
-          group: 'Général',
-          allowInInput: true,
-          action: () => setPaletteOpen((o) => !o),
-        },
-      ]),
+      registerShortcuts(
+        [
+          {
+            keys: 'shift+?',
+            description: 'Afficher les raccourcis clavier',
+            group: 'Général',
+            action: () => setHelpOpen(true),
+          },
+          {
+            keys: 'mod+k',
+            description: 'Ouvrir la palette de commandes',
+            group: 'Général',
+            allowInInput: true,
+            action: () => setPaletteOpen((o) => !o),
+          },
+        ],
+        true,
+      ),
     [registerShortcuts],
   );
 

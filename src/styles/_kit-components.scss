@@ -1558,3 +1558,8 @@ app-command-palette {
 .kit-palette-backdrop {
   background: rgba(0, 0, 0, 0.32);
 }
+
+// Libellés des menus contextuels sur une ligne (« Déplacer vers la corbeille »).
+.kit-ctx .ctx-item > span {
+  white-space: nowrap;
+}

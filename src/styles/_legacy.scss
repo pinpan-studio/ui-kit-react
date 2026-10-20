@@ -328,9 +328,9 @@
 
 // ─── Actions de ligne ────────────────────────────────────────────────────
 .action-icon-btn {
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   color: var(--text-muted, #64748b);
   border-radius: 50%;
   transition: all 0.2s ease;
@@ -350,17 +350,6 @@
     color: var(--error-color, #ef4444);
     background: var(--error-color-light, rgba(239, 68, 68, 0.12));
   }
-}
-
-// styles.scss (Angular) : les boutons pleins color="primary"/"warn" gardent leur couleur même désactivés
-// (sélecteur [color] en !important) — reproduit pour la parité visuelle.
-.MuiButton-contained.MuiButton-containedPrimary.Mui-disabled {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-.MuiButton-contained.MuiButton-containedError.Mui-disabled {
-  background-color: var(--error-color);
-  color: #fff;
 }
 
 // styles.scss 744-762
@@ -1112,5 +1101,26 @@
 }
 
 // styles.scss 711-724 (Angular) : h3 / h4 globaux en !important.
-h3 { font-size: 20px !important; font-weight: 600 !important; }
-h4 { font-size: 16px !important; font-weight: 600 !important; }
+h3 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+h4 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+// styles.scss 703-709 : h2 global en 600 ; interligne « normal » des titres (mat-typography).
+h1,
+h2,
+h3,
+h4 {
+  line-height: normal !important;
+}
+h2 {
+  font-weight: 600 !important;
+}
+// styles.scss 836 : le rayon pilule des boutons M3 prime sur .mat-button-rounded.
+.MuiButton-root.mat-button-rounded {
+  border-radius: var(--radius-button) !important;
+}

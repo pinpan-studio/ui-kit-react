@@ -88,7 +88,9 @@ export function ButtonsGalleryPage() {
             <Button variant="contained" className="btn-success">
               Success
             </Button>
-            <Button variant="contained">Tertiary</Button>
+            <Button variant="contained" className="btn-tertiary">
+              Tertiary
+            </Button>
           </div>
         </Demo>
         <Demo label="Avec icône (Icon + Text)">

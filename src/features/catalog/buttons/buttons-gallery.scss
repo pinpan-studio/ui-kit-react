@@ -145,6 +145,10 @@
   }
 
   // ── Équivalents MUI des jetons --mat-button-* ci-dessus ──
+  .MuiButton-root.btn-tertiary {
+    background-color: var(--mat-sys-tertiary);
+    color: var(--mat-sys-on-tertiary);
+  }
   .MuiButton-root.btn-success {
     background-color: var(--success-color);
     color: #fff;
