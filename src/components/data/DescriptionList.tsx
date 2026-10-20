@@ -1,3 +1,4 @@
+import { toneInk } from '../../theme/toneInk';
 import type { CSSProperties } from 'react';
 import { useSnackbar } from '../feedback/useSnackbar';
 import { Tip } from '../fields/Tip';
@@ -67,7 +68,12 @@ export function DescriptionList({
                   ) : it.type === 'badge' ? (
                     <span
                       className="dl-badge"
-                      style={{ '--tone': `var(--${it.tone || 'primary'}-color)` } as CSSProperties}
+                      style={
+                        {
+                          '--tone': `var(--${it.tone || 'primary'}-color)`,
+                          '--tone-ink': toneInk(`var(--${it.tone || 'primary'}-color)`),
+                        } as CSSProperties
+                      }
                     >
                       {it.value}
                     </span>

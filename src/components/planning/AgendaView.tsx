@@ -1,3 +1,4 @@
+import { toneInk } from '../../theme/toneInk';
 /* eslint-disable @typescript-eslint/no-non-null-assertion -- algorithme de répartition porté tel quel depuis agenda-view.component.ts (indices bornés) */
 import { Tooltip } from '@mui/material';
 import { useState, type CSSProperties } from 'react';
@@ -26,7 +27,7 @@ import './agenda-view.scss';
 
 const HOUR_H = 48;
 const LABELS: Record<View, string> = { day: 'Jour', week: 'Semaine', month: 'Mois' };
-const tone = (v: string) => ({ '--tone': v }) as CSSProperties;
+const tone = (v: string) => ({ '--tone': v, '--tone-ink': toneInk(v) }) as CSSProperties;
 interface Placed {
   item: PlanningItem;
   top: number;

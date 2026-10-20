@@ -50,7 +50,7 @@
       background: var(--info-color-light);
       border-color: color-mix(in srgb, var(--info-color) 30%, transparent);
       > .material-icons {
-        color: var(--info-color);
+        color: var(--tone-info-text);
       }
     }
     &.success {

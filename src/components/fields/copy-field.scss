@@ -78,7 +78,7 @@
     border-color: var(--success-color) !important;
     .cf-copy {
       background: var(--success-color);
-      color: #fff;
+      color: var(--tone-on-success);
     }
   }
   @media (max-width: 420px) {

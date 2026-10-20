@@ -652,7 +652,7 @@
       }
       &.danger {
         background: rgba(239, 68, 68, 0.12);
-        color: #ef4444;
+        color: var(--tone-error-text);
       }
       &.purple {
         background: rgba(168, 85, 247, 0.12);
@@ -660,7 +660,7 @@
       }
       &.cyan {
         background: rgba(6, 182, 212, 0.12);
-        color: #06b6d4;
+        color: var(--tone-cyan-icon);
       }
       &.teal {
         background: rgba(20, 184, 166, 0.12);
@@ -1247,7 +1247,7 @@
     color: var(--text-secondary);
   }
   .metric-ico {
-    color: var(--success-color);
+    color: var(--tone-success-icon);
   }
   .metric-val {
     margin: var(--space-2) 0 var(--space-1);
@@ -1384,11 +1384,11 @@
     &.info,
     &.cyan {
       background: var(--cyan-color-light);
-      color: var(--cyan-color);
+      color: var(--tone-cyan-icon);
     }
     &.purple {
       background: var(--purple-color-light);
-      color: var(--purple-color);
+      color: var(--tone-purple-text);
     }
     &.neutral {
       background: var(--hover-bg);

@@ -349,7 +349,7 @@
         }
         &.icon-blue {
           background: rgba(59, 130, 246, 0.12);
-          color: #3b82f6;
+          color: var(--tone-info-text);
         }
         &.icon-violet {
           background: rgba(139, 92, 246, 0.12);

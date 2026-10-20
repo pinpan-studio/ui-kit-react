@@ -508,11 +508,11 @@
     &.field-valid {
       border-color: var(--success-color);
       > .material-icons {
-        color: var(--success-color-text, var(--success-color));
+        color: var(--tone-success-icon);
       }
     }
     .state-icon.ok {
-      color: var(--success-color) !important;
+      color: var(--tone-success-icon) !important;
     }
     .unit {
       font-size: 12px;

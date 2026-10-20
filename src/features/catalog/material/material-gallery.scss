@@ -260,7 +260,7 @@
       height: 20px;
       margin-right: var(--space-2);
       &.folder {
-        color: var(--warning-color);
+        color: var(--tone-warning-icon);
       }
       &.file {
         color: var(--text-muted);
@@ -345,11 +345,11 @@
     font-weight: 600;
     border-radius: var(--r-m);
     background: var(--warning-color-light);
-    color: var(--warning-color-text);
+    color: var(--tone-warning-text);
     box-shadow: var(--elevation-1);
     &.alt {
       background: var(--info-color-light);
-      color: var(--info-color);
+      color: var(--tone-info-text);
     }
   }
 
@@ -524,19 +524,19 @@
   }
   .tone-error {
     background: var(--error-color-light);
-    color: var(--error-color-text);
+    color: var(--tone-error-text);
   }
   .tone-success {
     background: var(--success-color-light);
-    color: var(--success-color-text);
+    color: var(--tone-success-text);
   }
   .tone-warning {
     background: var(--warning-color-light);
-    color: var(--warning-color-text);
+    color: var(--tone-warning-text);
   }
   .tone-info {
     background: var(--info-color-light);
-    color: var(--info-color);
+    color: var(--tone-info-text);
   }
   .tone-neutral {
     background: var(--hover-bg);
@@ -577,10 +577,10 @@
       padding: 2px var(--space-2);
       border-radius: var(--r-full);
       background: var(--error-color-light);
-      color: var(--error-color-text);
+      color: var(--tone-error-text);
       &.on {
         background: var(--success-color-light);
-        color: var(--success-color-text);
+        color: var(--tone-success-text);
       }
     }
     @include mobile {

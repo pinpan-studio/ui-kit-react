@@ -1,3 +1,4 @@
+import { toneInk } from '../../theme/toneInk';
 import { useState, type CSSProperties } from 'react';
 import { Tooltip } from '@mui/material';
 import { MaterialIcon } from '../ui/MaterialIcon';
@@ -66,7 +67,15 @@ export function NoteGrid({
                 {it.ref && <span className="ng-ref">{it.ref}</span>}
                 <span className="pl-spacer" />
                 {it.badge && (
-                  <span className="pl-pill" style={{ '--tone': toneVar(it.badge.tone) } as CSSProperties}>
+                  <span
+                    className="pl-pill"
+                    style={
+                      {
+                        '--tone': toneVar(it.badge.tone),
+                        '--tone-ink': toneInk(toneVar(it.badge.tone)),
+                      } as CSSProperties
+                    }
+                  >
                     {it.badge.label}
                   </span>
                 )}
