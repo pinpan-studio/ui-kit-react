@@ -1,0 +1,70 @@
+// Porté depuis shared/components/fields/otp-input.component.ts (styles du composant, encapsulation émulée → portée .app-otp-input).
+.app-otp-input {
+  & {
+    display: inline-block;
+  }
+  .otp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sep {
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  input {
+    width: 46px;
+    height: 54px;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    border-radius: var(--r-m, 12px);
+    background: var(--mat-sys-surface-container-high, var(--hover-bg));
+    color: var(--text-primary);
+    font:
+      600 22px 'Outfit',
+      sans-serif;
+    caret-color: var(--primary-color);
+    transition: all 0.15s ease;
+    &:focus {
+      outline: none;
+      background: var(--card-bg);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 15%, transparent);
+    }
+    &.filled {
+      background: var(--card-bg);
+      border-color: color-mix(in srgb, var(--primary-color) 45%, var(--border-color));
+    }
+    &:disabled {
+      opacity: 0.55;
+    }
+  }
+  .invalid input {
+    border-color: var(--error-color);
+    animation: otp-shake 0.35s ease;
+  }
+  .success input {
+    border-color: var(--success-color);
+    color: var(--success-color-text, var(--success-color));
+  }
+  @keyframes otp-shake {
+    25% {
+      transform: translateX(-4px);
+    }
+    75% {
+      transform: translateX(4px);
+    }
+  }
+  @media (max-width: 420px) {
+    input {
+      width: 40px;
+      height: 48px;
+      font-size: 19px;
+    }
+    .otp {
+      gap: 6px;
+    }
+  }
+}

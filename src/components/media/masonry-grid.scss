@@ -1,0 +1,35 @@
+// Porté depuis shared/components/media/masonry-grid.component (styles du composant, encapsulation émulée → portée .app-masonry-grid).
+
+.app-masonry-grid {
+  & {
+    display: block;
+  }
+  .mg {
+    display: grid;
+    grid-auto-flow: row dense;
+    align-items: start;
+  }
+  .mg-cell {
+    min-width: 0;
+  }
+  .mg-inner {
+    box-sizing: border-box;
+  }
+  .mg:not(.ready) {
+    visibility: hidden;
+  }
+  .anim {
+    animation: mg-in 0.35s ease both;
+  }
+  @keyframes mg-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anim {
+      animation: none;
+    }
+  }
+}

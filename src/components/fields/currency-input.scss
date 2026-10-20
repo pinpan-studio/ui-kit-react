@@ -1,0 +1,28 @@
+// Porté depuis shared/components/fields/currency-input.component.ts (styles du composant, encapsulation émulée → portée .app-currency-input).
+.app-currency-input {
+  & {
+    display: block;
+  }
+  .cur input {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    text-align: right;
+  }
+  .cur-symbol {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .cur-select {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    font-weight: 700 !important;
+    font-size: 12.5px !important;
+    color: var(--text-secondary) !important;
+    cursor: pointer;
+    appearance: auto;
+  }
+  .words {
+    font-style: italic;
+  }
+}

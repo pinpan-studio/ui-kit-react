@@ -1,0 +1,163 @@
+// Porté depuis styles.scss (l.1831-1918) : panneaux select / autocomplete / menu uniformes.
+// ─── Menu déroulant, Selects et Autocomplete (Style uniforme type app-filter-dropdown) ───
+.mat-mdc-select-panel,
+.mat-mdc-autocomplete-panel,
+.mat-timepicker-panel,
+.m3-dropdown-menu:not(.MuiPopover-root),
+.app-autocomplete-panel {
+  border-radius: var(--radius-lg) !important;
+  background: var(--card-bg, #ffffff) !important;
+  border: 1px solid var(--border-color, #e2e8f0) !important;
+  box-shadow: var(--elevation-4) !important;
+  padding: var(--space-2) !important;
+  max-height: min(380px, calc(100vh - 48px)) !important;
+  overflow: hidden auto !important;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-color, #cbd5e1);
+    border-radius: var(--radius-sm);
+  }
+
+  .mat-mdc-option,
+  .MuiMenuItem-root {
+    min-height: 38px !important;
+    height: 38px !important;
+    border-radius: var(--radius-sm) !important;
+    margin-bottom: 2px !important;
+    padding: 0 var(--space-3) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    color: var(--text-primary, #0f172a) !important;
+    transition:
+      background 0.12s ease,
+      color 0.12s ease !important;
+
+    &:hover:not(.mdc-list-item--disabled) {
+      background-color: var(--hover-bg, #f1f5f9) !important;
+    }
+
+    &.mdc-list-item--selected:not(.mdc-list-item--disabled),
+    &.Mui-selected:not(.Mui-disabled) {
+      background: var(--primary-color-light, rgba(79, 70, 229, 0.1)) !important;
+      color: var(--mat-sys-primary, var(--primary-color, #4f46e5)) !important;
+      font-weight: 600 !important;
+
+      .mdc-list-item__primary-text {
+        color: var(--mat-sys-primary, var(--primary-color, #4f46e5)) !important;
+        font-weight: 600 !important;
+      }
+    }
+
+    .mat-pseudo-checkbox {
+      display: none !important;
+    }
+
+    &.empty-option {
+      cursor: default !important;
+      font-style: italic !important;
+      color: var(--text-muted, #94a3b8) !important;
+    }
+  }
+
+  .mat-mdc-menu-item {
+    height: 38px !important;
+    min-height: 38px !important;
+    border-radius: var(--radius-sm) !important;
+    margin-bottom: 2px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+
+    &:hover {
+      background-color: var(--hover-bg, #f1f5f9) !important;
+    }
+
+    &.active {
+      background: var(--primary-color-light, rgba(79, 70, 229, 0.1)) !important;
+      color: var(--primary-color, #4f46e5) !important;
+      font-weight: 600 !important;
+    }
+
+    // Libellé + compteur « (12) » séparés par une espace, compteur discret
+    .option-label {
+      margin-right: var(--space-1);
+    }
+
+    .option-count {
+      margin-left: auto;
+      color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+// Options maison (réplique mat-option) utilisées hors MUI (autocomplete, timepicker).
+div.mat-mdc-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  &.mat-mdc-option-active:not(.mdc-list-item--disabled) {
+    background-color: var(--hover-bg, #f1f5f9);
+  }
+  .mdc-list-item__primary-text {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// Boutons du calendrier (mat-button texte / mat-icon-button) sans MUI.
+.mat-calendar {
+  .kit-mat-text-button,
+  .kit-mat-icon-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 9999px;
+    color: var(--mat-sys-on-surface-variant);
+    font-family: var(--mat-sys-label-large-font, 'Inter');
+    &:hover:not(:disabled) {
+      background: color-mix(in srgb, currentColor 8%, transparent);
+    }
+    &:disabled {
+      cursor: default;
+      color: color-mix(in srgb, var(--mat-sys-on-surface) 38%, transparent);
+    }
+  }
+  .kit-mat-text-button {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: var(--mat-sys-label-large-tracking, normal);
+    .mdc-button__label {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+  .kit-mat-icon-button {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+  .cdk-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+// styles.scss : plafond global des panneaux d'overlay (levé pour app-searchable-select).
+.MuiPopper-root.cdk-overlay-pane:not(.app-search-select-overlay) {
+  max-width: min(402px, 95vw) !important;
+}

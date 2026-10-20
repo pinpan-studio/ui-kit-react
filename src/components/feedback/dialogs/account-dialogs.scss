@@ -1,0 +1,208 @@
+// Panneaux de compte (layouts/app-shell/panels/*)
+.acc-col {
+  display: flex;
+  flex-direction: column;
+}
+.acc-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.acc-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.acc-head {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  &::before {
+    display: none !important;
+  }
+}
+.acc-title {
+  font-weight: 100;
+  font-size: 20px;
+  flex: 1;
+}
+.acc-reset {
+  width: 500px;
+  max-width: 100%;
+  height: 100%;
+  border: none;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.kit-outline-field {
+  margin-bottom: 20px !important;
+  .kit-suffix {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+.img-photo-profil {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-xl);
+  margin: 15px;
+  background: #eee;
+}
+
+.google-auth-host {
+  & {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+
+  .google-auth-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--space-xxl) var(--space-xl) var(--space-xl);
+    text-align: center;
+    position: relative;
+  }
+
+  // ─── Logo ──────────────────────────────────────────────────────
+  .brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--space-xl);
+  }
+
+  .brand-logo {
+    height: 56px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+  }
+
+  // ─── Titre + texte d'invitation ──────────────────────────────────
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--space-xxl);
+  }
+
+  .intro-title {
+    margin: 0 0 var(--space-m);
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+
+  .intro-text {
+    margin: 0;
+    max-width: 300px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  // ─── Erreur (jeton invalide, échec du backend, compte bloqué, ...) ───
+  .auth-error {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--space-s) var(--space-m);
+    margin-bottom: var(--space-m);
+    border-radius: var(--r-m);
+    background: var(--error-color-light);
+    color: var(--error-color-text, var(--error-color));
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+
+    .material-icons {
+      flex-shrink: 0;
+    }
+  }
+
+  // ─── Bouton Google (redirection OAuth2 serveur) ─────────────────
+  .actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+  }
+
+  // ─── Overlay de connexion ──────────────────────────────────────
+  .mat-overlay-spinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: inherit;
+    z-index: 3;
+  }
+
+  .dark & .mat-overlay-spinner {
+    background: rgba(0, 0, 0, 0.72);
+  }
+
+  .progress-label {
+    margin-top: var(--space-s);
+    color: var(--text-secondary);
+  }
+
+  // ─── Responsive ──────────────────────────────────────────────
+  @media (max-width: 480px) {
+    .google-auth-modal {
+      padding: var(--space-xl) var(--space-m) var(--space-l);
+    }
+
+    .brand {
+      margin-bottom: var(--space-l);
+    }
+
+    .brand-logo {
+      height: 44px;
+    }
+
+    .intro {
+      margin-bottom: var(--space-xl);
+    }
+
+    .intro-title {
+      font-size: 19px;
+    }
+
+    .intro-text {
+      max-width: 240px;
+    }
+  }
+}
+.kit-outline-field .MuiFormHelperText-root {
+  position: absolute;
+  top: 100%;
+  margin: 0;
+  padding: 0 16px;
+}

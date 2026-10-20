@@ -38,7 +38,7 @@ export function ThemePicker() {
           },
         }}
       >
-        <ThemeSettings />
+        <ThemeSettings onStudio={() => setAnchor(null)} />
       </Popover>
     </>
   );

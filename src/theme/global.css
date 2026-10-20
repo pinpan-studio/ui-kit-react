@@ -14,8 +14,3 @@ body.light {
 body.dark {
   color-scheme: dark;
 }
-code,
-kbd,
-pre {
-  font-family: 'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-}

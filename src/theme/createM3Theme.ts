@@ -39,6 +39,9 @@ function m3Shadows(): Shadows {
   return Array.from({ length: 25 }, (_, i) => (i === 0 ? 'none' : level(map[i] ?? 5))) as Shadows;
 }
 
+const CHECK = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z'/%3E%3C/svg%3E") center / 16px no-repeat`;
+const DASH = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 13H4v-2h16v2z'/%3E%3C/svg%3E") center / 16px no-repeat`;
+
 export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
   const r = (k: string) => role(scheme, k);
   const hover = stateOpacity('hover');
@@ -108,18 +111,70 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
       MuiCssBaseline: {
         styleOverrides: {
           // mat-typography : le corps suit body-medium (et non body-large comme MUI par défaut).
-          body: { ...typeStyle('body-medium'), backgroundColor: r('surface'), color: r('on-surface') },
-          'h1, h2, h3, h4, h5, h6': { fontFamily: FONTS.headings },
-          code: { fontFamily: FONTS.mono },
+          // line-height « normal » mesuré sur la référence Angular (body).
+          body: {
+            ...typeStyle('body-medium'),
+            lineHeight: 'normal',
+            // Angular : letter-spacing « normal » sur body (mesuré), pas le tracking body-medium.
+            letterSpacing: 'normal',
+            backgroundColor: r('surface'),
+            color: r('on-surface'),
+          },
+          // Angular : les titres héritent d'Inter (styles.scss) ; Outfit n'est posé que par les classes dédiées.
+          h1: { letterSpacing: '-0.02em' },
+          h2: { letterSpacing: '-0.01em' },
+          // Angular : aucune police imposée à <code> (monospace du navigateur) ; Space Mono uniquement via .text-mono / classes dédiées.
         },
       },
       MuiButtonBase: { defaultProps: { disableRipple: false } },
+      // mat-spinner : trait = diamètre / 10 (viewBox MUI de 44 → épaisseur 4,4).
+      MuiCircularProgress: { defaultProps: { thickness: 4.4 } },
+      // mat-tab (M3) mesuré : 48px, padding 0 24px, libellé 14/500 on-surface (actif comme inactif).
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            minHeight: 48,
+            padding: '0 24px',
+            fontWeight: 500,
+            fontSize: 14,
+            lineHeight: '20px',
+            textTransform: 'none',
+            color: r('on-surface'),
+            '&.Mui-selected': { color: r('on-surface') },
+          },
+        },
+      },
       MuiButton: {
-        defaultProps: { disableElevation: true },
+        defaultProps: { disableElevation: true, disableFocusRipple: true },
         variants: [
           {
+            // mat-stroked-button color="primary" (styles.scss) : contour primaire sur fond de carte.
             props: { variant: 'outlined', color: 'primary' },
-            style: { borderColor: r('outline'), color: r('primary') },
+            style: {
+              borderColor: r('primary'),
+              color: r('primary'),
+              backgroundColor: 'var(--card-bg)',
+              '&:hover': { borderColor: r('primary'), backgroundColor: 'var(--card-bg)' },
+            },
+          },
+          {
+            // mat-stroked-button sans couleur : contour neutre, texte on-surface-variant.
+            props: { variant: 'outlined', color: 'inherit' },
+            style: {
+              borderColor: 'var(--border-color)',
+              color: r('on-surface-variant'),
+              backgroundColor: 'var(--card-bg)',
+              '&:hover': { borderColor: 'var(--border-color)', backgroundColor: 'var(--card-bg)' },
+            },
+          },
+          {
+            props: { variant: 'outlined', color: 'error' },
+            style: {
+              borderColor: r('error'),
+              color: r('error'),
+              backgroundColor: 'var(--card-bg)',
+              '&:hover': { borderColor: r('error'), backgroundColor: 'var(--error-color-light)' },
+            },
           },
           {
             // Contour neutre (mat-stroked-button sans couleur, styles.scss) : <Button variant="outlined" color="inherit">.
@@ -137,27 +192,101 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
             height: 40,
             borderRadius: 'var(--radius-button)',
             paddingInline: 20,
-            '& .MuiButton-startIcon': { marginRight: 8 },
+            '&.Mui-focusVisible': {
+              // État de focus M3 : calque de 12 % de la couleur du contenu sur tout le bouton (pas d'onde).
+              backgroundImage:
+                'linear-gradient(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 12%, transparent))',
+            },
           },
-          startIcon: { '& > *:nth-of-type(1)': { fontSize: 18 } },
-          text: { paddingInline: 12 },
+          // Icône 18 px + 8 px d'espacement (--mat-button-*-icon-spacing), sans marge négative MUI.
+          startIcon: {
+            marginLeft: -8,
+            marginRight: 8,
+            '& > *:nth-of-type(1)': { fontSize: 18, width: 18, height: 18 },
+          },
+          endIcon: {
+            marginLeft: 8,
+            marginRight: -8,
+            '& > *:nth-of-type(1)': { fontSize: 18, width: 18, height: 18 },
+          },
+          // mat-button : 20 px sans icône, 16 px avec icône.
+          text: {
+            paddingInline: 20,
+            '&:has(.MuiButton-startIcon), &:has(.MuiButton-endIcon)': { paddingInline: 16 },
+            '& .MuiButton-startIcon': { marginLeft: -4 },
+            '& .MuiButton-endIcon': { marginRight: -4 },
+          },
         },
       },
       MuiIconButton: {
         styleOverrides: {
+          // mat-icon-button : boîte fixe de 40 × 40 px quel que soit le contenu (icône 22 px, avatar 32 px…).
+          sizeMedium: { width: 40, height: 40, flexShrink: 0 },
           root: {
             color: r('on-surface-variant'),
             '&:hover': { backgroundColor: alpha(r('on-surface-variant'), hover) },
+            '&.Mui-focusVisible': {
+              // État de focus M3 : calque de 12 % de la couleur du contenu sur tout le bouton (pas d'onde).
+              backgroundImage:
+                'linear-gradient(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 12%, transparent))',
+            },
           },
         },
       },
       MuiFab: {
+        defaultProps: { disableFocusRipple: true },
         styleOverrides: {
           root: {
             borderRadius: 16,
             backgroundColor: r('primary-container'),
             color: r('on-primary-container'),
             boxShadow: level(3),
+            '&.Mui-focusVisible': {
+              // État de focus M3 : calque de 12 % de la couleur du contenu sur tout le bouton (pas d'onde).
+              backgroundImage:
+                'linear-gradient(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 12%, transparent))',
+            },
+          },
+          // mat-fab extended M3 : 56 px, 20 px, graisse 500.
+          extended: {
+            height: 56,
+            paddingInline: 20,
+            gap: 4,
+            fontWeight: 500,
+            borderRadius: 16,
+            '& .material-icons': { fontSize: 24 },
+          },
+        },
+      },
+      // mat-button-toggle-group M3 (segmented button) : contour, pilule, sélection secondary-container + coche.
+      MuiToggleButtonGroup: {
+        styleOverrides: {
+          root: { borderRadius: 9999, border: `1px solid ${r('outline')}`, overflow: 'hidden' },
+          grouped: {
+            border: 0,
+            borderRadius: 0,
+            '&:not(:first-of-type)': { borderLeft: `1px solid ${r('outline')}`, marginLeft: 0 },
+          },
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            height: 40,
+            paddingInline: 12,
+            gap: 8,
+            textTransform: 'none',
+            fontFamily: 'inherit',
+            fontSize: 14,
+            fontWeight: 500,
+            letterSpacing: 'normal',
+            color: r('on-surface'),
+            // mat-pseudo-checkbox 18 px suivi des 12 px de padding du libellé (gap 8 + 4).
+            '& .seg-check': { fontSize: 18, marginRight: 4 },
+            '&.Mui-selected, &.Mui-selected:hover': {
+              backgroundColor: r('secondary-container'),
+              color: r('on-secondary-container'),
+            },
           },
         },
       },
@@ -228,20 +357,48 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
         styleOverrides: { paper: { backgroundColor: r('surface-container-high'), borderRadius: 'var(--r-l)' } },
       },
       MuiSwitch: {
+        // mat-slide-toggle (MDC M3, icônes visibles) : piste 52×32 surface-variant bordée de 2 px outline,
+        // poignée 24 px outline avec tiret (surface-variant) éteinte ; allumée : piste primary, poignée
+        // on-primary avec coche on-primary-container ; désactivée : piste on-surface 12 %, icône 38 %.
         styleOverrides: {
-          root: { width: 52, height: 32, padding: 0 },
+          root: { width: 52, height: 32, padding: 0, overflow: 'visible' },
           switchBase: {
             padding: 4,
+            color: r('outline'),
+            '& .MuiSwitch-thumb::before': { backgroundColor: r('surface-variant') },
             '&.Mui-checked': {
               transform: 'translateX(20px)',
               color: r('on-primary'),
-              '& + .MuiSwitch-track': { backgroundColor: r('primary'), opacity: 1, border: 0 },
+              '& .MuiSwitch-thumb::before': {
+                backgroundColor: r('on-primary-container'),
+                WebkitMask: CHECK,
+                mask: CHECK,
+              },
+              '& + .MuiSwitch-track': { backgroundColor: r('primary'), borderColor: 'transparent', opacity: 1 },
+            },
+            '&.Mui-disabled': {
+              color: r('on-surface'),
+              '& .MuiSwitch-thumb': { opacity: 0.38 },
+              '& + .MuiSwitch-track': { borderColor: r('on-surface'), opacity: 0.12 },
+            },
+            '&.Mui-checked.Mui-disabled': {
+              color: r('surface'),
+              '& .MuiSwitch-thumb': { opacity: 1 },
+              '& .MuiSwitch-thumb::before': { backgroundColor: r('on-surface'), opacity: 0.38 },
+              '& + .MuiSwitch-track': { backgroundColor: r('on-surface'), opacity: 0.12 },
             },
           },
-          thumb: { width: 24, height: 24, boxShadow: 'none' },
+          thumb: {
+            position: 'relative',
+            width: 24,
+            height: 24,
+            boxShadow: 'none',
+            '&::before': { content: '""', position: 'absolute', inset: 4, WebkitMask: DASH, mask: DASH },
+          },
           track: {
+            boxSizing: 'border-box',
             borderRadius: 16,
-            backgroundColor: r('surface-container-highest'),
+            backgroundColor: r('surface-variant'),
             border: `2px solid ${r('outline')}`,
             opacity: 1,
           },

@@ -1,0 +1,43 @@
+// Porté depuis shared/components/data/qr-code.component.ts (styles du composant, encapsulation émulée → portée .app-qr-code).
+.app-qr-code {
+  & {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  svg {
+    display: block;
+  }
+  .qr-box {
+    position: relative;
+  }
+  .qr-icon {
+    position: absolute;
+    inset: 0;
+    width: auto !important;
+    height: auto !important;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .qr-caption {
+    font:
+      600 12px 'Space Mono',
+      ui-monospace,
+      monospace;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+  .qr-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+}

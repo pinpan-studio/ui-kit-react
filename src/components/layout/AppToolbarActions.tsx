@@ -1,10 +1,54 @@
 import { Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { CHAT_UNREAD, CURRENT_USER, initials, NOTIFICATIONS_UNREAD } from '../../lib/session';
+import { CHAT_UNREAD, CURRENT_USER, initials } from '../../lib/session';
+import { NotificationCenter, type AppNotification } from '../interaction/NotificationCenter';
 import { MaterialIcon } from '../ui/MaterialIcon';
 import { ThemePicker } from '../ui/ThemePicker';
 import { ThemeToggle } from '../ui/ThemeToggle';
+
+const EX_NOTIFICATIONS: AppNotification[] = [
+  {
+    id: 'n1',
+    title: 'Paiement reçu',
+    message: 'Cacao Plus a réglé la facture FAC-2026-0981 (4,2 M FCFA).',
+    at: new Date(Date.now() - 12 * 60e3),
+    icon: 'payments',
+    tone: 'success',
+    category: 'Finance',
+  },
+  {
+    id: 'n2',
+    title: 'Aya Koné vous a mentionné',
+    message: '« @Jean peux-tu valider le créneau de jeudi ? »',
+    at: new Date(Date.now() - 2 * 3600e3),
+    avatar: 'AK',
+    category: 'Équipe',
+    actions: [
+      { id: 'reply', label: 'Répondre', primary: true },
+      { id: 'later', label: 'Plus tard' },
+    ],
+  },
+  {
+    id: 'n3',
+    title: '3 factures en retard',
+    message: 'Relance automatique programmée demain à 9 h.',
+    at: new Date(Date.now() - 5 * 3600e3),
+    icon: 'schedule',
+    tone: 'warning',
+    category: 'Finance',
+  },
+  {
+    id: 'n4',
+    title: 'Version 2.4 disponible',
+    message: 'Export PDF corrigé, nouveaux rapports.',
+    at: new Date(Date.now() - 26 * 3600e3),
+    icon: 'new_releases',
+    tone: 'info',
+    category: 'Système',
+    read: true,
+  },
+];
 
 /** Actions de la barre d'outils de ex-app-shell : thème, palette, Messages, Notifications, compte. */
 export function AppToolbarActions({ chatButton = true }: { chatButton?: boolean }) {
@@ -26,13 +70,7 @@ export function AppToolbarActions({ chatButton = true }: { chatButton?: boolean 
           </IconButton>
         </Tooltip>
       )}
-      {/* Le centre de notifications (panneau) sera porté avec les composants « Interactions ». */}
-      <Tooltip title="Notifications">
-        <button type="button" className="nc-bell" aria-label={`Notifications, ${NOTIFICATIONS_UNREAD} non lues`}>
-          <MaterialIcon name={NOTIFICATIONS_UNREAD ? 'notifications_active' : 'notifications'} />
-          {NOTIFICATIONS_UNREAD > 0 && <span className="nc-count">{NOTIFICATIONS_UNREAD}</span>}
-        </button>
-      </Tooltip>
+      <NotificationCenter notifications={EX_NOTIFICATIONS} />
       <button
         type="button"
         className="avatar-btn"

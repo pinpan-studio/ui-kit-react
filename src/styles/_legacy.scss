@@ -1,0 +1,1202 @@
+// Classes globales reprises de ui-kit Angular (styles.scss, styles/_list-page-base.scss, styles/_entity-list.scss).
+// Sélecteurs adaptés : .material-icons → .material-icons, .kbd-keys → .kbd-keys.
+.mat-button-rounded {
+  //border-radius: var(--radius-xl) 0px var(--radius-xl) 0px !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 0px var(--space-4) 0px var(--space-2) !important;
+}
+.line-action {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.line-action:hover {
+  color: red;
+  cursor: pointer;
+}
+.refresh-btn {
+  border-radius: var(--radius-button) !important;
+  border: 1px solid var(--border-color, #cbd5e1) !important;
+  color: var(--text-secondary, #475569) !important;
+  background-color: var(--card-bg, #ffffff) !important;
+  height: 40px !important;
+  width: 40px !important;
+  min-width: 40px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease;
+
+  .material-icons {
+    margin: 0 !important;
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  &:hover {
+    background-color: var(--hover-bg, #f1f5f9) !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color, #0284c7) !important;
+    outline-offset: 2px;
+  }
+}
+
+// Universal KPI Metrics Cards Styling
+.metric-card {
+  border-radius: var(--radius-card, 12px) !important;
+  border: none !important;
+  background: var(--card-bg, #ffffff) !important;
+  box-shadow: var(--elevation-1) !important;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease !important;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--elevation-3) !important;
+  }
+}
+
+// Global Chart Tab Toggles
+.chart-tab-toggles {
+  background-color: var(--background-default, #f8fafc);
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2);
+  align-items: center;
+
+  @media (max-width: 600px) {
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.tab-toggle-btn {
+  border: none;
+  background: transparent;
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary, #475569);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--text-primary, #0f172a);
+  }
+
+  &.active {
+    background-color: var(--card-bg, #ffffff);
+    color: var(--primary-color, #7c3aed);
+    box-shadow: var(--elevation-1, 0 1px 3px rgba(0, 0, 0, 0.1));
+  }
+}
+
+// Dark Theme Specific Overrides
+.dark-theme,
+.dark {
+  .chart-tab-toggles {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .tab-toggle-btn {
+    color: var(--text-secondary, #cbd5e1) !important;
+
+    &:hover {
+      color: var(--text-primary, #ffffff) !important;
+    }
+
+    &.active {
+      background-color: var(--card-bg, #1f2937) !important;
+      color: var(--primary-color, #a78bfa) !important;
+      box-shadow: var(--elevation-1) !important;
+    }
+  }
+
+  .refresh-btn {
+    border-color: var(--border-color, #374151) !important;
+    background-color: var(--card-bg, #1f2937) !important;
+    color: var(--text-secondary) !important;
+
+    &:hover {
+      background-color: var(--hover-bg, #374151) !important;
+    }
+  }
+
+  .metric-card {
+    background: var(--card-bg, #1f2937) !important;
+    box-shadow: var(--elevation-2) !important;
+
+    &:hover {
+      box-shadow: var(--elevation-3) !important;
+    }
+  }
+
+  // Dashboard Icon Boxes - Translucent Colors
+  .bg-indigo-light,
+  .bg-indigo-soft {
+    background-color: rgba(99, 102, 241, 0.15) !important;
+  }
+  .bg-emerald-light,
+  .bg-emerald-soft {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+  }
+  .bg-orange-light,
+  .bg-orange-soft {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+  }
+  .bg-red-light,
+  .bg-red-soft,
+  .bg-rose-light {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+  }
+  .bg-blue-light,
+  .bg-blue-soft {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+  }
+  .bg-purple-light {
+    background-color: rgba(139, 92, 246, 0.15) !important;
+  }
+  .bg-slate-light {
+    background-color: rgba(100, 116, 139, 0.15) !important;
+  }
+
+  .icon-indigo {
+    color: #818cf8 !important;
+  }
+  .icon-emerald {
+    color: #4ade80 !important;
+  }
+  .icon-orange {
+    color: #fbbf24 !important;
+  }
+  .icon-red {
+    color: #f87171 !important;
+  }
+  .icon-blue {
+    color: #60a5fa !important;
+  }
+  .icon-purple {
+    color: #c084fc !important;
+  }
+}
+// ─── Toggle segmenté (vue liste / cartes) ──────────────────────
+.m3-filter-toggle {
+  display: flex;
+  background: var(--mat-sys-surface-container-high, var(--hover-bg));
+  padding: var(--space-1);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  gap: var(--space-1);
+  align-items: center;
+  width: fit-content;
+  overflow-y: hidden !important;
+
+  button,
+  .mat-mdc-button {
+    border-radius: var(--radius-full) !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: var(--mat-sys-on-surface-variant, var(--text-secondary)) !important;
+    height: 36px !important;
+    padding: 0 var(--space-4) !important;
+    min-width: unset !important;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      background: var(--mat-sys-primary, var(--primary-color)) !important;
+      color: var(--mat-sys-on-primary, #fff) !important;
+      box-shadow: var(--elevation-2) !important;
+    }
+
+    .material-icons {
+      margin-right: var(--space-1);
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    button,
+    .mat-mdc-button {
+      flex: 1;
+      padding: 0 var(--space-2) !important;
+      font-size: 12px !important;
+      span {
+        display: inline-block !important;
+      }
+    }
+  }
+}
+.refresh-btn,
+.view-toggle-btn {
+  border-radius: 50%;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background-color: var(--card-bg, #ffffff);
+  height: 42px;
+  width: 42px;
+  color: var(--text-secondary, #475569);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--hover-bg, #f1f5f9);
+  }
+}
+
+.view-toggle-btn {
+  &.active {
+    background-color: rgba(79, 70, 229, 0.08);
+    border-color: #4f46e5;
+    color: #4f46e5;
+  }
+}
+
+.create-btn {
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+  height: 42px !important;
+  font-size: 0.875rem !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// ── Filter Chips Row ──────────────────────────────────────────────────────────
+.filter-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.filter-chip {
+  border-radius: var(--radius-xl) !important;
+  border-color: var(--border-color, #cbd5e1) !important;
+  color: var(--text-secondary, #475569) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  height: 36px !important;
+  background-color: var(--card-bg, #ffffff) !important;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-4) !important;
+
+  .material-icons.chip-icon {
+    font-size: 15px;
+    width: 15px;
+    height: 15px;
+  }
+
+  &.chip-active {
+    background-color: rgba(79, 70, 229, 0.08) !important;
+    border-color: #4f46e5 !important;
+    color: #4f46e5 !important;
+  }
+
+  &:hover:not(.chip-active) {
+    background-color: var(--hover-bg, #f1f5f9) !important;
+  }
+}
+
+// ─── Actions de ligne ────────────────────────────────────────────────────
+.action-icon-btn {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: var(--text-muted, #64748b);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  // Icône 24px par défaut (mat-icon) ; les pages liste/fiche réduisent à 18px via leurs partiels.
+
+  &:hover {
+    color: var(--primary-color, #4f46e5);
+    background: var(--primary-color-light, rgba(79, 70, 229, 0.12));
+  }
+
+  &.danger:hover {
+    color: var(--error-color, #ef4444);
+    background: var(--error-color-light, rgba(239, 68, 68, 0.12));
+  }
+}
+
+// styles.scss 744-762
+// Currency indicators positioning/uniformity
+.stat-amount,
+.kpi-major-val-price,
+.price-tag {
+  font-family: inherit;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+
+  small,
+  .currency {
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: var(--text-secondary) !important;
+    text-transform: uppercase;
+  }
+}
+
+// styles.scss 887-898
+.label-badge {
+  background-color: var(--error-color);
+  padding: 3px;
+  font-size: 10px;
+  color: white;
+  border-radius: var(--radius-xs);
+  position: relative;
+  top: -12px;
+  right: 0px;
+}
+
+// styles.scss 1033-1160
+.stick-blue {
+  padding: var(--space-1) 13px;
+  background: var(--primary-color-light);
+  width: 34%;
+  color: var(--primary-color);
+  border-radius: 33px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+
+  &.mat-mdc-chip {
+    --mat-chip-container-color: var(--primary-color-light) !important;
+    --mat-chip-label-text-color: var(--primary-color) !important;
+    background-color: var(--primary-color-light) !important;
+    min-width: 100px;
+    border-radius: 33px;
+    padding: 2px;
+    font-size: 11px;
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.stick-red {
+  padding: var(--space-1) 13px;
+  background: var(--error-color-light);
+  width: 34%;
+  color: var(--error-color-text);
+  border-radius: 33px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+
+  &.mat-mdc-chip {
+    --mat-chip-container-color: var(--error-color-light) !important;
+    --mat-chip-label-text-color: var(--error-color-text) !important;
+    background-color: var(--error-color-light) !important;
+    min-width: 100px;
+    border-radius: 33px;
+    padding: 2px;
+    font-size: 11px;
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.stick-grey {
+  padding: var(--space-1) 13px;
+  background: var(--hover-bg);
+  width: 34%;
+  color: var(--text-secondary);
+  border-radius: 33px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+
+  &.mat-mdc-chip {
+    --mat-chip-container-color: rgba(0, 0, 0, 0.05) !important;
+    --mat-chip-label-text-color: var(--text-secondary) !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    min-width: 100px;
+    border-radius: 33px;
+    padding: 2px;
+    font-size: 11px;
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.stick-green {
+  padding: var(--space-1) 13px;
+  background: var(--success-color-light);
+  width: 34%;
+  color: var(--success-color-text);
+  border-radius: 33px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+
+  &.mat-mdc-chip {
+    --mat-chip-container-color: var(--success-color-light) !important;
+    --mat-chip-label-text-color: var(--success-color-text) !important;
+    background-color: var(--success-color-light) !important;
+    min-width: 100px;
+    border-radius: 33px;
+    padding: 2px;
+    font-size: 11px;
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.stick-orange {
+  padding: var(--space-1) 13px;
+  background: var(--warning-color-light);
+  width: 34%;
+  color: var(--warning-color-text);
+  border-radius: 33px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+
+  &.mat-mdc-chip {
+    --mat-chip-container-color: var(--warning-color-light) !important;
+    --mat-chip-label-text-color: var(--warning-color-text) !important;
+    background-color: var(--warning-color-light) !important;
+    min-width: 100px;
+    border-radius: 33px;
+    padding: 2px;
+    font-size: 11px;
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.rowHover:hover {
+  background-color: var(--hover-bg) !important;
+  cursor: pointer;
+}
+
+.highlighted-text {
+  background-color: rgb(224, 224, 17);
+}
+
+// styles.scss 1444-1760
+.page-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-l);
+  box-sizing: border-box;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-l);
+  gap: var(--space-m);
+  flex-wrap: wrap;
+
+  .page-title-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+
+    h1 {
+      font-size: 22px !important;
+      font-family: 'Outfit', sans-serif !important;
+    }
+
+    p {
+      font-size: 13px;
+      color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+      margin: 0;
+    }
+  }
+
+  .page-actions {
+    display: flex;
+    gap: var(--space-s);
+    align-items: center;
+  }
+}
+
+// ─── Cartes ────────────────────────────────────────────────────
+.m3-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: var(--space-l);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--elevation-1);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--hover-bg);
+    border-color: var(--mat-sys-outline-variant, var(--border-color));
+  }
+}
+
+// ─── Badges ────────────────────────────────────────────────────
+.m3-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-m);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+
+  .material-icons {
+    font-size: 14px !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  &.success {
+    background: var(--success-color-light);
+    color: var(--success-color-text, var(--success-color));
+  }
+  &.warning {
+    background: var(--warning-color-light);
+    color: var(--warning-color-text, var(--warning-color));
+  }
+  &.error {
+    background: var(--error-color-light);
+    color: var(--error-color-text, var(--error-color));
+  }
+  &.info {
+    background: var(--info-color-light);
+    color: var(--info-color);
+  }
+  &.purple {
+    background: var(--purple-color-light);
+    color: var(--purple-color);
+  }
+  &.cyan {
+    background: var(--cyan-color-light);
+    color: var(--cyan-color);
+  }
+  &.neutral,
+  &.default {
+    background: var(--mat-sys-surface-container-high, var(--hover-bg));
+    color: var(--text-secondary);
+  }
+}
+
+// ─── Barre de recherche ────────────────────────────────────────
+.m3-search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  height: 44px;
+  max-width: 360px;
+  padding: 0 var(--space-m);
+  background: var(--mat-sys-surface-container-high, var(--hover-bg));
+  border: 1px solid transparent;
+  border-radius: var(--r-full);
+  transition: all 0.2s ease;
+
+  .search-icon {
+    color: var(--text-muted);
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-primary);
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+
+  .clear-btn {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  &:focus-within {
+    background: var(--card-bg);
+    border-color: var(--mat-sys-primary, var(--primary-color));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mat-sys-primary, var(--primary-color)) 15%, transparent);
+  }
+}
+
+.m3-search-bar-unified {
+  display: inline-flex;
+  align-items: center;
+  background: var(--mat-sys-surface-container-high, var(--hover-bg));
+  border-radius: var(--r-full, 100px) !important;
+  border: 1px solid var(--border-color);
+  padding: var(--space-1);
+  gap: 0;
+  height: 44px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 720px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:focus-within {
+    background: var(--mat-sys-surface, var(--card-bg));
+    border-color: var(--mat-sys-primary, var(--primary-color));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mat-sys-primary, var(--primary-color)) 15%, transparent);
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 150px;
+    padding: 0 var(--space-2) 0 var(--space-3);
+    gap: var(--space-2);
+    height: 36px;
+
+    .search-icon {
+      color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+
+    input {
+      border: none;
+      background: transparent;
+      outline: none;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      width: 100%;
+      height: 100%;
+
+      &::placeholder {
+        color: var(--text-muted);
+      }
+    }
+
+    .clear-btn {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      margin: 0;
+      min-width: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+
+      .material-icons {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+      }
+
+      &:hover {
+        background: var(--hover-bg);
+      }
+    }
+  }
+
+  .divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border-color);
+    margin: 0 var(--space-2);
+    flex-shrink: 0;
+  }
+
+  button[mat-icon-button] {
+    width: 36px;
+    height: 36px;
+    color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+
+    .material-icons {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .period-filter-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .search-bar-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: var(--space-2);
+    margin-right: var(--space-1);
+    flex-shrink: 0;
+
+    .desktop-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .mobile-actions {
+      display: none;
+    }
+
+    button {
+      height: 36px !important;
+      border-radius: var(--r-full) !important;
+      font-family: 'Outfit', sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      padding: 0 var(--space-4) !important;
+      min-width: unset !important;
+
+      .material-icons {
+        font-size: 18px !important;
+        width: 18px !important;
+        height: 18px !important;
+        margin-right: var(--space-1) !important;
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    height: auto !important;
+    gap: var(--space-2) !important;
+
+    .search-input-wrapper {
+      background: var(--mat-sys-surface-container-high, var(--hover-bg));
+      border: 1px solid var(--border-color);
+      border-radius: var(--r-full);
+      height: 44px;
+      width: 100%;
+      flex: none;
+      padding: 0 var(--space-4);
+    }
+
+    .divider {
+      display: none;
+    }
+
+    app-filter-dropdown {
+      flex: 1;
+      min-width: 120px;
+
+      ::ng-deep .filter-dropdown-btn {
+        background: var(--mat-sys-surface-container-high, var(--hover-bg)) !important;
+        border: 1px solid var(--border-color) !important;
+        height: 44px !important;
+        width: 100% !important;
+        justify-content: space-between !important;
+        padding: 0 var(--space-4) !important;
+      }
+    }
+
+    .period-filter-group {
+      width: 100%;
+      justify-content: center;
+      gap: var(--space-1);
+    }
+
+    .search-bar-actions {
+      width: 100%;
+      justify-content: flex-end;
+      margin: 0;
+
+      .desktop-actions {
+        display: none !important;
+      }
+      .mobile-actions {
+        display: block !important;
+      }
+
+      button.action-btn-single {
+        padding: 0 !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        border-radius: 50% !important;
+
+        .btn-text {
+          display: none !important;
+        }
+        .material-icons {
+          margin-right: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+// ─── Toggle segmenté (vue liste / cartes) ──────────────────────
+
+// styles.scss 1904-2028
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-m);
+
+  .span-2 {
+    grid-column: span 2;
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+    .span-2 {
+      grid-column: span 1;
+    }
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+
+  .field-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .field-box {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    background: var(--mat-sys-surface-container-high, var(--hover-bg));
+    border: 1px solid var(--border-color);
+    border-radius: var(--r-m);
+    padding: 0 var(--space-3);
+    gap: var(--space-2);
+    transition: all 0.2s ease;
+
+    input,
+    textarea,
+    select {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      width: 100%;
+
+      &::placeholder {
+        color: var(--text-muted);
+      }
+      &:disabled {
+        color: var(--text-muted);
+        cursor: default;
+      }
+    }
+
+    &:focus-within {
+      background: var(--card-bg);
+      border-color: var(--mat-sys-primary, var(--primary-color));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--mat-sys-primary, var(--primary-color)) 15%, transparent);
+    }
+
+    &.is-disabled {
+      opacity: 0.65;
+    }
+
+    > .material-icons {
+      flex-shrink: 0;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: var(--mat-sys-on-surface-variant, var(--text-secondary));
+    }
+
+    > .MuiCircularProgress-root,
+    > mat-progress-spinner {
+      flex-shrink: 0;
+    }
+
+    button[mat-icon-button],
+    > .MuiIconButton-root {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      --mdc-icon-button-state-layer-size: 32px;
+
+      .material-icons {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &.textarea-box {
+      height: auto;
+      padding: var(--space-3) var(--space-3);
+      align-items: flex-start;
+
+      textarea {
+        resize: vertical;
+        min-height: 40px;
+        line-height: 1.4;
+        padding-top: 2px;
+      }
+    }
+
+    // mat-select : même typo que le déclencheur de app-searchable-select
+    &.select-box {
+      padding: 0 var(--space-2) 0 var(--space-3);
+      mat-select,
+      .mat-mdc-select {
+        width: 100%;
+        --mat-select-trigger-text-font: 'Inter', sans-serif;
+        --mat-select-trigger-text-size: 14px;
+        --mat-select-trigger-text-weight: 500;
+        --mat-select-enabled-trigger-text-color: var(--text-primary);
+        --mat-select-placeholder-text-color: var(--text-muted);
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+      .mat-mdc-select-placeholder {
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+    }
+
+    // mat-date-range-input dans une field-box (même rendu que le date picker)
+    mat-date-range-input,
+    .mat-date-range-input {
+      flex: 1;
+      min-width: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+    .mat-date-range-input-separator {
+      color: var(--text-muted);
+    }
+  }
+}
+
+.field-hint {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+.field-error {
+  display: block;
+  font-size: 11px;
+  color: var(--error-color);
+  margin-top: var(--space-1);
+}
+
+// ─── Dialogs (coins arrondis, sans toucher aux largeurs déjà
+//      configurées explicitement par les dialogs existants) ─────
+
+// styles.scss 2038-2056
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+// ─── Impression ───────────────────────────────────────────────
+
+// styles.scss 2068-2099
+.pense-bete-card,
+.taches-kanban-card[class*='postit-'] {
+  color-scheme: light;
+  color: #1f2937;
+
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --border-color: rgba(0, 0, 0, 0.12);
+
+  // color-scheme: light ⇒ les rôles M3 (light-dark) prennent leur ton clair : la primaire
+  // suit le thème de couleur courant tout en restant lisible sur le papier.
+  --primary-color: var(--mat-sys-primary);
+  --primary-color-light: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+  --mat-sys-on-surface: #1f2937;
+  --mat-sys-on-surface-variant: #4b5563;
+  --mat-sys-outline: #6b7280;
+
+  --success-color-text: #15803d;
+  --warning-color-text: #a16207;
+  --error-color-text: #b91c1c;
+
+  // Case à cocher des pense-bêtes : contour visible sur fond clair
+  --mat-checkbox-unselected-icon-color: #6b7280;
+  --mat-checkbox-unselected-hover-icon-color: #374151;
+  --mat-checkbox-unselected-focus-icon-color: #374151;
+  --mat-checkbox-selected-icon-color: var(--mat-sys-primary);
+  --mat-checkbox-selected-hover-icon-color: var(--mat-sys-primary);
+  --mat-checkbox-selected-focus-icon-color: var(--mat-sys-primary);
+  --mat-checkbox-selected-checkmark-color: #ffffff;
+}
+
+// styles.scss 695-724 (Angular) : h1 / h3 / h4 globaux en !important.
+h1 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+h3 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+h4 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+// styles.scss 703-709 : h2 global en 600 ; interligne « normal » des titres (mat-typography).
+h1,
+h2,
+h3,
+h4 {
+  line-height: normal;
+}
+h2 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+// styles.scss 836 : le rayon pilule des boutons M3 prime sur .mat-button-rounded.
+.MuiButton-root.mat-button-rounded {
+  border-radius: var(--radius-button) !important;
+}
+
+// styles.scss 347-354 (matPadding / matPaddingSmall)
+.mat-padding {
+  display: block;
+  padding: var(--space-3) var(--space-3);
+}
+.mat-padding-small {
+  padding: 5px;
+}
+
+// styles.scss 986 (.alert-client)
+.alert-client {
+  border: 1px dotted #fff;
+  background: var(--error-color);
+  padding: var(--space-5);
+  color: #fff;
+  text-align: center;
+}
+
+// styles.scss 695-745 : classes typographiques mat-* (les balises h1-h4 sont traitées plus haut).
+.mat-h1,
+.mat-headline-3 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+.mat-h2,
+.mat-headline-4 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+.mat-h3,
+.mat-headline-5 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+.mat-h4,
+.mat-headline-6 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+.mat-body-1,
+.mat-body {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+}
+.mat-body-2 {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: var(--text-secondary) !important;
+}
+.mat-caption,
+.mat-small {
+  font-size: 12px !important;
+  color: var(--text-muted) !important;
+}
+
+// styles.scss 893 (.mat-card)
+.mat-card {
+  border-radius: var(--radius-card) !important;
+  border: none !important;
+  box-shadow: var(--elevation-1) !important;
+  background: var(--card-bg) !important;
+}
+
+// styles.scss Angular (l. 1200) : les nœuds feuilles de mat-tree prennent la hauteur de leur contenu.
+.mat-tree-node {
+  min-height: auto !important;
+}

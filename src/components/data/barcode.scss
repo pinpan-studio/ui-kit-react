@@ -1,0 +1,25 @@
+// Porté depuis shared/components/data/qr-code.component.ts (styles du composant, encapsulation émulée → portée .app-barcode).
+.app-barcode {
+  & {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  .bc-text {
+    font:
+      500 12px 'Space Mono',
+      ui-monospace,
+      monospace;
+    letter-spacing: 0.18em;
+    color: var(--text-primary);
+  }
+  .bc-error {
+    font-size: 12px;
+    color: var(--error-color);
+  }
+}

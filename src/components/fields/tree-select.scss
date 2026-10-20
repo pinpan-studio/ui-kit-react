@@ -1,0 +1,54 @@
+// Porté depuis shared/components/fields/tree-select.component.ts (styles du composant, encapsulation émulée → portée .app-tree-select).
+.app-tree-select {
+  & {
+    display: block;
+  }
+  .ts-trigger {
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    color: var(--text-primary);
+  }
+  .ts-value {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 500;
+    &.ph {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+  }
+  .ts-chip {
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--primary-color-light);
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .ts-more {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .ts-clear {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer;
+  }
+  .ts-arrow {
+    transition: transform 0.2s ease;
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+}

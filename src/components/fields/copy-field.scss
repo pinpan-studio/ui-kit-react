@@ -1,0 +1,92 @@
+// Porté depuis shared/components/fields/copy-field.component.ts (styles du composant, encapsulation émulée → portée .app-copy-field).
+.app-copy-field {
+  & {
+    display: block;
+  }
+  .cf {
+    padding-right: 4px !important;
+  }
+  .cf-value {
+    font-family: 'Space Mono', ui-monospace, monospace !important;
+    font-size: 13px !important;
+    color: var(--text-primary);
+    text-overflow: ellipsis;
+  }
+  .multiline {
+    align-items: flex-start !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    pre {
+      flex: 1;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+      line-height: 1.55;
+      max-height: 200px;
+      overflow: auto;
+    }
+  }
+  .cf-btn {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .material-icons {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+    &:hover {
+      background: var(--hover-bg);
+      color: var(--text-primary);
+    }
+  }
+  .cf-copy {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: var(--primary-color-light);
+    color: var(--primary-color);
+    font:
+      600 12.5px 'Inter',
+      sans-serif;
+    transition: all 0.15s ease;
+    .material-icons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+    &:hover {
+      background: var(--primary-color);
+      color: #fff;
+    }
+  }
+  .copied {
+    border-color: var(--success-color) !important;
+    .cf-copy {
+      background: var(--success-color);
+      color: #fff;
+    }
+  }
+  @media (max-width: 420px) {
+    .cf-copy span {
+      display: none;
+    }
+    .cf-copy {
+      padding: 0 9px;
+    }
+  }
+}

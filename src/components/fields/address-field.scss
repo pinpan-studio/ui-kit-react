@@ -1,0 +1,66 @@
+// Porté depuis shared/components/fields/address-field.component.ts (styles du composant, encapsulation émulée → portée .app-address-field).
+.app-address-field {
+  & {
+    display: block;
+  }
+  .af-btn {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .material-icons {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+    &:hover:not(:disabled) {
+      background: var(--hover-bg);
+      color: var(--primary-color);
+    }
+  }
+  .af-coords {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-variant-numeric: tabular-nums;
+    .material-icons {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+  .af-map {
+    position: relative;
+    margin-top: 10px;
+    border-radius: var(--r-m, 12px);
+    overflow: hidden;
+  }
+  .af-map-hint {
+    position: absolute;
+    z-index: 500;
+    left: 10px;
+    bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    box-shadow: var(--elevation-1);
+    pointer-events: none;
+    .material-icons {
+      font-size: 15px;
+      width: 15px;
+      height: 15px;
+    }
+  }
+}

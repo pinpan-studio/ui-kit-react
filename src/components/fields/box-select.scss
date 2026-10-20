@@ -1,0 +1,6 @@
+// mat-select dans une field-box : la typo du déclencheur vient de .field-box.select-box (_legacy.scss).
+.field-box .mat-mdc-select {
+  flex: 1;
+  min-width: 0;
+  outline: none;
+}
