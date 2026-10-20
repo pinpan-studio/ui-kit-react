@@ -2,6 +2,12 @@
 @use '../../../styles/breakpoints' as *;
 
 .gallery-material {
+  // .mat-expansion-panel-content : typographie body-large héritée par le corps et la barre d'actions.
+  .mat-expansion-panel-body,
+  .mat-action-row {
+    font: var(--mat-sys-body-large);
+    letter-spacing: var(--mat-sys-body-large-tracking);
+  }
   // ── showcase/components/material/material-gallery.component.scss ──
 
   & {
@@ -672,6 +678,8 @@
   }
   .kit-chip-row {
     height: 32px;
+    // mat-chip-row (MDC) : marge 4px 0 4px 8px.
+    margin: 4px 0 4px 8px;
     border-radius: 8px;
     background: var(--card-bg);
   }
@@ -762,18 +770,26 @@
     padding: 16px 16px 0;
     align-items: flex-start;
   }
+  // mat-card-avatar (MDC) : marge basse 16 px, pas de marge droite ; textes décalés de 16 px en interligne normal.
   .mat-mdc-card .MuiCardHeader-avatar {
-    margin-right: 16px;
+    margin: 0 0 16px;
+  }
+  .mat-mdc-card .MuiCardHeader-avatar + .MuiCardHeader-content > span {
+    padding: 0 16px;
+    line-height: normal;
   }
   .mat-mdc-card .MuiCardHeader-title {
     font-family: 'Outfit', sans-serif;
     font-size: 22px;
     line-height: 28px;
+    letter-spacing: normal;
   }
   .mat-mdc-card .MuiCardHeader-subheader {
     font-size: 16px;
     font-weight: 500;
-    line-height: 20px;
+    // mat-card-subtitle : title-medium (24 px, 0.144px).
+    line-height: 24px;
+    letter-spacing: 0.144px;
     color: var(--text-primary);
   }
   .mat-mdc-card .MuiCardContent-root {

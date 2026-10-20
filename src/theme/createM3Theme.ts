@@ -217,6 +217,8 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
       },
       MuiIconButton: {
         styleOverrides: {
+          // mat-icon-button : boîte fixe de 40 × 40 px quel que soit le contenu (icône 22 px, avatar 32 px…).
+          sizeMedium: { width: 40, height: 40, flexShrink: 0 },
           root: {
             color: r('on-surface-variant'),
             '&:hover': { backgroundColor: alpha(r('on-surface-variant'), hover) },

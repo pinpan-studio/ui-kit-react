@@ -1105,8 +1105,15 @@
     background: var(--mat-sys-surface, var(--bg));
     color: var(--text-primary);
     .MuiToolbar-root {
-      min-height: 56px;
+      // Surclasse MuiToolbar (thème : var(--header-height) !important) : la barre de mat-paginator fait 56 px.
+      min-height: 56px !important;
       padding: 0 8px;
+      // .mat-mdc-paginator-container : retour à la ligne, aligné à droite.
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .MuiTablePagination-spacer {
+      display: none;
     }
     .MuiTablePagination-selectLabel,
     .MuiTablePagination-displayedRows {
@@ -1120,5 +1127,9 @@
       padding: 0 4px 0 8px;
       margin: 0 24px 0 4px;
     }
+  }
+  // mat-tab-header : séparateur de 1 px sous les onglets (--mat-tab-divider-color = surface-variant).
+  .mat-tab-group.MuiTabs-root {
+    border-bottom: 1px solid var(--mat-sys-surface-variant);
   }
 }
