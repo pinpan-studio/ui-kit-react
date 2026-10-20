@@ -470,7 +470,7 @@ export function FieldsGalleryPage() {
         <DocSection
           id="rating"
           title="Notation"
-          source="Rating (components/fields)"
+          source="app-rating (shared/components/fields)"
           cols={3}
           description="Étoiles (demi-étoiles possibles), cœurs ou émojis de satisfaction. Aperçu au survol, clavier ←/→, re-clic pour effacer, lecture seule pour afficher une moyenne."
         >
@@ -577,7 +577,7 @@ export function FieldsGalleryPage() {
         <DocSection
           id="signature"
           title="Signature"
-          source="SignaturePad (components/fields)"
+          source="app-signature-pad (shared/components/fields)"
           cols={2}
           description="Souris, doigt ou stylet (pression prise en compte) ; trait lissé à épaisseur variable selon la vitesse, annuler, effacer, choix d'encre, rendu net en haute densité. Valeur : PNG transparent (data URL)."
         >
@@ -791,9 +791,9 @@ export function FieldsGalleryPage() {
 
         <DocSection
           id="form"
-          title="Formulaire complet"
-          source="état contrôlé + validation"
-          description="Tous les champs avancés s'utilisent comme un input natif : valeur contrôlée, validation et état touched (onBlur)."
+          title="Formulaire complet (réactif)"
+          source="FormGroup + composants ControlValueAccessor"
+          description="Tous les champs avancés s'utilisent avec formControlName, Validators et l'état touched — exactement comme un input natif."
         >
           <Demo label="PV d'installation" code={CODE.form}>
             <form onSubmit={submit} className="pv-form" noValidate>
