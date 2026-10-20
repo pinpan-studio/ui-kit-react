@@ -1125,7 +1125,9 @@
       border-radius: 4px;
       height: 40px;
       padding: 0 4px 0 8px;
-      margin: 0 24px 0 4px;
+      // .mat-mdc-paginator-page-size : ligne de 46 px (libellé aligné sur la ligne de base d'un mat-form-field de 42 px),
+      // visible quand la barre passe à la ligne (375 px) ; sans effet sur la barre de 56 px sur une ligne.
+      margin: 3px 24px 3px 4px;
     }
   }
   // mat-tab-header : séparateur de 1 px sous les onglets (--mat-tab-divider-color = surface-variant).
