@@ -48,4 +48,73 @@ entries: AuditEntry[] = [{
 <button (click)="qr.toPng(1024).then(download)">PNG</button>   <!-- ou qr.toSvg() -->
 
 <app-barcode value="358240051111110" [height]="44" />`,
+
+  tableBase: `
+<div class="m3-table-container">
+  <div class="m3-table">
+    <div class="m3-table-header">
+      <span class="col-select"><mat-checkbox (change)="toggleAll()" [checked]="allSelected" [indeterminate]="someSelected" /></span>
+      <span>Code</span><span>Client</span><span class="text-right">Véhicules</span><span class="text-center">Statut</span><span></span>
+    </div>
+    @for (row of rows; track row._id) {
+      <div class="m3-table-row" (click)="open(row)">
+        <span class="col-select" (click)="$event.stopPropagation()"><mat-checkbox [checked]="isSelected(row)" (change)="toggle(row)" /></span>
+        <span><span class="code-tag">{{ row.code }}</span></span>
+        <div class="col-main-info"><span class="primary-text">{{ row.raison_sociale }}</span><span class="sub-text">{{ row.contact }}</span></div>
+        <span class="text-right">{{ row.vehicules }}</span>
+        <div class="text-center"><app-status-badge [label]="row.statut" [color]="statutColor[row.statut]" /></div>
+        <div class="row-actions">…</div>
+      </div>
+    }
+  </div>
+</div>
+
+/* SCSS de la page : @import 'styles/entity-list';
+   .m3-table-header, .m3-table-row { grid-template-columns: 44px 110px 1.8fr 100px 110px 50px; } */`,
+  card: `
+<div class="cards-grid">
+  <div class="m3-card entity-card">
+    <div class="card-header">
+      <div class="card-icon-box icon-purple"><mat-icon>inventory_2</mat-icon></div>
+      <app-status-badge label="ACTIF" color="success" />
+    </div>
+    <div class="card-body">
+      <div class="card-title-area">
+        <span class="code-tag">PROD-001</span>
+        <h3 class="card-title">Abonnement Standard</h3>
+        <p class="card-desc">Suivi GPS temps réel, alertes, historique 90 jours.</p>
+      </div>
+      <div class="card-info-list">
+        <div class="info-item"><mat-icon>repeat</mat-icon><span class="info-label">Abonnement :</span><span class="info-val font-bold">15 000 F CFA</span></div>
+      </div>
+    </div>
+    <div class="card-footer">…</div>
+  </div>
+</div>`,
+  kpi: `
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-icon indigo"><mat-icon>people</mat-icon></div>
+    <div class="kpi-content">
+      <span class="kpi-value">434</span>
+      <span class="kpi-label">Clients actifs</span>
+    </div>
+  </div>
+</div>
+/* @import 'styles/detail-page'; */`,
+  badge: `
+<app-status-badge label="Actif" color="success" icon="check_circle" />
+<!-- couleurs : success | warning | error | info | purple | cyan | neutral -->
+<span class="m3-badge warning">En attente</span>`,
+  empty: `
+<app-empty-state
+  icon="inventory_2"
+  title="Aucun produit trouvé"
+  subtitle="Ajustez vos critères de recherche ou ajoutez un nouveau produit."
+  actionLabel="Nouveau produit"
+  (actionClick)="create()" />`,
+  chart: `
+<div class="chart-box"><canvas baseChart type="line" [data]="lineData" [options]="lineOptions()"></canvas></div>
+// options = computed(() => …) dérivé de ThemeService.mode() : textes, grille et liserés suivent le thème
+/* provideCharts(withDefaultRegisterables()) est déclaré dans app.config.ts */`,
 };

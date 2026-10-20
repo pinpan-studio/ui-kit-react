@@ -1,3 +1,4 @@
+@use 'breakpoints' as *;
 // CSS Angular Material (MIT, fesm2022) repris tel quel : mêmes classes côté React.
 // table.mjs
 .mat-mdc-table-sticky {
@@ -3364,4 +3365,15 @@ mat-icon.mat-warn {
 .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button .mat-icon,
 .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button .mat-icon {
   margin: auto;
+}
+
+// ── ui-kit Angular styles/_responsive.scss (§ cellules de tableaux) ──
+td.mat-mdc-cell,
+th.mat-mdc-header-cell {
+  word-break: break-word;
+
+  @include mobile {
+    padding: var(--space-3) var(--space-2) !important;
+    font-size: 0.8rem !important;
+  }
 }

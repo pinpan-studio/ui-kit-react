@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
 afterEach(() => {
@@ -21,3 +21,6 @@ if (!window.matchMedia) {
       dispatchEvent: () => false,
     }) as MediaQueryList;
 }
+
+// Chart.js a besoin d'un contexte 2D (absent de jsdom) : les graphiques sont remplacés par un canvas inerte en test.
+vi.mock('react-chartjs-2', () => ({ Chart: () => null }));

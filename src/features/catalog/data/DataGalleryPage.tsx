@@ -11,18 +11,30 @@ import { useSnackbar } from '../../../components/feedback/useSnackbar';
 import { MaterialIcon } from '../../../components/ui/MaterialIcon';
 import { DEMO_CLIENTS } from '../../../data/static/showcase.data';
 import { Demo, DocPage, DocSection, type TocItem } from '../doc/Doc';
+import { DataBaseSections } from './DataBaseSections';
 import { CODE } from './dataCode';
 import { AUDIT, BULK, CFG1, CFG2, COLUMNS, CONTRAT, INFOS, V1, V2, VCARD, WIFI, type Row } from './dataDemo';
 import './data-gallery.scss';
 
-// Portage partiel : sections « avancées » (data-advanced). Les sections de base (table, cards, list, badge, chip, charts…) restent à porter.
 const TOC: TocItem[] = [
+  { id: 'table', label: 'Table' },
+  { id: 'table-states', label: 'États de table' },
+  { id: 'data-table', label: 'Data table (Material)' },
+  { id: 'cards', label: 'Cards' },
+  { id: 'list', label: 'List' },
+  { id: 'timeline', label: 'Timeline' },
+  { id: 'badge', label: 'Badge' },
+  { id: 'chip', label: 'Chip' },
+  { id: 'avatar', label: 'Avatar' },
+  { id: 'stats', label: 'Statistics cards' },
+  { id: 'charts', label: 'Graphiques' },
+  { id: 'empty', label: 'Empty state' },
   { id: 'advanced-table', label: 'Table avancée' },
   { id: 'description-list', label: 'Liste descriptive' },
   { id: 'counters', label: 'Compteurs' },
   { id: 'diff', label: 'Diff' },
   { id: 'audit', label: 'Audit log' },
-  { id: 'qr', label: 'QR & code-barres' },
+  { id: 'qr', label: 'QR / code-barres' },
 ];
 const SPARK = [62, 70, 68, 75, 80, 78];
 const jitter = (v: number, p: number) => Math.round(v * (1 + (Math.random() - 0.5) * p));
@@ -74,6 +86,7 @@ export function DataGalleryPage() {
         icon="table_chart"
         toc={TOC}
       >
+        <DataBaseSections />
         <DocSection
           id="advanced-table"
           title="Table avancée"

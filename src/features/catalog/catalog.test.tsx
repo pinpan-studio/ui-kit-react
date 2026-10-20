@@ -130,5 +130,11 @@ describe('Pages du catalogue portées', () => {
     await userEvent.click(within(sec).getByRole('button', { name: /Supprimer/ }));
     expect(screen.getByText('1 client(s) supprimé(s)')).toBeInTheDocument();
     expect(document.getElementById('diff')?.querySelector('.app-text-diff')).toBeTruthy();
+    const base = document.getElementById('table') as HTMLElement;
+    expect(within(base).getByText('Ligne(s)', { exact: false })).toBeInTheDocument();
+    await userEvent.click(within(base).getByRole('button', { name: 'Empty' }));
+    expect(within(base).getByText('Aucun client trouvé')).toBeInTheDocument();
+    const sel = document.getElementById('list') as HTMLElement;
+    expect(within(sel).getByText('1 sélectionné(s)')).toBeInTheDocument();
   });
 });
