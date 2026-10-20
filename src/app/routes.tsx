@@ -27,6 +27,9 @@ const PORTED: Record<string, RouteObject['lazy']> = {
   '/ui-showcase': async () => ({
     Component: (await import('../features/catalog/ui-showcase/UiShowcasePage')).UiShowcasePage,
   }),
+  '/theme-studio': async () => ({
+    Component: (await import('../features/catalog/theme-studio/ThemeStudioPage')).ThemeStudioPage,
+  }),
   '/components': async () => ({
     Component: (await import('../features/catalog/components-index/ComponentsIndexPage')).ComponentsIndexPage,
   }),

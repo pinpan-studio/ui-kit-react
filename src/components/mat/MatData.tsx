@@ -283,3 +283,72 @@ export function MatSpinner({ diameter = 40, value }: { diameter?: number; value?
     </div>
   );
 }
+
+/** Réplique DOM de mat-chip-listbox (sélection unique). */
+export function MatChipListbox<V extends string>({
+  value,
+  onChange,
+  options,
+  className,
+  'aria-label': ariaLabel,
+}: {
+  value: V;
+  onChange: (v: V) => void;
+  options: readonly { value: V; label: string }[];
+  className?: string;
+  'aria-label'?: string;
+}) {
+  return (
+    <div
+      className={`mdc-evolution-chip-set mat-mdc-chip-listbox mat-mdc-chip-set${className ? ` ${className}` : ''}`}
+      role="listbox"
+      aria-label={ariaLabel}
+    >
+      <div role="presentation" className="mdc-evolution-chip-set__chips">
+        {options.map((o) => {
+          const sel = o.value === value;
+          return (
+            <div
+              key={o.value}
+              role="presentation"
+              className={`mat-mdc-chip mat-mdc-chip-option mat-primary mdc-evolution-chip mat-mdc-standard-chip mdc-evolution-chip--filter mdc-evolution-chip--selectable mdc-evolution-chip--selecting mdc-evolution-chip--with-primary-graphic${sel ? ' mat-mdc-chip-selected mdc-evolution-chip--selected' : ''}`}
+            >
+              <span className="mat-mdc-chip-focus-overlay" />
+              <span className="mdc-evolution-chip__cell mdc-evolution-chip__cell--primary">
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected={sel}
+                  onClick={() => !sel && onChange(o.value)}
+                  className="mat-mdc-chip-action mdc-evolution-chip__action mdc-evolution-chip__action--primary"
+                >
+                  <span className="mdc-evolution-chip__graphic mat-mdc-chip-graphic">
+                    <span className="mdc-evolution-chip__checkmark">
+                      <svg
+                        viewBox="-2 -3 30 30"
+                        focusable="false"
+                        aria-hidden="true"
+                        className="mdc-evolution-chip__checkmark-svg"
+                      >
+                        <path
+                          fill="none"
+                          stroke="currentColor"
+                          d="M1.73,12.91 8.1,19.28 22.79,4.59"
+                          className="mdc-evolution-chip__checkmark-path"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                  <span className="mdc-evolution-chip__text-label mat-mdc-chip-action-label">
+                    {o.label}
+                    <span className="mat-mdc-chip-primary-focus-indicator mat-focus-indicator" />
+                  </span>
+                </button>
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

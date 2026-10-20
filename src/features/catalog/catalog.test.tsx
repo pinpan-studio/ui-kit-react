@@ -208,4 +208,16 @@ describe('Pages du catalogue portées', () => {
     await userEvent.click(screen.getByRole('button', { name: /Primary light/ }));
     expect(await screen.findByText('« var(--primary-color-light) » copié')).toBeInTheDocument();
   });
+
+  it('/theme-studio : style, rôle imposé et application au kit', async () => {
+    renderAt('/theme-studio');
+    await screen.findByRole('heading', { level: 1, name: 'Studio de thème' });
+    await userEvent.click(screen.getByRole('option', { name: 'Neutre' }));
+    await userEvent.click(screen.getByLabelText('Imposer la couleur Secondary'));
+    expect(screen.getByLabelText('Imposer la couleur Secondary')).toBeChecked();
+    expect(document.querySelectorAll('.role-card')).toHaveLength(16);
+    await userEvent.click(screen.getByRole('button', { name: /Appliquer au kit/ }));
+    expect(await screen.findByText('Thème personnalisé appliqué à tout le kit')).toBeInTheDocument();
+    expect(document.body.classList.contains('theme-custom')).toBe(true);
+  });
 });
