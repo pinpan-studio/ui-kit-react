@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import './masonry-grid.scss';
 
 const UNIT = 4;
@@ -34,7 +34,8 @@ export function MasonryGrid<T>({
     ? `repeat(${columns}, minmax(0, 1fr))`
     : `repeat(auto-fill, minmax(min(100%, ${minColumnWidth}px), 1fr))`;
 
-  useEffect(() => {
+  // Créé avant l'effet d'observation ci-dessous (les effets de mise en page s'exécutent dans l'ordre).
+  useLayoutEffect(() => {
     ro.current = new ResizeObserver((entries) => {
       setSpans((prev) => {
         const next = [...prev];

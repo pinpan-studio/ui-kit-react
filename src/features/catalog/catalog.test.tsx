@@ -168,4 +168,34 @@ describe('Pages du catalogue portées', () => {
       within(document.getElementById('draw') as HTMLElement).getByText('Dessinez une forme sur la carte…'),
     ).toBeInTheDocument();
   });
+
+  it('/components/media : sections, visionneuse de pièces jointes et lecteur PDF', async () => {
+    // jsdom n'a ni canvas 2D ni URL.createObjectURL : contexte factice (toutes les méthodes sont des no-op).
+    const noop: unknown = new Proxy(() => undefined, {
+      get: (_t, k) =>
+        k === 'createLinearGradient' || k === 'createRadialGradient' ? () => ({ addColorStop: () => undefined }) : noop,
+      apply: () => undefined,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockImplementation(() => noop as CanvasRenderingContext2D);
+    vi.spyOn(HTMLCanvasElement.prototype, 'toDataURL').mockReturnValue('data:image/png;base64,AAAA');
+    Object.assign(URL, { createObjectURL: () => 'blob:test', revokeObjectURL: () => undefined });
+    renderAt('/components/media');
+    await screen.findByRole('heading', { level: 1, name: 'Médias' });
+    for (const t of [
+      'Lecteur vidéo',
+      'Lecteur YouTube',
+      'Lecteur audio',
+      'Lecteur PDF',
+      'Carrousel',
+      'Grille masonry',
+    ]) {
+      expect(screen.getByRole('heading', { level: 2, name: t })).toBeInTheDocument();
+    }
+    expect(
+      within(document.getElementById('pdf') as HTMLElement).getAllByText('contrat-cadre-2026.pdf').length,
+    ).toBeGreaterThan(0);
+    await userEvent.click(screen.getByRole('button', { name: /facture-0981\.txt/ }));
+    expect(await screen.findByText(/^Texte · 1 Ko · \d \/ \d$/)).toBeInTheDocument();
+    vi.restoreAllMocks();
+  });
 });
