@@ -24,11 +24,11 @@
   .entity {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--space-4);
     flex-wrap: wrap;
-    margin-bottom: 24px;
+    margin-bottom: var(--space-6);
     .ava.lg {
-      border-radius: 14px;
+      border-radius: var(--radius-lg);
       font-size: 18px;
     }
     .e-text {
@@ -38,7 +38,7 @@
     .e-title {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: var(--space-3);
       flex-wrap: wrap;
       h1 {
         margin: 0;
@@ -52,7 +52,7 @@
     p {
       display: flex;
       flex-wrap: wrap;
-      margin: 4px 0 0;
+      margin: var(--space-1) 0 0;
       font-size: var(--fs-body);
       color: var(--text-secondary);
       span:not(.material-icons) + span:not(.material-icons)::before {
@@ -63,7 +63,7 @@
     }
     .e-actions {
       display: flex;
-      gap: 8px;
+      gap: var(--space-2);
       align-items: center;
     }
     @include mobile {
@@ -88,7 +88,7 @@
   .cols {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 16px;
+    gap: var(--space-4);
     align-items: start;
     @include lg {
       grid-template-columns: minmax(0, 1fr);
@@ -97,7 +97,7 @@
   .side-col {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--space-4);
   }
   .main-col {
     overflow: hidden;
@@ -106,9 +106,18 @@
       border-bottom: 0;
     }
   }
+  // Flèches de pagination de mat-tab-header (visibles seulement en débordement).
+  .MuiTabs-scrollButtons {
+    width: 36px;
+    flex: 0 0 36px;
+    &.Mui-disabled {
+      opacity: 0.38;
+    }
+  }
   .tab-n {
-    margin-left: 8px;
-    padding: 0 6px;
+    display: inline-block;
+    margin-left: var(--space-2);
+    padding: 0 var(--space-2);
     border-radius: 9px;
     background: var(--hover-bg);
     font-size: 11px;
@@ -119,7 +128,7 @@
   }
 
   .pane {
-    padding: 20px 24px 24px;
+    padding: var(--space-5) var(--space-6) var(--space-6);
     &.flush {
       padding: 0;
       .dt {
@@ -128,14 +137,14 @@
       }
     }
     h3 {
-      margin: 28px 0 12px;
+      margin: var(--space-8) 0 var(--space-3);
       font-family: var(--font-heading) !important;
       font-size: var(--fs-h4) !important;
       font-weight: 600 !important;
       line-height: 1.4 !important;
     }
     @include mobile {
-      padding: 16px;
+      padding: var(--space-4);
     }
   }
   .lead {
@@ -148,13 +157,13 @@
   .goals {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--space-4);
   }
   .goal {
     .g-top {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
+      margin-bottom: var(--space-2);
       font-size: var(--fs-body-sm);
       color: var(--text-secondary);
       strong {
@@ -170,12 +179,12 @@
   .contact {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-3);
     .person {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 4px;
+      gap: var(--space-3);
+      margin-bottom: var(--space-1);
       span:not(.material-icons):last-child {
         display: flex;
         flex-direction: column;
@@ -196,6 +205,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin: 4px 0;
+  // Rendu mat-chip (M3) : puce à contour, libellé 14px / 500.
+  .MuiChip-root {
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--mat-sys-outline);
+    background: transparent;
+    color: var(--mat-sys-on-surface-variant);
+    font:
+      500 14px 'Inter',
+      sans-serif;
+    letter-spacing: 0.096px;
+  }
+  .MuiChip-label {
+    padding: 0 11px;
+  }
 }
 .MuiMenuItem-root.danger {
   color: var(--error-color-text, var(--error-color));

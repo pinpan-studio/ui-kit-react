@@ -78,11 +78,11 @@
     border-color: var(--success-color) !important;
     .cf-copy {
       background: var(--success-color);
-      color: var(--tone-on-success);
+      color: #fff;
     }
   }
   @media (max-width: 420px) {
-    .cf-copy span {
+    .cf-copy span:not(.material-icons) {
       display: none;
     }
     .cf-copy {

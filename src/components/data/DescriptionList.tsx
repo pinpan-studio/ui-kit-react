@@ -1,4 +1,3 @@
-import { toneInk } from '../../theme/toneInk';
 import type { CSSProperties } from 'react';
 import { useSnackbar } from '../feedback/useSnackbar';
 import { Tip } from '../fields/Tip';
@@ -71,7 +70,6 @@ export function DescriptionList({
                       style={
                         {
                           '--tone': `var(--${it.tone || 'primary'}-color)`,
-                          '--tone-ink': toneInk(`var(--${it.tone || 'primary'}-color)`),
                         } as CSSProperties
                       }
                     >

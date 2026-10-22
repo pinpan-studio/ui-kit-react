@@ -102,7 +102,7 @@
     border-radius: 12px;
     font-size: 12px;
     font-weight: 600;
-    color: var(--tone-ink, var(--tone));
+    color: var(--tone);
     background: color-mix(in srgb, var(--tone) 14%, transparent);
     &::before {
       content: '';

@@ -14,7 +14,6 @@ import {
   escapeHtml,
   loadLeaflet,
   mapToneColor,
-  mapToneInk,
   type BasemapKey,
   type LeafletNs,
   type MapDrawEngine,
@@ -134,7 +133,7 @@ export function MapView(props: MapViewProps) {
       m.heading != null ? `<span class="kit-pin__heading" style="transform: rotate(${m.heading}deg)"></span>` : '';
     return L.divIcon({
       className: 'kit-pin-wrap',
-      html: `<div class="kit-pin${m.pulse ? ' kit-pin--pulse' : ''}" style="--pin:${color};--pin-ink:${m.color ? '#fff' : mapToneInk(m.tone)}">${heading}<span class="material-icons">${escapeHtml(m.icon ?? 'place')}</span></div>`,
+      html: `<div class="kit-pin${m.pulse ? ' kit-pin--pulse' : ''}" style="--pin:${color}">${heading}<span class="material-icons">${escapeHtml(m.icon ?? 'place')}</span></div>`,
       iconSize: [34, 34],
       iconAnchor: [17, 17],
       popupAnchor: [0, -18],

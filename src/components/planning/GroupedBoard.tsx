@@ -1,4 +1,3 @@
-import { toneInk } from '../../theme/toneInk';
 import { useState, type CSSProperties } from 'react';
 import { MaterialIcon } from '../ui/MaterialIcon';
 import { NoteGrid } from './NoteGrid';
@@ -17,7 +16,7 @@ import {
 } from './planningModels';
 import './grouped-board.scss';
 
-const tone = (v: string) => ({ '--tone': v, '--tone-ink': toneInk(v) }) as CSSProperties;
+const tone = (v: string) => ({ '--tone': v }) as CSSProperties;
 
 /** app-grouped-board : regroupement par clé (technicien, véhicule…) avec progression, terminés, retards ; notes ou liste. */
 export function GroupedBoard({

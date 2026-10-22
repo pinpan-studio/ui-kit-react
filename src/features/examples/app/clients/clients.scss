@@ -5,8 +5,8 @@
   // Onglets de statut (soulignés) : premier niveau de filtre, toujours visible.
   .status-tabs {
     display: flex;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
     border-bottom: 0;
     overflow-x: auto;
     scrollbar-width: none;
@@ -14,9 +14,9 @@
       position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-2);
       height: 40px;
-      padding: 0 12px;
+      padding: 0 var(--space-3);
       border: 0;
       background: none;
       cursor: pointer;
@@ -62,9 +62,9 @@
   .filters {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-2);
     flex-wrap: wrap;
-    margin-bottom: 12px;
+    margin-bottom: var(--space-3);
     @include mobile {
       .view-mode-toggle span:not(.material-icons) {
         display: none !important;
@@ -75,9 +75,9 @@
   .preview {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: var(--space-8);
     flex-wrap: wrap;
-    padding: 4px 4px 4px 8px;
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-2);
     span:not(.material-icons) {
       display: flex;
       flex-direction: column;
@@ -95,8 +95,8 @@
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
     @include mobile {
       grid-template-columns: minmax(0, 1fr);
     }
@@ -104,8 +104,8 @@
   .ccard {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
+    gap: var(--space-4);
+    padding: var(--space-4);
     text-align: left;
     color: inherit;
     font: inherit;
@@ -121,7 +121,7 @@
     .cc-top {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: var(--space-3);
       .grow {
         flex: 1;
         min-width: 0;
@@ -144,9 +144,9 @@
       display: grid;
       grid-template-columns: repeat(3, auto);
       justify-content: space-between;
-      gap: 12px;
+      gap: var(--space-3);
       margin: 0;
-      padding-top: 12px;
+      padding-top: var(--space-3);
       border-top: 0;
       dt {
         font-size: var(--fs-caption);

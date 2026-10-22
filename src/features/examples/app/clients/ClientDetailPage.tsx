@@ -233,7 +233,8 @@ export function ClientDetailPage() {
             onChange={(_, v: number) => setTab(v)}
             className="mat-tab-group"
             variant="scrollable"
-            scrollButtons={false}
+            scrollButtons="auto"
+            allowScrollButtonsMobile
           >
             <Tab label="Aperçu" />
             <Tab

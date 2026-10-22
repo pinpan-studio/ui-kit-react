@@ -101,7 +101,7 @@ function Panel({
               onClick={() => !it.disabled && onPick(it)}
             >
               <MaterialIcon name={it.icon || ''} />
-              <span>{it.label}</span>
+              <span className="ctx-label">{it.label}</span>
               {it.shortcut && <Kbd keys={it.shortcut} />}
             </button>
           ),

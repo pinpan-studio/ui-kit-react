@@ -1,4 +1,3 @@
-import { toneInk } from '../../theme/toneInk';
 import {
   DndContext,
   DragOverlay,
@@ -38,7 +37,7 @@ import {
 import type { KanbanMove } from './planningTypes';
 import './kanban-board.scss';
 
-const tone = (v: string) => ({ '--tone': v, '--tone-ink': toneInk(v) }) as CSSProperties;
+const tone = (v: string) => ({ '--tone': v }) as CSSProperties;
 
 function CardBody({ it, tpl }: { it: PlanningItem; tpl?: (it: PlanningItem) => ReactNode }) {
   if (tpl) return <>{tpl(it)}</>;

@@ -139,7 +139,7 @@
 
   .post {
     padding: var(--space-4) var(--space-5) var(--space-2);
-    header {
+    > header {
       display: flex;
       align-items: center;
       gap: var(--space-3);
@@ -171,7 +171,7 @@
         }
       }
     }
-    .text {
+    > .text {
       margin: var(--space-3) 0;
       font-size: var(--fs-body);
       line-height: var(--lh-relaxed);

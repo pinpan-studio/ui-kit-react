@@ -7,16 +7,16 @@
   .thread {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--space-5);
   }
   &.compact .thread {
-    gap: 12px;
+    gap: var(--space-3);
   }
 
   .head {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-3);
     h2 {
       flex: 1;
       margin: 0;
@@ -25,7 +25,7 @@
       font-weight: 700 !important;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-2);
     }
     .n {
       font: 700 12px var(--font-body, 'Inter', sans-serif);
@@ -44,7 +44,7 @@
   .list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-2);
   }
   &.compact .list {
     gap: 2px;
@@ -66,9 +66,9 @@
   .more {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin: 2px 0 6px 48px;
-    padding: 4px 10px;
+    gap: var(--space-2);
+    margin: 2px 0 var(--space-2) var(--space-12);
+    padding: var(--space-1) var(--space-3);
     border: 0;
     border-radius: 99px;
     background: none;
@@ -85,15 +85,15 @@
     }
   }
   .reply-box {
-    margin: 6px 0 10px 48px;
+    margin: var(--space-2) 0 var(--space-3) var(--space-12);
   }
 
   .comment {
     display: flex;
-    gap: 12px;
-    padding: 10px 8px;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-2);
     margin: 0 -8px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     transition: background 0.6s;
     &.flash {
       background: var(--primary-color-light);
@@ -131,7 +131,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: var(--space-2);
     min-height: 28px;
     font-size: 13px;
     strong {
@@ -149,7 +149,7 @@
       display: inline-flex;
       align-items: center;
       gap: 3px;
-      padding: 1px 8px;
+      padding: 1px var(--space-2);
       border-radius: 99px;
       font-size: 10.5px;
       font-weight: 700;
@@ -173,7 +173,7 @@
       margin-left: auto;
       width: 32px;
       height: 32px;
-      padding: 4px;
+      padding: var(--space-1);
       opacity: 0.55;
       .material-icons {
         font-size: 20px;
@@ -199,8 +199,8 @@
       color: var(--primary-color);
       font-weight: 600;
       background: var(--primary-color-light);
-      padding: 0 4px;
-      border-radius: 6px;
+      padding: 0 var(--space-1);
+      border-radius: var(--radius-sm);
     }
   }
   &.compact .text {
@@ -209,8 +209,8 @@
   .deleted {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin: 6px 0;
+    gap: var(--space-2);
+    margin: var(--space-2) 0;
     font-size: 13.5px;
     font-style: italic;
     color: var(--text-muted);
@@ -224,12 +224,12 @@
   .reactions {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
     button {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: var(--space-1);
       height: 26px;
       padding: 0 9px;
       border-radius: 99px;
@@ -255,7 +255,7 @@
     display: flex;
     align-items: center;
     gap: 2px;
-    margin: 4px 0 0 -8px;
+    margin: var(--space-1) 0 0 -8px;
   }
   .act {
     display: inline-flex;
@@ -290,8 +290,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 32px 16px;
+    gap: var(--space-1);
+    padding: var(--space-8) var(--space-4);
     text-align: center;
     color: var(--text-muted);
     .material-icons {
@@ -317,7 +317,7 @@
     width: 38px;
     height: 38px;
     border: 0;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     background: none;
     font-size: 20px;
     cursor: pointer;

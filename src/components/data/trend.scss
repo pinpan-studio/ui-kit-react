@@ -25,13 +25,13 @@
     }
   }
   .tr--up {
-    color: var(--tone-success-text);
+    color: var(--success-color-text, var(--success-color));
     &.soft {
       background: var(--success-color-light);
     }
   }
   .tr--down {
-    color: var(--tone-error-text);
+    color: var(--error-color-text, var(--error-color));
     &.soft {
       background: var(--error-color-light);
     }

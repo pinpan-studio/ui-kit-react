@@ -2,7 +2,6 @@
 
 .bn {
   --c: var(--info-color);
-  --c-ink: var(--tone-info-text);
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -31,35 +30,31 @@
 }
 .bn--success {
   --c: var(--success-color);
-  --c-ink: var(--tone-success-text);
 }
 .bn--warning {
   --c: var(--warning-color);
-  --c-ink: var(--tone-warning-text);
 }
 .bn--error {
   --c: var(--error-color);
-  --c-ink: var(--tone-error-text);
 }
 .bn--maintenance {
   --c: var(--purple-color, #8b5cf6);
-  --c-ink: var(--tone-purple-text);
 }
 .bn--offline {
   --c: var(--error-color);
   background: var(--error-color);
-  color: var(--mat-sys-on-error);
+  color: #fff;
   border-color: transparent;
   .bn-ic,
   .bn-text span {
-    color: var(--mat-sys-on-error);
+    color: #fff;
   }
   .bn-action {
-    background: color-mix(in srgb, var(--mat-sys-on-error) 20%, transparent);
-    color: var(--mat-sys-on-error);
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
   }
   .bn-close {
-    color: var(--mat-sys-on-error);
+    color: #fff;
   }
 }
 .bn--promo {
@@ -82,7 +77,7 @@
 
 .bn-ic {
   flex-shrink: 0;
-  color: var(--c-ink, var(--c));
+  color: var(--c);
   &.spin {
     animation: bn-spin 1.4s linear infinite;
   }

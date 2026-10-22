@@ -143,7 +143,8 @@
       }
     }
   }
-  .ava {
+  // Encapsulation Angular : ces avatars ne doivent pas déborder sur ex-chat-thread / ex-chat-list.
+  .ava:not(.ex-chat-thread *, .ex-chat-list *) {
     position: relative;
     width: 40px;
     height: 40px;

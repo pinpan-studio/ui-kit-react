@@ -60,7 +60,7 @@
     }
     &.bad {
       background: var(--error-color-light);
-      color: var(--tone-error-text);
+      color: var(--error-color-text, var(--error-color));
       text-decoration: underline wavy;
       text-underline-offset: 3px;
     }

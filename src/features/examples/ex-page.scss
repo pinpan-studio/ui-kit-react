@@ -21,7 +21,13 @@
   .MuiToggleButtonGroup-root.ex-seg {
     border: 0;
     background: var(--mat-sys-surface-container-high, var(--hover-bg));
+    // Rendu réel de mat-button-toggle côté Angular : 40px, 14px, padding horizontal 12px.
     .MuiToggleButton-root {
+      height: 40px;
+      padding: 0 12px;
+      font-size: var(--fs-body);
+      line-height: 40px;
+      white-space: nowrap;
       border: 0 !important;
       &:not(.Mui-selected) {
         background: transparent;
@@ -33,16 +39,16 @@
   .page-head {
     display: flex;
     align-items: flex-end;
-    gap: 16px;
+    gap: var(--space-4);
     flex-wrap: wrap;
-    margin-bottom: 24px;
+    margin-bottom: var(--space-6);
     .titles {
       flex: 1 1 280px;
       min-width: 0;
     }
     .eyebrow {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: var(--space-1);
       font: 600 var(--fs-overline) / 1.4 var(--font-body);
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -58,7 +64,7 @@
       text-wrap: balance;
     }
     p {
-      margin: 4px 0 0;
+      margin: var(--space-1) 0 0;
       font-size: var(--fs-body);
       line-height: var(--lh-body);
       color: var(--text-secondary);
@@ -67,18 +73,18 @@
     .actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-2);
       flex-wrap: wrap;
     }
     @include mobile {
-      margin-bottom: 16px;
+      margin-bottom: var(--space-4);
       h1 {
         font-size: var(--fs-h3) !important;
       }
       .actions {
         width: 100%;
         > * {
-          flex: 1;
+          flex: 1 1 auto;
         }
       }
     }
@@ -88,16 +94,16 @@
   .card {
     background: var(--card-bg);
     border: 0;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     box-sizing: border-box;
     min-width: 0;
   }
   .card-head {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-2);
     min-height: 52px;
-    padding: 12px 20px 0;
+    padding: var(--space-3) var(--space-5) 0;
     box-sizing: border-box;
     h2 {
       margin: 0;
@@ -125,13 +131,13 @@
     }
   }
   .card-body {
-    padding: 16px 20px 20px;
+    padding: var(--space-4) var(--space-5) var(--space-5);
   }
   .card-foot {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
     border-top: 0;
   }
 
@@ -139,24 +145,24 @@
   .kpis {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
     @include tablet {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     @include sm {
-      gap: 10px;
+      gap: var(--space-3);
     }
   }
   .kpi {
-    padding: 16px 20px;
+    padding: var(--space-4) var(--space-5);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--space-2);
     .k-label {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-2);
       font-size: var(--fs-body-sm);
       font-weight: 500;
       color: var(--text-secondary);
@@ -178,7 +184,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       small {
-        margin-left: 4px;
+        margin-left: var(--space-1);
         font: 500 var(--fs-body-sm) var(--font-body);
         letter-spacing: 0;
         color: var(--text-muted);
@@ -187,12 +193,14 @@
     .k-foot {
       display: flex;
       align-items: center;
-      gap: 6px;
+      flex-wrap: wrap;
+      row-gap: 2px;
+      gap: var(--space-2);
       font-size: var(--fs-caption);
       color: var(--text-muted);
     }
     @include sm {
-      padding: 12px 14px;
+      padding: var(--space-3) var(--space-4);
       .k-val {
         font-size: 22px;
       }
@@ -207,8 +215,8 @@
   .row {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 20px;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-5);
     color: inherit;
     text-decoration: none;
     min-width: 0;
@@ -284,7 +292,7 @@
     width: 36px;
     height: 36px;
     flex: 0 0 36px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -297,7 +305,8 @@
     }
   }
 
-  .ava {
+  // Encapsulation Angular : ne pas déborder sur les avatars des sous-composants du chat.
+  .ava:not(.ex-chat-thread *, .ex-chat-list *) {
     width: 36px;
     height: 36px;
     flex: 0 0 36px;
@@ -332,7 +341,7 @@
       }
     }
     .more {
-      margin-left: 8px;
+      margin-left: var(--space-2);
       font-size: var(--fs-caption);
       font-weight: 600;
       color: var(--text-muted);
@@ -343,10 +352,10 @@
   .chip-filter {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-2);
     height: 32px;
-    padding: 0 12px;
-    border-radius: 8px;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-sm);
     border: 0;
     background: var(--card-bg);
     color: var(--text-secondary);
@@ -383,11 +392,11 @@
   .searchbox {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-2);
     height: 40px;
-    padding: 0 12px;
+    padding: 0 var(--space-3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     border: 0;
     background: var(--mat-sys-surface-container-high, var(--hover-bg));
     color: var(--text-muted);
@@ -413,8 +422,8 @@
   .section-title {
     display: flex;
     align-items: baseline;
-    gap: 10px;
-    margin: 0 0 12px;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-3);
     h2 {
       margin: 0;
       font-family: var(--font-heading) !important;
@@ -450,6 +459,7 @@
 .ex-auth {
   .MuiFormControlLabel-root {
     margin-left: 0;
+    margin-right: 0;
     .MuiFormControlLabel-label {
       font-size: 14px;
       line-height: 20px;

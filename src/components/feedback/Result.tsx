@@ -1,4 +1,3 @@
-import { toneInk } from '../../theme/toneInk';
 import type { CSSProperties, ReactNode } from 'react';
 import { MaterialIcon } from '../ui/MaterialIcon';
 import './result.scss';
@@ -67,10 +66,7 @@ export function Result({
   const code = ['403', '404', '500'].includes(status) ? status : '';
   const sub = subtitle || p.subtitle;
   return (
-    <div
-      className={`rs${compact ? ' compact' : ''}`}
-      style={{ '--tone': `var(--${p.tone}-color)`, '--tone-ink': toneInk(`var(--${p.tone}-color)`) } as CSSProperties}
-    >
+    <div className={`rs${compact ? ' compact' : ''}`} style={{ '--tone': `var(--${p.tone}-color)` } as CSSProperties}>
       {code && <span className="rs-code">{code}</span>}
       <div
         className={`rs-ic${status === 'pending' ? ' pending' : ''}${status === 'success' ? ' pop' : ''}`}

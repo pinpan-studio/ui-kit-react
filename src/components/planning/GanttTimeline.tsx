@@ -1,4 +1,3 @@
-import { toneIcon, toneInk } from '../../theme/toneInk';
 /* eslint-disable @typescript-eslint/no-non-null-assertion -- calculs portés tels quels depuis gantt-timeline.component.ts (éléments filtrés sur `start`) */
 import { Tooltip } from '@mui/material';
 import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
@@ -33,7 +32,7 @@ const ZOOMS: { key: GanttZoom; label: string }[] = [
   { key: 'week', label: 'Semaine' },
   { key: 'month', label: 'Mois' },
 ];
-const tone = (v: string) => ({ '--tone': v, '--tone-ink': toneInk(v), '--tone-icon': toneIcon(v) }) as CSSProperties;
+const tone = (v: string) => ({ '--tone': v }) as CSSProperties;
 
 interface Bar {
   item: PlanningItem;

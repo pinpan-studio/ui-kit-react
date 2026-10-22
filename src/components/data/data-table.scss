@@ -380,7 +380,7 @@
     border-radius: var(--radius-md);
     font-size: 12px;
     font-weight: 600;
-    color: var(--tone-ink, var(--tone));
+    color: var(--tone);
     background: color-mix(in srgb, var(--tone) 13%, transparent);
     &::before {
       content: '';
@@ -538,10 +538,10 @@
     .hide-xs {
       display: none;
     }
-    .dt-tool span {
+    .dt-tool span:not(.material-icons) {
       display: none;
     }
-    .dt-bulk-btn span {
+    .dt-bulk-btn span:not(.material-icons) {
       display: none;
     }
     .dt-search {

@@ -43,7 +43,7 @@
       color: var(--error-color);
       flex-shrink: 0;
     }
-    span {
+    span:not(.material-icons) {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -302,7 +302,7 @@
     .hide-xs {
       display: none;
     }
-    .pv-name span {
+    .pv-name span:not(.material-icons) {
       max-width: 120px;
     }
   }

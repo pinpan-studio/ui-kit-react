@@ -1,4 +1,3 @@
-import { toneInk } from '../../theme/toneInk';
 import { useState, type CSSProperties } from 'react';
 import { Tooltip } from '@mui/material';
 import { MaterialIcon } from '../ui/MaterialIcon';
@@ -22,7 +21,7 @@ import {
 } from './planningModels';
 import './month-calendar.scss';
 
-const tone = (v: string) => ({ '--tone': v, '--tone-ink': toneInk(v) }) as CSSProperties;
+const tone = (v: string) => ({ '--tone': v }) as CSSProperties;
 
 /** app-month-calendar : éléments placés à leur date de début (sinon échéance), « +n autre(s) », panneau du jour optionnel. */
 export function MonthCalendar({

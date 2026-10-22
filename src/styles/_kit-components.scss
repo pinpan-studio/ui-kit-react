@@ -787,7 +787,7 @@ app-command-palette {
     .material-icons {
       @include kit-menu-icon;
     }
-    span {
+    .ctx-label {
       flex: 1;
     }
     &.active {
@@ -1560,6 +1560,6 @@ app-command-palette {
 }
 
 // Libellés des menus contextuels sur une ligne (« Déplacer vers la corbeille »).
-.kit-ctx .ctx-item > span {
+.kit-ctx .ctx-item > .ctx-label {
   white-space: nowrap;
 }

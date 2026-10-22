@@ -117,7 +117,7 @@
     td.add {
       background: color-mix(in srgb, var(--success-color) 11%, transparent);
       .sign {
-        color: var(--tone-success-text);
+        color: var(--success-color);
       }
     }
     tr.del,

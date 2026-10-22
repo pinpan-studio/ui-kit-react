@@ -41,9 +41,7 @@
   .seg {
     border-radius: var(--radius-sm);
     .MuiToggleButton-root {
-      height: 36px;
       border-radius: var(--radius-sm);
-      font-size: var(--fs-body-sm);
     }
   }
   .alert {
@@ -335,6 +333,7 @@
         font-size: 14px;
         width: 14px;
         height: 14px;
+        flex-shrink: 1; // comme mat-icon (MUI fixe flex-shrink: 0)
         color: var(--text-muted);
       }
     }

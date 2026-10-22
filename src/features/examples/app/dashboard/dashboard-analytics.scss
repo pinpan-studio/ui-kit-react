@@ -10,7 +10,7 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    gap: var(--space-4);
     .span-2 {
       grid-column: span 2;
     }
@@ -33,8 +33,8 @@
     }
   }
   .tag {
-    padding: 2px 8px;
-    border-radius: 6px;
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-sm);
     background: var(--hover-bg);
     font-size: 11px;
     font-weight: 600;
@@ -59,7 +59,7 @@
   // ─── Treemap ───────────────────────────────────────────────────
   .treemap {
     display: flex;
-    gap: 4px;
+    gap: var(--space-1);
     height: 260px;
     @include sm {
       flex-direction: column;
@@ -71,7 +71,7 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--space-1);
     .tm-title {
       font-size: var(--fs-caption);
       font-weight: 600;
@@ -85,7 +85,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--space-1);
     min-height: 0;
   }
   .tm-cell {
@@ -94,8 +94,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 8px 10px;
-    border-radius: 6px;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background: var(--tone);
     color: #fff;
@@ -114,13 +114,13 @@
   .funnel {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-3);
   }
   .f-row {
     display: grid;
     grid-template-columns: 150px minmax(0, 1fr) 70px 52px;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-3);
     font-size: var(--fs-body-sm);
     @include sm {
       grid-template-columns: 110px minmax(0, 1fr) 60px;
@@ -139,7 +139,7 @@
   }
   .f-bar {
     height: 100%;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     background: var(--primary-color);
     transition: width 0.6s ease;
   }
@@ -153,7 +153,7 @@
     color: var(--text-muted);
   }
   .f-foot {
-    margin: 6px 0 0;
+    margin: var(--space-2) 0 0;
     font-size: var(--fs-body-sm);
     color: var(--text-secondary);
     strong {
@@ -165,7 +165,7 @@
   .rings {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px 12px;
+    gap: var(--space-4) var(--space-3);
   }
   .ring {
     position: relative;
@@ -212,7 +212,7 @@
     i {
       display: block;
       aspect-ratio: 1.6;
-      border-radius: 3px;
+      border-radius: var(--radius-xs);
       cursor: default;
       &:hover {
         outline: 2px solid var(--text-primary);
@@ -240,7 +240,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: 3px;
-    margin-top: 12px;
+    margin-top: var(--space-3);
     font-size: 11px;
     color: var(--text-muted);
     span:not(.material-icons) {
@@ -249,7 +249,7 @@
     i {
       width: 12px;
       height: 12px;
-      border-radius: 3px;
+      border-radius: var(--radius-xs);
     }
   }
 
@@ -257,11 +257,11 @@
   .ranking {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: var(--space-4);
   }
   .rk {
     display: flex;
-    gap: 12px;
+    gap: var(--space-3);
     align-items: flex-start;
     .rk-pos {
       width: 22px;
@@ -286,14 +286,14 @@
     }
     .rk-bar {
       height: 6px;
-      margin: 6px 0 4px;
-      border-radius: 3px;
+      margin: var(--space-2) 0 var(--space-1);
+      border-radius: var(--radius-xs);
       background: var(--hover-bg);
       overflow: hidden;
       i {
         display: block;
         height: 100%;
-        border-radius: 3px;
+        border-radius: var(--radius-xs);
         background: var(--info-color);
         &.over {
           background: var(--success-color);
@@ -316,7 +316,7 @@
   .cal-months {
     display: grid;
     grid-template-columns: 30px repeat(52, minmax(0, 1fr));
-    margin-bottom: 4px;
+    margin-bottom: var(--space-1);
     font-size: 11px;
     color: var(--text-muted);
     span:not(.material-icons) {
