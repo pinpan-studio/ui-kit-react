@@ -1204,3 +1204,8 @@ h2 {
 .mat-tree-node {
   min-height: auto !important;
 }
+
+// styles.scss d'Angular : marge globale de .logo (Harnais, palette de commandes…).
+.logo {
+  margin: 0px var(--space-4);
+}
