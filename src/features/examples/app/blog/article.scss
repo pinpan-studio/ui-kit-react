@@ -1,7 +1,7 @@
 // Porté depuis ui-kit Angular (examples/app/article-example.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-article {
+.ex-page.ex-article {
   // Barre de progression collée en haut de la zone de contenu (qui a 24 px / 16 px de marge).
   .progress {
     position: sticky;

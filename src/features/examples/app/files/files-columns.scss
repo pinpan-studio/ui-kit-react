@@ -1,9 +1,10 @@
 // Porté depuis ui-kit Angular (examples/app/files-columns-example.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-files-columns {
-  // Page « flush » : remplit la zone de contenu du shell.
-  & {
+.ex-page.ex-files-columns {
+  // Page « flush » : remplit la zone de contenu du shell (&.ex-page : l'emporte sur le bloc de .ex-page).
+  &,
+  &.ex-page {
     display: flex;
     flex-direction: column;
     flex: 1;

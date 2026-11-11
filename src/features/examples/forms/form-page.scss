@@ -2,7 +2,7 @@
 @use 'sass:selector';
 @use '../../../styles/breakpoints' as *;
 
-.ex-form {
+.ex-page.ex-form {
   // Briques communes des formulaires d'exemple (/examples/forms/**).
   .form-head {
     max-width: 1100px;
@@ -275,7 +275,7 @@
 }
 
 // mat-accordion displayMode="flat" (FAQ) : panneaux sans ombre, indicateur 8 px comme mat-expansion-indicator.
-.ex-form {
+.ex-page.ex-form {
   .MuiAccordionSummary-root.mat-expansion-panel-header {
     padding: 0 24px;
   }

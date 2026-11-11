@@ -1,7 +1,7 @@
 // Porté depuis ui-kit Angular (examples/app/dashboard-example.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-dashboard {
+.ex-page.ex-dashboard {
   .period {
     border-radius: var(--radius-sm);
     .MuiToggleButton-root {

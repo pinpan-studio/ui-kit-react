@@ -1,9 +1,10 @@
 // Porté depuis ui-kit Angular (examples/app/inbox-example.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-inbox {
-  // Page « flush » : remplit la zone de contenu du shell.
-  & {
+.ex-page.ex-inbox {
+  // Page « flush » : remplit la zone de contenu du shell (&.ex-page : l'emporte sur le bloc de .ex-page).
+  &,
+  &.ex-page {
     display: flex;
     flex: 1;
     min-height: 0;

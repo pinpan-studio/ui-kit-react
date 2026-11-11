@@ -2,7 +2,7 @@
 @use 'sass:selector';
 @use '../../../../styles/breakpoints' as *;
 
-.ex-settings {
+.ex-page.ex-settings {
   .layout {
     display: grid;
     grid-template-columns: 216px minmax(0, 760px);

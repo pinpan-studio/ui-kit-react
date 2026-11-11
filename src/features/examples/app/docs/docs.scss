@@ -1,7 +1,7 @@
 // Porté depuis ui-kit Angular (examples/app/docs-example.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-docs {
+.ex-page.ex-docs {
   // Trois colonnes comme les autres écrans à navigation secondaire (paramètres, catalogue) :
   // colonnes latérales sans carte ni bordure, contenu dans une carte à bordure fine, aucune ombre.
   .docs {

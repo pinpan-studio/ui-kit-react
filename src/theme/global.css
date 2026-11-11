@@ -14,3 +14,8 @@ body.light {
 body.dark {
   color-scheme: dark;
 }
+/* Comme le navigateur dans ui-kit (Angular) : <b>/<strong> = « bolder » (CssBaseline impose 700). */
+body b,
+body strong {
+  font-weight: bolder;
+}

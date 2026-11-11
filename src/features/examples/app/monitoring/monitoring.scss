@@ -1,7 +1,7 @@
 // Porté depuis ui-kit Angular (examples/app/monitoring-example.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-monitoring {
+.ex-page.ex-monitoring {
   .live-line {
     display: flex;
     align-items: center;
@@ -146,7 +146,8 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  .kpi .k-val {
+  .kpi .k-val,
+  &.ex-page .kpi .k-val {
     font-size: 24px;
   }
 

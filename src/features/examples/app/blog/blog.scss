@@ -1,7 +1,7 @@
 // Porté depuis ui-kit Angular (examples/app/blog-example.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-blog {
+.ex-page.ex-blog {
   .masthead {
     max-width: 1180px;
     margin: var(--space-2) auto var(--space-8);

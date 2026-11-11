@@ -1,7 +1,7 @@
 // Porté depuis ui-kit Angular (styles du composant examples/app/board-example.component.ts).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-board {
+.ex-page.ex-board {
   .progress {
     display: flex;
     align-items: center;

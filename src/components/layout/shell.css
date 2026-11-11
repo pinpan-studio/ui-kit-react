@@ -275,6 +275,8 @@
   font-family: 'Outfit', sans-serif;
   font-size: 18px;
   font-weight: 700;
+  /* mat-toolbar : interligne title-large */
+  line-height: 28px;
 }
 .kit-toolbar .palette-btn {
   display: flex;

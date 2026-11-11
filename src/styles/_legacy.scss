@@ -589,19 +589,19 @@
 
   &.success {
     background: var(--success-color-light);
-    color: var(--tone-success-text);
+    color: var(--success-color-text, var(--success-color));
   }
   &.warning {
     background: var(--warning-color-light);
-    color: var(--tone-warning-text);
+    color: var(--warning-color-text, var(--warning-color));
   }
   &.error {
     background: var(--error-color-light);
-    color: var(--tone-error-text);
+    color: var(--error-color-text, var(--error-color));
   }
   &.info {
     background: var(--info-color-light);
-    color: var(--tone-info-text);
+    color: var(--info-color);
   }
   &.purple {
     background: var(--purple-color-light);
