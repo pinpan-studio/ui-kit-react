@@ -310,7 +310,8 @@
       flex-shrink: 0;
       margin-top: 2px;
     }
-    strong {
+    // Titre seulement : en Angular, le <strong> du texte (HTML injecté) échappe au style encapsulé.
+    strong:not(p strong) {
       display: block;
       margin-bottom: 2px;
       font-family: var(--font-heading, 'Outfit', sans-serif);
