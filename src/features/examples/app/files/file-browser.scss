@@ -1,7 +1,9 @@
 // Porté depuis ui-kit Angular (examples/app/files/ex-file-browser.component.scss) ; :host et .fb fusionnés sur .fb.
 @use '../../../../styles/breakpoints' as *;
 
-.fb {
+// « .ex-page .fb » : comme en Angular, les briques de la page ne débordent pas dans ce composant.
+.fb,
+.ex-page .fb {
   & {
     display: block;
     min-width: 0;

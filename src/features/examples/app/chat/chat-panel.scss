@@ -1,5 +1,7 @@
 // Porté depuis ui-kit Angular (styles de examples/app/chat/ex-chat-panel.component.ts) ; :host → .ex-chat-panel.
-.ex-chat-panel {
+// « .ex-page .ex-chat-panel » : comme en Angular, les briques de la page ne débordent pas dans ce composant.
+.ex-chat-panel,
+.ex-page .ex-chat-panel {
   display: flex;
   flex-direction: column;
   height: 100%;

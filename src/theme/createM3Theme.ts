@@ -285,6 +285,8 @@ export function createM3Theme(scheme: M3Scheme, mode: ThemeMode): Theme {
             color: r('on-surface'),
             // mat-pseudo-checkbox 18 px suivi des 12 px de padding du libellé (gap 8 + 4).
             '& .seg-check': { fontSize: 18, marginRight: 4 },
+            // Angular : une icône dans le libellé (interligne 40 px) porte le bouton à 41,2 px.
+            '&:has(.material-icons:not(.seg-check))': { height: 41.2 },
             '&.Mui-selected, &.Mui-selected:hover': {
               backgroundColor: r('secondary-container'),
               color: r('on-secondary-container'),

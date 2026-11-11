@@ -1,7 +1,9 @@
 // Porté depuis ui-kit Angular (examples/app/dashboard/ex-dashboard-analytics.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-analytics {
+// « .ex-page .ex-analytics » : comme en Angular, les briques de la page ne débordent pas dans ce composant.
+.ex-analytics,
+.ex-page .ex-analytics {
   & {
     display: block;
     height: auto;

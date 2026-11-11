@@ -1,7 +1,9 @@
 // Porté depuis ui-kit Angular (examples/app/chat/ex-chat-list.component.scss).
 @use '../../../../styles/breakpoints' as *;
 
-.ex-chat-list {
+// « .ex-page .ex-chat-list » : comme en Angular, les briques de la page ne débordent pas dans ce composant.
+.ex-chat-list,
+.ex-page .ex-chat-list {
   & {
     flex: 1;
     min-height: 0;

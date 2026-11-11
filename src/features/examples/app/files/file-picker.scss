@@ -12,7 +12,9 @@
   overflow: hidden;
 }
 
-.fp {
+// « .ex-page .fp » : comme en Angular, les briques de la page ne débordent pas dans ce composant.
+.fp,
+.ex-page .fp {
   height: 100%;
   display: flex;
   flex-direction: column;
